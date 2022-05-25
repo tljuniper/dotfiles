@@ -1,18 +1,6 @@
 { config, pkgs, ... }:
 
-let
-  # System-dependent values
-  username = "";
-  # Used for git
-  fullName = "";
-  email = "";
-in
 {
-  # Home Manager needs a bit of information about you and the
-  # paths it should manage.
-  home.username = username;
-  home.homeDirectory = "/home/${username}";
-
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new Home Manager release introduces backwards
@@ -46,26 +34,6 @@ in
 
   programs.autojump = {
     enable = true;
-  };
-
-  programs.git = {
-    enable = true;
-    userName = fullName;
-    userEmail = email;
-    aliases = {
-      lol = "log --oneline";
-      rofl = "log --oneline";
-      unstage = "restore --staged";
-    };
-    extraConfig = {
-      pager = {
-        branch = false;
-      };
-      core = {
-        editor = "vim";
-      };
-      interactive.diffFilter = "${pkgs.diff-so-fancy}/bin/diff-so-fancy --patch";
-    };
   };
 
   programs.direnv = {

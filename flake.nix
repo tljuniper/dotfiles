@@ -34,6 +34,7 @@
               imports = [
                   ./home-manager/home.nix
                   ./home-manager/vim.nix
+                  ./home-manager/git.nix
                   ./home-manager/zsh.nix
               ];
           };
