@@ -30,6 +30,26 @@
         "[haskell]" = {
           "editor.defaultFormatter" = "MaxGabriel.brittany";
         };
+        "shfmt.executablePath" = "${pkgs.shfmt}/bin/shfmt";
+        "cSpell.enabledLanguageIds" = [
+          "css"
+          "git-commit"
+          "haskell"
+          "html"
+          "javascript"
+          "json"
+          "jsonc"
+          "latex"
+          "markdown"
+          "nix"
+          "plaintext"
+          "python"
+          "shellscript"
+          "text"
+          "yaml"
+          "yml"
+        ];
+
       };
     keybindings = [
       {
@@ -76,6 +96,7 @@
       shardulm94.trailing-spaces
       timonwong.shellcheck
       vscodevim.vim
+      streetsidesoftware.code-spell-checker
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
         name = "brittany";

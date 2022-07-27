@@ -16,13 +16,13 @@
 
   # ------------------------------------------------------------------
 
-  home.packages = [
-    pkgs.htop
-    pkgs.diff-so-fancy
-    pkgs.jq
-    pkgs.tree
-    pkgs.bat
-    pkgs.fzf
+  home.packages = with pkgs; [
+    htop
+    diff-so-fancy
+    jq
+    tree
+    bat
+    fzf
   ];
 
   home.file.".aspell.de_DE.prepl".source = ./aspell.de_DE.prepl;
