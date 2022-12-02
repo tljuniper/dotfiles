@@ -45,6 +45,7 @@
         font = "DejaVu Sans Mono 12";
         show_titlebar = false;
         use_system_font = false;
+        scrollback_infinite = true;
       };
     };
   };

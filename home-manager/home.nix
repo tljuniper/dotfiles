@@ -85,6 +85,9 @@
       core = {
         editor = "vim";
       };
+      init = {
+        defaultBranch = "main";
+      };
       interactive.diffFilter = "${pkgs.diff-so-fancy}/bin/diff-so-fancy --patch";
     };
   };
