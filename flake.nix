@@ -33,11 +33,9 @@
           configuration = {
               imports = [
                   ./home-manager/home.nix
-                  ./home-manager/vim.nix
-                  ./home-manager/git.nix
                   ./home-manager/git-juniper.nix
-                  ./home-manager/zsh.nix
                   ./home-manager/vscode.nix
+                  ./home-manager/desktop.nix
               ];
           };
        };
@@ -48,13 +46,11 @@
           configuration = {
               imports = [
                   ./home-manager/home.nix
-                  ./home-manager/vim.nix
-                  ./home-manager/git.nix
                   ./home-manager/git-agillert.nix
-                  ./home-manager/zsh.nix
                   ./home-manager/vscode.nix
+                  ./home-manager/desktop.nix
                   ./home-manager/window-manager.nix
-                  ./home-manager/audio-video.nix
+                  ./home-manager/work.nix
               ];
           };
        };
