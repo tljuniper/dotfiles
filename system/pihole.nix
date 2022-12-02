@@ -1,7 +1,7 @@
 { pkgs, config, ... }:
 
 let
-  serverIP = "${config.networking.hostName}";
+  serverIP = "192.168.178.28";
   webPassword = "hunter2";
 in
 {
