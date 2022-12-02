@@ -53,6 +53,8 @@
                   ./home-manager/git-agillert.nix
                   ./home-manager/zsh.nix
                   ./home-manager/vscode.nix
+                  ./home-manager/window-manager.nix
+                  ./home-manager/audio-video.nix
               ];
           };
        };
