@@ -87,6 +87,13 @@
     wget
   ];
 
+  # Enable the function keys for Keychron keyboard
+  # https://mikeshade.com/posts/keychron-linux-function-keys/
+  environment.etc."modprobe.d/hid_apple.conf".text =
+  ''
+    options hid_apple fnmode=0
+  '';
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

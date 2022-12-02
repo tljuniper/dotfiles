@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -12,6 +12,7 @@
     gnome.cheese
     gnome.gnome-tweaks
     gnomeExtensions.dash-to-dock
+    gnomeExtensions.audio-output-switcher
     google-chrome
     hunspell
     hunspellDicts.de_DE
@@ -48,4 +49,14 @@
     };
   };
 
+  services.spotifyd = {
+    enable = true;
+    settings = {
+      global = {
+        username_cmd = "cat ~/.spotify/username";
+        password_cmd = "cat ~/.spotify/password";
+        device_name = "swift";
+      };
+    };
+  };
 }
