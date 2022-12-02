@@ -11,8 +11,10 @@
     gnome.cheese
     gnome.gnome-tweaks
     gnome.gnome-screenshot
+    # Gnome extensions. Note: These are now present in "extensions" app where
+    # they have to be turned on and configured manually
     gnomeExtensions.dash-to-dock
-    gnomeExtensions.audio-output-switcher
+    gnomeExtensions.sound-output-device-chooser
     google-chrome
     hunspell
     hunspellDicts.de_DE
