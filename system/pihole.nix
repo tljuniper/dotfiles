@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 let
-  serverIP = "0.0.0.0";
+  serverIP = "${config.networking.hostName}";
   webPassword = "hunter2";
 in
 {
@@ -25,6 +25,7 @@ in
       "--cap-add=NET_ADMIN"
       "--dns=127.0.0.1"
       "--dns=1.1.1.1"
+      "--hostname=${config.networking.hostName}"
       "-e WEBPASSWORD=${webPassword}"
     ];
     # workdir = "/var/lib/pihole/";
