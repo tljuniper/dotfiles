@@ -42,11 +42,4 @@
     enableZshIntegration = true;
   };
 
-  # programs.vscode = {
-  #   enable = true;
-  #   extensions = [
-  #     pkgs.vscode-extensions.shardulm94.trailing-spaces
-  #   ];
-  # };
-
 }
