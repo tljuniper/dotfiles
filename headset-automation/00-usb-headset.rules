@@ -1,0 +1,7 @@
+# Put in /etc/udev/rules.d/00-usb-headset.rules
+# Run the following commands to reload the rules
+# $ udevadm control --reload-rules
+# $ udevadm trigger
+ACTION=="remove", SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ENV{PRODUCT}=="47f/127/500", RUN+="/bin/su agillert --command='/home/agillert/dotfiles/headset_remove.sh'" 
+ACTION=="add", SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ENV{PRODUCT}=="47f/127/500", RUN+="/bin/su agillert --command='/home/agillert/dotfiles/headset_add.sh'" 
+
