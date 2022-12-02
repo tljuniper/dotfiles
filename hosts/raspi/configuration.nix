@@ -38,4 +38,8 @@
 
   hardware.enableRedistributableFirmware = true;
 
+  system.stateVersion = "22.05";
+
+  networking.hostName = "rust";
+
 }
