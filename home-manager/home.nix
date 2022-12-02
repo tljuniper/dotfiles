@@ -17,12 +17,14 @@
   # ------------------------------------------------------------------
 
   home.packages = with pkgs; [
-    htop
-    diff-so-fancy
-    jq
-    tree
     bat
+    cachix
+    diff-so-fancy
     fzf
+    htop
+    jq
+    keepassxc
+    tree
   ];
 
   home.file.".aspell.de_DE.prepl".source = ./aspell.de_DE.prepl;
@@ -30,7 +32,27 @@
   home.file.".aspell.en.prepl".source = ./aspell.en.prepl;
   home.file.".aspell.en.pws".source = ./aspell.en.pws;
 
-  home.file.".config/terminator/config".source = ./terminator_config;
+  programs.terminator = {
+    enable = true;
+    config = {
+      layouts.default.child1 = {
+        parent = "window0";
+        type = "Terminal";
+      };
+      layouts.default.window0 = {
+        parent = "";
+        type = "Window";
+      };
+      profiles.default = {
+        background_darkness = 0.9;
+        background_image = "None";
+        background_type = "transparent";
+        font = "DejaVu Sans Mono 12";
+        show_titlebar = false;
+        use_system_font = false;
+      };
+    };
+  };
 
   programs.autojump = {
     enable = true;

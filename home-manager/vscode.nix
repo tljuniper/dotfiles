@@ -27,6 +27,7 @@
         "python.formatting.provider" = "black";
         "workbench.colorTheme" = "Default Dark+";
         "workbench.iconTheme" = "material-icon-theme";
+        "window.title" = "\${rootName}";
         "[haskell]" = {
           "editor.defaultFormatter" = "MaxGabriel.brittany";
         };
