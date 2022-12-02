@@ -63,6 +63,7 @@
           ./hosts/raspi/configuration.nix
           ./system/user-juniper.nix
           ./system/rezepte-server.nix
+          ./system/pihole.nix
         ];
       };
     };
