@@ -1,15 +1,15 @@
 { pkgs, lib, config, ... }:
 
 let
-  timeCommand = "libreoffice --calc";
+  timeCommand = "libreoffice --calc /home/agillert/Arbeitszeit.xlsx";
   modifier = config.xsession.windowManager.i3.config.modifier;
   ws1 = "1: web";
   ws2 = "2: code";
-  ws3 = "3: ";
+  ws3 = "3: term";
   ws4 = "4: ";
   ws5 = "5: ";
   ws6 = "6: ";
-  ws7 = "7: meet";
+  ws7 = "7: Teams";
   ws8 = "8: IM";
   ws9 = "9: mail";
   ws0 = "10: timesheet";
@@ -22,14 +22,11 @@ in
         "${ws1}" = [ {class = "^firefox|Chromium-browser"; }];
         "${ws2}" = [ {class = "Visual Studio Code"; }];
         "${ws0}" = [ {class = "(?)[lL]ibre[oO]ffice.*"; } ];
-        "${ws7}" = [ {title = "Besprechung|Meeting"; }];
+        "${ws7}" = [ {title = "Besprechung|Meeting|[Tt]eams"; }];
         "${ws8}" = [ {class = "^Signal|Mattermost$"; } ];
         "${ws9}" = [ {class = "^Thunderbird$";}  ];
       };
       defaultWorkspace = "workspace \"${ws1}\"";
-      focus = {
-        newWindow = "focus";
-      };
       keybindings = lib.mkOptionDefault {
         "${modifier}+x" = "move workspace to output next";
         "${modifier}+Tab" = "workspace back_and_forth";
@@ -67,10 +64,11 @@ in
         "${modifier}+Shift+j" = "move down";
         "${modifier}+Shift+k" = "move up";
         "${modifier}+Shift+l" = "move right";
-        # Screenshot
+        ### Applications ###
         "Control+Print" = "exec flameshot gui";
-        # Open timesheet
         "${modifier}+Control+e" = "exec \"${timeCommand}\"";
+        "${modifier}+Control+g" = "exec chromium";
+        "${modifier}+Control+t" = "exec i3-sensible-terminal";
       };
       bars = [
         {
@@ -89,8 +87,7 @@ in
       ];
       startup = [
         { command = "sleep 1; xrandr --output HDMI-1 --primary; xrandr --output eDP-1 --auto --right-of HDMI-1; xrandr --output DP-1 --auto --left-of HDMI-1"; }
-        { command = "mattermost-desktop"; }
-        { command = "sleep 1; signal-desktop"; }
+        { command = "teams"; }
         { command = "thunderbird"; }
         { command = "${timeCommand}"; }
         { command = "nm-applet"; }
