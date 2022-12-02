@@ -1,17 +1,8 @@
 { config, pkgs, ... }:
 
-let
-  # System-dependent values
-  username = "";
-  # Used for git
-  fullName = "";
-  email = "";
-in
 {
   programs.git = {
     enable = true;
-    userName = fullName;
-    userEmail = email;
     aliases = {
       lol = "log --oneline";
       rofl = "log --oneline";

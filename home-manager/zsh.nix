@@ -23,7 +23,7 @@
         "history"
         "web-search"
       ];
-      theme = "bira";
+      theme = "af-magic";
     };
   };
 }
