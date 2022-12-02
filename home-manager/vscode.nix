@@ -62,48 +62,77 @@
       }
     ];
     extensions = with pkgs.vscode-extensions; [
-      shardulm94.trailing-spaces
-      # 2gua.rainbow-brackets
-      vscodevim.vim
-      pkief.material-icon-theme
-
-      timonwong.shellcheck
-      # mkhl.shfmt
-
-      # eriklynd.json-tools
-      davidanson.vscode-markdownlint
-      ms-azuretools.vscode-docker
-      # fabiospampinato.vscode-open-multiple-files
-
-      # # No idea if needed
-      # EditorConfig.EditorConfig
-      # twxs.cmake
-      # ms-vscode.cmake-tools
-      # cab404.vscode-direnv
-      # mkhl.direnv
-
-      # # Git
-      # GitLab.gitlab-workflow
-      eamodio.gitlens
-
-      # # Haskell development
-      # MaxGabriel.brittany
-      haskell.haskell
-      justusadam.language-haskell
-      # BIGMOON.language-yesod
-      # berberman.vscode-cabal-fmt
-
-      # # Nix extensions
-      bbenoist.nix
       arrterian.nix-env-selector
-      # pinage404.nix-extension-pack
+      bbenoist.nix
+      davidanson.vscode-markdownlint
+      eamodio.gitlens
+      haskell.haskell
       jnoortheen.nix-ide
-      # jamesottaway.nix-develop
-
-      # # Python
-      ms-python.vscode-pylance
+      justusadam.language-haskell
+      ms-azuretools.vscode-docker
       ms-python.python
-
+      ms-python.vscode-pylance
+      pkief.material-icon-theme
+      shardulm94.trailing-spaces
+      timonwong.shellcheck
+      vscodevim.vim
+    ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+      {
+        name = "brittany";
+        publisher = "MaxGabriel";
+        version = "0.0.9";
+        sha256 = "sha256-04zGi3solPJgzObKJf8/hOa4v7Y7hMyd79rt6hD7y7E=";
+      }
+      {
+        name = "direnv";
+        publisher = "mkhl";
+        version = "0.6.1";
+        sha256 = "sha256-5/Tqpn/7byl+z2ATflgKV1+rhdqj+XMEZNbGwDmGwLQ=";
+      }
+      # can't access OS Keychain error, wait for fix here:
+      # https://gitlab.com/gitlab-org/gitlab-vscode-extension/-/issues/580
+      # {
+      #   name = "gitlab-workflow";
+      #   publisher = "GitLab";
+      #   version = "3.47.1";
+      #   sha256 = "sha256-qEj49bjb/FU0uVo0XTM9wlZRfX2EgSgl5EGnSeT2OIU=";
+      # }
+      {
+        name = "json-tools";
+        publisher = "eriklynd";
+        version = "1.0.2";
+        sha256 = "sha256-7tBjhcqCUnwOXwjhLK8iYtXH/my6ATpWvgrfDNi8tzw=";
+      }
+      {
+        name = "EditorConfig";
+        publisher = "EditorConfig";
+        version = "0.16.4";
+        sha256 = "sha256-j+P2oprpH0rzqI0VKt0JbZG19EDE7e7+kAb3MGGCRDk=";
+      }
+      {
+        name = "language-yesod";
+        publisher = "BIGMOON";
+        version = "0.9.0";
+        sha256 = "sha256-77tsTExt+rstjwQGkHIYRckX7KkjiBViMGaWmgRn4+4=";
+      }
+      {
+        name = "shfmt";
+        publisher = "mkhl";
+        version = "1.1.1";
+        sha256 = "sha256-PikNlXJNqIkTbyYv4R45ikAtmLrGVA1RhTulU7rmYnU=";
+      }
+      {
+        name = "vscode-cabal-fmt";
+        publisher = "berberman";
+        version = "0.0.3";
+        sha256 = "sha256-TY1fxdhjktsdRDqWAioUKSBd8I0ztroPIeC4Cv+NzE0=";
+      }
+      {
+        name = "vscode-open-multiple-files";
+        publisher = "fabiospampinato";
+        version = "1.4.0";
+        sha256 = "sha256-gTBOH1w4i02ezPaNq1tPI9BXbSBuBOvWTn4RKBvMV0o=";
+      }
     ];
   };
 }
