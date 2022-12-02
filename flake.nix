@@ -65,6 +65,7 @@
         system = "aarch64-linux";
         modules = [
           ./hosts/raspi/configuration.nix
+          ./system/user-juniper.nix
         ];
       };
     };

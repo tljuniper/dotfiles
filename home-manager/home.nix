@@ -23,8 +23,8 @@
     fzf
     htop
     jq
-    keepassxc
     tree
+    unzip
   ];
 
   home.file.".aspell.de_DE.prepl".source = ./aspell.de_DE.prepl;
