@@ -2,13 +2,26 @@
 
 {
   home.packages = with pkgs; [
-    vlc
+    aspell
+    aspellDicts.de
+    baobab
+    chromium
     evince
     firefox
+    flameshot
+    gnome.cheese
+    google-chrome
+    hunspell
+    hunspellDicts.de_DE
+    hunspellDicts.en_US
     imagemagick
     keepassxc
+    libreoffice
+    nextcloud-client
+    python3
     signal-desktop
     thunderbird
+    vlc
   ];
 
   programs.terminator = {

@@ -20,6 +20,9 @@
     bat
     cachix
     diff-so-fancy
+    dos2unix
+    rsync
+    screen
     fzf
     htop
     jq

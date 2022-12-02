@@ -15,7 +15,8 @@
     ...
   }:
   let
-    system = "aarch64-linux";
+    # system = "aarch64-linux";
+    system = "x86_64-linux";
 
     pkgs = import nixpkgs {
       inherit system;
@@ -34,8 +35,8 @@
               imports = [
                   ./home-manager/home.nix
                   ./home-manager/git-juniper.nix
-                  #./home-manager/vscode.nix
-                  #./home-manager/desktop.nix
+                  ./home-manager/vscode.nix
+                  ./home-manager/desktop.nix
               ];
           };
        };
