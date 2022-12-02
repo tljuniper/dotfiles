@@ -64,6 +64,7 @@
           ./system/user-juniper.nix
           ./system/rezepte-server.nix
           ./system/pihole.nix
+          ./system/home-assistant.nix
         ];
       };
     };
