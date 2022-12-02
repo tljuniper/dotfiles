@@ -32,6 +32,7 @@
   environment.systemPackages = with pkgs; [
     vim
     git
+    usbutils
   ];
 
   services.openssh.enable = true;
