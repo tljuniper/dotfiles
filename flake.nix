@@ -76,6 +76,13 @@
           ./system/esphome-dev.nix
         ];
       };
+      blazer = lib.nixosSystem rec {
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/blazer/configuration.nix
+          ./system/user-agillert.nix
+        ];
+      };
     };
   };
 }

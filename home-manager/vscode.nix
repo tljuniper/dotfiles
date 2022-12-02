@@ -5,8 +5,9 @@
     enable = true;
     userSettings =
       {
+        "brittany.showErrorNotification" = true;
+        "brittany.path" = "/nix/store/ffw1gywbywsjskm1midbx8x5acfg6l81-brittany-0.14.0.2/bin/brittany";
         "cabal-fmt.indent" = 4;
-        "cmake.configureOnOpen" = false;
         "diffEditor.renderSideBySide" = false;
         "editor.formatOnSave" = true;
         "editor.formatOnType" = false;
@@ -21,7 +22,7 @@
         };
         "gitlab.showPipelineUpdateNotifications" = true;
         "haskell.formattingProvider" = "brittany";
-        "haskell.manageHLS" = "PATH";
+        "haskell.serverExecutablePath" = "haskell-language-server";
         "nix.enableLanguageServer" = true;
         "python.formatting.blackPath" = "/nix/store/s9ijw34ckdfj71inlswdc49is7l86iw6-python3.8-black-20.8b1/bin/black";
         "python.formatting.provider" = "black";
@@ -34,6 +35,7 @@
         "shfmt.executablePath" = "${pkgs.shfmt}/bin/shfmt";
         "cSpell.enabledLanguageIds" = [
           "css"
+          "cabal"
           "git-commit"
           "haskell"
           "html"
@@ -50,7 +52,7 @@
           "yaml"
           "yml"
         ];
-
+        "terminal.integrated.scrollback" = 100000;
       };
     keybindings = [
       {
@@ -97,8 +99,15 @@
       shardulm94.trailing-spaces
       timonwong.shellcheck
       vscodevim.vim
+      ms-vscode-remote.remote-ssh
       streetsidesoftware.code-spell-checker
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+      {
+        name = "haskell-linter";
+        publisher = "hoovercj";
+        version = "0.0.6";
+        sha256 = "sha256-MjgqR547GC0tMnBJDMsiB60hJE9iqhKhzP6GLhcLZzk=";
+      }
       {
         name = "brittany";
         publisher = "MaxGabriel";
@@ -132,6 +141,7 @@
         sha256 = "sha256-7tBjhcqCUnwOXwjhLK8iYtXH/my6ATpWvgrfDNi8tzw=";
       }
       {
+        # Is needed by shfmt extension
         name = "EditorConfig";
         publisher = "EditorConfig";
         version = "0.16.4";

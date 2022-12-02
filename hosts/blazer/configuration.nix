@@ -12,6 +12,13 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  boot.initrd.luks.devices =  {
+    root = {
+      device = "/dev/nvme0n1p2";
+      preLVM = true;
+    };
+  };
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -87,6 +94,8 @@
     wget
     unixtools.netstat
   ];
+
+  services.tailscale.enable = true;
 
   # Enable the function keys for Keychron keyboard
   # https://mikeshade.com/posts/keychron-linux-function-keys/

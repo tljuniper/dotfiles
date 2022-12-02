@@ -8,9 +8,9 @@
     chromium
     evince
     firefox
-    flameshot
     gnome.cheese
     gnome.gnome-tweaks
+    gnome.gnome-screenshot
     gnomeExtensions.dash-to-dock
     gnomeExtensions.audio-output-switcher
     google-chrome
@@ -20,6 +20,7 @@
     imagemagick
     keepassxc
     libreoffice
+    libnotify
     nextcloud-client
     python3
     signal-desktop
