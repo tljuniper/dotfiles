@@ -10,6 +10,8 @@
     firefox
     flameshot
     gnome.cheese
+    gnome.gnome-tweaks
+    gnomeExtensions.dash-to-dock
     google-chrome
     hunspell
     hunspellDicts.de_DE

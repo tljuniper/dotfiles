@@ -68,6 +68,13 @@
           ./system/home-assistant.nix
         ];
       };
+      swift = lib.nixosSystem rec {
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/swift/configuration.nix
+          ./system/user-juniper.nix
+        ];
+      };
     };
   };
 }
