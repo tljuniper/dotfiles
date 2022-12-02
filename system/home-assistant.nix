@@ -1,19 +1,17 @@
 { pkgs, ... }:
 
 {
-  services.home-assistant = {
-    enable = true;
-    openFirewall = true;
-    extraComponents = [
-      "met"
-      "edl21"
-      "esphome"
+  virtualisation.oci-containers.containers.home-assistant = {
+    volumes = [ "home-assistant:/config" ];
+    environment.TZ = "Europe/Berlin";
+    image = "ghcr.io/home-assistant/home-assistant:stable";
+    extraOptions = [
+      "--network=host"
+      "--device=/dev/ttyUSB0:/dev/ttyUSB0"
     ];
-    config = {
-      # Includes dependencies for a basic setup
-      # https://www.home-assistant.io/integrations/default_config/
-      default_config = {};
-    };
   };
 
+  networking.firewall.interfaces."eth0".allowedTCPPorts = [
+    8123 # Home assistant web UI
+  ];
 }

@@ -13,6 +13,8 @@
   boot.loader.generic-extlinux-compatible.enable = true;
  
   # boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  time.timeZone = "Europe/Berlin";
   
   # File systems configuration for using the installer's partition layout
   fileSystems = {
@@ -32,8 +34,11 @@
   environment.systemPackages = with pkgs; [
     vim
     git
-    usbutils
+    bat
+    wget
     minicom
+    usbutils
+    tree
   ];
 
   services.openssh.enable = true;
