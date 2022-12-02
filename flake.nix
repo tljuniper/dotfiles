@@ -50,7 +50,6 @@
                   ./home-manager/git-agillert.nix
                   ./home-manager/vscode.nix
                   ./home-manager/desktop.nix
-                  ./home-manager/window-manager.nix
                   ./home-manager/work.nix
               ];
           };
