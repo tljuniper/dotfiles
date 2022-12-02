@@ -106,6 +106,12 @@
         sha256 = "sha256-04zGi3solPJgzObKJf8/hOa4v7Y7hMyd79rt6hD7y7E=";
       }
       {
+        name = "esphome-vscode";
+        publisher = "ESPHome";
+        version = "2022.10.0";
+        sha256 = "sha256-7vBPKvT62U/FODY0DbuzQAKL0GjFyqUybukoQItnmdo=";
+      }
+      {
         name = "direnv";
         publisher = "mkhl";
         version = "0.6.1";

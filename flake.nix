@@ -73,6 +73,7 @@
         modules = [
           ./hosts/swift/configuration.nix
           ./system/user-juniper.nix
+          ./system/esphome-dev.nix
         ];
       };
     };
