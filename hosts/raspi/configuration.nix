@@ -33,6 +33,7 @@
     vim
     git
     usbutils
+    minicom
   ];
 
   services.openssh.enable = true;
