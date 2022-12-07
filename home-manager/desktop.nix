@@ -21,6 +21,7 @@
     hunspellDicts.de_DE
     hunspellDicts.en_US
     imagemagick
+    inkscape
     keepassxc
     libreoffice
     libnotify
