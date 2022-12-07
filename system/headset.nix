@@ -1,56 +1,76 @@
 { pkgs, ... }:
 let
-  remove_script = pkgs.writeScript "headset_remove.sh" ''
+  # Manual setup steps:
+
+  # Find out the sink and source names for your audio devices with
+  # pacmd list-sinks
+  # pacmd list-sources
+  # --> replace in SPEAKER/MIC variables
+
+  # Find out where the pulseaudio server lives so we can access it from this session
+  # pactl info | grep "Server String"
+  # --> replace in pactl commands
+
+  # Find out which DBUS session we use by looking at the output of `env` in a normal session
+  # env | grep DBUS_SESSION_BUS_ADDRESS
+  # --> replace in call to notify-send
+
+  # Find PRODUCT string for your headset by keeping udevadm running and connecting the headset:
+  # udevadm monitor --environment --udev | grep PRODUCT
+  # --> replace in udev rule
+
+  audio_switch_script = pkgs.writeScript "audio_switch_script.sh" ''
     #!/usr/bin/env bash
-    # Headset has been removed from charger --> change audio to headset
+    # See: https://gist.github.com/ruzickap/53080ade88544661afa52bc7c7892cf4
+    set -euo pipefail
 
-    # Find out the sink names with
-    # pacmd list-sinks
+    # Note: We always switch the mic too so chances are higher the setup's correct upon reboot
 
-    # Change default sink to headset
-    NEW_SINK="alsa_output.usb-Plantronics_Plantronics_BT600_a056d9f0c35ea34b99704caa539a6fe0-00.analog-stereo"
+    if [ "$1" = "headset" ]; then
 
-    SINK=$(pacmd set-default-sink $NEW_SINK)
-    INPUT=$(pacmd list-sink-inputs | grep index | awk '{print $2}')
+      SPEAKER="alsa_output.usb-Plantronics_Plantronics_BT600_a056d9f0c35ea34b99704caa539a6fe0-00.analog-stereo"
+      MIC="alsa_output.usb-Plantronics_Plantronics_BT600_a056d9f0c35ea34b99704caa539a6fe0-00.analog-stereo.monitor"
 
-    pacmd move-sink-input $INPUT $NEW_SINK
-    echo "Moving input: $INPUT to sink: $NEW_SINK";
-    echo "Setting default sink to: $NEW_SINK";
+      # Wait a second so user can put the headset on
+      sleep 2
 
-    DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus notify-send --urgency=normal --hint int:transient:1 "Audio Switching" "Now playing on headset"
+    elif [ "$1" = "speakers" ]; then
+
+      SPEAKER="alsa_output.pci-0000_00_1f.3.analog-stereo"
+      MIC="alsa_output.usb-Plantronics_Plantronics_BT600_a056d9f0c35ea34b99704caa539a6fe0-00.analog-stereo.monitor"
+
+    else
+      echo "Usage: audio_switch_script.sh [headset|speakers]"
+    fi
+
+    cmd="pactl --server=/run/user/1000/pulse/native"
+
+    $cmd set-default-sink $SPEAKER
+    $cmd set-default-source $MIC
+
+    $cmd set-sink-mute "$SPEAKER" 0
+    $cmd set-sink-volume "$SPEAKER" 70%
+
+    $cmd set-source-mute "$MIC" 0
+    $cmd set-source-volume "$MIC" 80%
+
+    INPUTS=`$cmd list sink-inputs short | cut -f 1`
+    for i in $INPUTS; do
+      $cmd move-sink-input $i "$SPEAKER"
+    done
+
+    OUTPUTS=`$cmd list source-outputs short | cut -f 1`
+    for i in $OUTPUTS; do
+      $cmd move-source-output $i "$MIC"
+    done
+
+    DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus notify-send --urgency=normal --hint int:transient:1 "Audio Switching" "Now playing on $1"
   '';
-
-  add_script = pkgs.writeScript "headset_add.sh" ''
-    #!/usr/bin/env bash
-    # Headset has been put back into charger --> switch to laptop audio
-    notify-send --urgency=low --hint int:transient:1 "Audio Switching" "Now playing on headset"
-
-    # Find out the sink names with
-    # pacmd list-sinks
-
-    # Change default sink to laptop speakers
-    NEW_SINK="alsa_output.pci-0000_00_1f.3.analog-stereo"
-
-    SINK=$(pacmd set-default-sink $NEW_SINK)
-    INPUT=$(pacmd list-sink-inputs | grep index | awk '{print $2}')
-
-    pacmd move-sink-input $INPUT $NEW_SINK
-    echo "Moving input: $INPUT to sink: $NEW_SINK";
-    echo "Setting default sink to: $NEW_SINK";
-
-    DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus notify-send --urgency=normal --hint int:transient:1 "Audio Switching" "Now playing on laptop speakers"
-  ''
-  ;
 in
 {
     # Add additional UDEV rule to switch audio over to headset
-    services.udev.packages = with pkgs; [
-      sudo
-    ];
-
     services.udev.extraRules = ''
-      ACTION=="remove", SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ENV{PRODUCT}=="47f/127/500", RUN+="${pkgs.su}/bin/su agillert --command=${remove_script}"
-      ACTION=="add", SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ENV{PRODUCT}=="47f/127/500", RUN+="${pkgs.su}/bin/su agillert --command=${add_script}"
+      ACTION=="remove", SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ENV{PRODUCT}=="47f/127/500", RUN+="${pkgs.su}/bin/su agillert --command='${audio_switch_script} headset'"
+      ACTION=="add", SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ENV{PRODUCT}=="47f/127/500", RUN+="${pkgs.su}/bin/su agillert --command='${audio_switch_script} speakers'"
     '';
-      # ACTION=="remove", SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ENV{PRODUCT}=="47f/127/500", RUN+="${pkgs.sudo}/bin/sudo su agillert --command=${remove_script}"
 }
