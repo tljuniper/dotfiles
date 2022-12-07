@@ -80,6 +80,7 @@
         modules = [
           ./hosts/blazer/configuration.nix
           ./system/user-agillert.nix
+          ./system/headset.nix
         ];
       };
     };
