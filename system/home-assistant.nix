@@ -14,4 +14,9 @@
   networking.firewall.interfaces."eth0".allowedTCPPorts = [
     8123 # Home assistant web UI
   ];
+
+  environment.systemPackages = with pkgs; [
+    sqlite-interactive
+  ];
+
 }
