@@ -9,6 +9,7 @@
     evince
     firefox
     gnome.cheese
+    gnome.gedit
     gnome.gnome-tweaks
     gnome.gnome-screenshot
     # Gnome extensions. Note: These are now present in "extensions" app where

@@ -33,10 +33,10 @@
           homeDirectory = "/home/juniper";
           configuration = {
               imports = [
-                  ./home-manager/home.nix
-                  ./home-manager/git-juniper.nix
-                  ./home-manager/vscode.nix
                   ./home-manager/desktop.nix
+                  ./home-manager/git-juniper.nix
+                  ./home-manager/home.nix
+                  ./home-manager/vscode.nix
               ];
           };
        };
@@ -46,10 +46,10 @@
           homeDirectory = "/home/agillert";
           configuration = {
               imports = [
-                  ./home-manager/home.nix
-                  ./home-manager/git-agillert.nix
-                  ./home-manager/vscode.nix
                   ./home-manager/desktop.nix
+                  ./home-manager/git-agillert.nix
+                  ./home-manager/home.nix
+                  ./home-manager/vscode.nix
                   ./home-manager/work.nix
               ];
           };

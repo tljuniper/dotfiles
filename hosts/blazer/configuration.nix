@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./nix-cache.nix
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -37,6 +38,11 @@
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
+  i18n.extraLocaleSettings = {
+    LC_MESSAGES = "en_US.UTF-8";
+    LC_TIME = "de_DE.UTF-8";
+  };
+
   # console = {
   #   font = "Lat2-Terminus16";
   #   keyMap = "us";
@@ -93,9 +99,14 @@
     vim
     wget
     unixtools.netstat
+    libnotify
   ];
 
+  networking.hostName = "blazer";
+
   services.tailscale.enable = true;
+  networking.firewall.checkReversePath = "loose";
+
 
   # Enable the function keys for Keychron keyboard
   # https://mikeshade.com/posts/keychron-linux-function-keys/
@@ -137,4 +148,3 @@
   system.stateVersion = "22.05"; # Did you read the comment?
 
 }
-

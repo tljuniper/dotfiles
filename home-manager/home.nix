@@ -89,6 +89,8 @@
         defaultBranch = "main";
       };
       interactive.diffFilter = "${pkgs.diff-so-fancy}/bin/diff-so-fancy --patch";
+      # Push new branch to origin (or default branch) without explicit --set-upstream
+      push.autoSetupRemote = true;
     };
   };
 
@@ -165,4 +167,3 @@
     ];
   };
 }
-
