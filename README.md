@@ -9,7 +9,7 @@ nixos-rebuild switch --use-remote-sudo --flake .#<hostname>
 For pascal both user and system settings are applied at the same time:
 
 ```bash
-nixos-rebuild switch --use-remote-sudo --flake .#pascal --target pascal
+nixos-rebuild switch --use-remote-sudo --flake .#pascal --target-host pascal
 ```
 
 Install user setttings:

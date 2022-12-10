@@ -25,42 +25,13 @@
 
       lib = nixpkgs.lib;
 
-    in
-    {
-      homeManagerConfigurations = {
-        juniper = home-manager.lib.homeManagerConfiguration {
-          # pkgs = nixpkgs.legacyPackages.${system};
-          inherit pkgs;
-          modules = [
-            ./home-manager/desktop.nix
-            ./home-manager/git-juniper.nix
-            ./home-manager/home.nix
-            ./home-manager/vscode.nix
-            {
-              home = {
-                username = "juniper";
-                homeDirectory = "/home/juniper";
-                stateVersion = "22.05";
-              };
-            }
-          ];
-        };
-        agillert = home-manager.lib.homeManagerConfiguration {
-          inherit system pkgs;
-          username = "agillert";
-          homeDirectory = "/home/agillert";
-          configuration = {
-            imports = [
-              ./home-manager/desktop.nix
-              ./home-manager/git-agillert.nix
-              ./home-manager/home.nix
-              ./home-manager/vscode.nix
-              ./home-manager/work.nix
-            ];
-          };
-        };
+      juniper-home = {
+        username = "juniper";
+        homeDirectory = "/home/juniper";
       };
 
+    in
+    {
       nixosConfigurations = {
         rust = lib.nixosSystem rec {
           system = "aarch64-linux";
@@ -71,6 +42,16 @@
             ./system/pihole.nix
             ./system/rezepte-server.nix
             ./system/user-juniper.nix
+            home-manager.nixosModules.home-manager {
+              home-manager.users.juniper = { config, lib, pkgs, ...}:
+              {
+                imports = [
+                  ./home-manager/home.nix
+                  ./home-manager/git-juniper.nix
+                ];
+                home = juniper-home;
+              };
+            }
           ];
         };
         pascal = lib.nixosSystem rec {
@@ -79,6 +60,8 @@
             ./hosts/pascal/configuration.nix
             ./system/locales.nix
             ./system/user-juniper.nix
+            ./system/home-assistant.nix
+            ./system/pihole.nix
             home-manager.nixosModules.home-manager {
               home-manager.users.juniper = { config, lib, pkgs, ...}:
               {
@@ -86,11 +69,7 @@
                   ./home-manager/home.nix
                   ./home-manager/git-juniper.nix
                 ];
-                home = {
-                  username = "juniper";
-                  homeDirectory = "/home/juniper";
-                  stateVersion = "22.05";
-                };
+                home = juniper-home;
               };
             }
           ];
@@ -102,6 +81,18 @@
             ./system/desktop-base.nix
             ./system/locales.nix
             ./system/user-juniper.nix
+            home-manager.nixosModules.home-manager {
+              home-manager.users.juniper = { config, lib, pkgs, ...}:
+              {
+                imports = [
+                  ./home-manager/home.nix
+                  ./home-manager/git-juniper.nix
+                  ./home-manager/desktop.nix
+                  ./home-manager/vscode.nix
+                ];
+                home = juniper-home;
+              };
+            }
           ];
         };
         blazer = lib.nixosSystem rec {
@@ -112,6 +103,22 @@
             ./system/headset.nix
             ./system/locales.nix
             ./system/user-agillert.nix
+            home-manager.nixosModules.home-manager {
+              home-manager.users.agillert = { config, lib, pkgs, ...}:
+              {
+                imports = [
+                  ./home-manager/home.nix
+                  ./home-manager/git-agillert.nix
+                  ./home-manager/desktop.nix
+                  ./home-manager/vscode.nix
+                  ./home-manager/work.nix
+                ];
+                home = {
+                  username = "agillert";
+                  homeDirectory = "/home/agillert";
+                };
+              };
+            }
           ];
         };
       };
