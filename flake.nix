@@ -61,36 +61,45 @@
         };
       };
 
-    nixosConfigurations = {
-      rust = lib.nixosSystem rec {
-        system = "aarch64-linux";
-        modules = [
-          ./hosts/rust/configuration.nix
-          ./system/home-assistant.nix
-          ./system/locales.nix
-          ./system/pihole.nix
-          ./system/rezepte-server.nix
-          ./system/user-juniper.nix
-        ];
-      };
-      swift = lib.nixosSystem rec {
-        system = "x86_64-linux";
-        modules = [
-          ./hosts/swift/configuration.nix
-          ./system/desktop-base.nix
-          ./system/locales.nix
-          ./system/user-juniper.nix
-        ];
-      };
-      blazer = lib.nixosSystem rec {
-        system = "x86_64-linux";
-        modules = [
-          ./hosts/blazer/configuration.nix
-          ./system/desktop-base.nix
-          ./system/headset.nix
-          ./system/locales.nix
-          ./system/user-agillert.nix
-        ];
+      nixosConfigurations = {
+        rust = lib.nixosSystem rec {
+          system = "aarch64-linux";
+          modules = [
+            ./hosts/rust/configuration.nix
+            ./system/home-assistant.nix
+            ./system/locales.nix
+            ./system/pihole.nix
+            ./system/rezepte-server.nix
+            ./system/user-juniper.nix
+          ];
+        };
+        pascal = lib.nixosSystem rec {
+          system = "x86_64-linux";
+          modules = [
+            ./hosts/pascal/configuration.nix
+            ./system/locales.nix
+            ./system/user-juniper.nix
+          ];
+        };
+        swift = lib.nixosSystem rec {
+          system = "x86_64-linux";
+          modules = [
+            ./hosts/swift/configuration.nix
+            ./system/desktop-base.nix
+            ./system/locales.nix
+            ./system/user-juniper.nix
+          ];
+        };
+        blazer = lib.nixosSystem rec {
+          system = "x86_64-linux";
+          modules = [
+            ./hosts/blazer/configuration.nix
+            ./system/desktop-base.nix
+            ./system/headset.nix
+            ./system/locales.nix
+            ./system/user-agillert.nix
+          ];
+        };
       };
     };
 }
