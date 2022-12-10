@@ -79,6 +79,20 @@
             ./hosts/pascal/configuration.nix
             ./system/locales.nix
             ./system/user-juniper.nix
+            home-manager.nixosModules.home-manager {
+              home-manager.users.juniper = { config, lib, pkgs, ...}:
+              {
+                imports = [
+                  ./home-manager/home.nix
+                  ./home-manager/git-juniper.nix
+                ];
+                home = {
+                  username = "juniper";
+                  homeDirectory = "/home/juniper";
+                  stateVersion = "22.05";
+                };
+              };
+            }
           ];
         };
         swift = lib.nixosSystem rec {

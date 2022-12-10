@@ -3,7 +3,13 @@
 Install system settings:
 
 ```bash
-./apply-system.sh
+nixos-rebuild switch --use-remote-sudo --flake .#<hostname>
+```
+
+For pascal both user and system settings are applied at the same time:
+
+```bash
+nixos-rebuild switch --use-remote-sudo --flake .#pascal --target pascal
 ```
 
 Install user setttings:
@@ -25,4 +31,3 @@ Manual steps after new desktop install:
 - Set up keyboard shortcuts
 - Install bookmarks
 - Install browser extensions
-

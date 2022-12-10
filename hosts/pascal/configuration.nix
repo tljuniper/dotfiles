@@ -26,7 +26,7 @@
 
   services.logind.lidSwitch = "ignore";
 
-  nix.trustedUsers = [ "@wheel" ];
+  nix.settings.trusted-users = [ "@wheel" ];
   security.sudo.wheelNeedsPassword = false;
 
   # List packages installed in system profile. To search, run:
