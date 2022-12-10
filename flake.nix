@@ -61,7 +61,6 @@
             ./system/locales.nix
             ./system/user-juniper.nix
             ./system/home-assistant.nix
-            ./system/pihole.nix
             home-manager.nixosModules.home-manager {
               home-manager.users.juniper = { config, lib, pkgs, ...}:
               {

@@ -7,11 +7,10 @@
     image = "ghcr.io/home-assistant/home-assistant:stable";
     extraOptions = [
       "--network=host"
-      "--device=/dev/ttyUSB0:/dev/ttyUSB0"
     ];
   };
 
-  networking.firewall.interfaces."eth0".allowedTCPPorts = [
+  networking.firewall.allowedTCPPorts = [
     8123 # Home assistant web UI
   ];
 
