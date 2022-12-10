@@ -4,6 +4,11 @@
 
 { config, pkgs, lib, ... }:
 {
+  imports =
+    [
+      ./hardware-configuration.nix
+    ];
+
   nix = {
     package = pkgs.nixFlakes;
     extraOptions = ''
@@ -15,25 +20,10 @@
   boot.loader.grub.enable = false;
   # Enables the generation of /boot/extlinux/extlinux.conf
   boot.loader.generic-extlinux-compatible.enable = true;
- 
+
   # boot.kernelPackages = pkgs.linuxPackages_latest;
 
-
   networking.hostName = "rust";
-
-  # Set your timeZone
-  time.timeZone = "Europe/Berlin";
-  
-  # File systems configuration for using the installer's partition layout
-  fileSystems = {
-    "/" = {
-      device = "/dev/disk/by-label/NIXOS_SD";
-      fsType = "ext4";
-    };
-  };
-    
-  # !!! Adding a swap file is optional, but strongly recommended!
-  swapDevices = [ { device = "/swapfile"; size = 1024; } ];
 
   nixpkgs.config = {
     allowUnfree = true;
@@ -50,24 +40,10 @@
     wget
   ];
 
-
-  hardware.enableRedistributableFirmware = true;
-
   # List the services that you want to enable:
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # Copy the NixOS configuration file and link it from the resulting system
-  # (/run/current-system/configuration.nix). This is useful in case you
-  # accidentally delete configuration.nix.
-  # system.copySystemConfiguration = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
