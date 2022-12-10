@@ -57,10 +57,10 @@
     };
 
     nixosConfigurations = {
-      raspi = lib.nixosSystem rec {
+      rust = lib.nixosSystem rec {
         system = "aarch64-linux";
         modules = [
-          ./hosts/raspi/configuration.nix
+          ./hosts/rust/configuration.nix
           ./system/user-juniper.nix
           ./system/rezepte-server.nix
           ./system/pihole.nix

@@ -2,7 +2,7 @@
 
 {
   virtualisation.oci-containers.containers.home-assistant = {
-    volumes = [ "home-assistant:/config" ];
+    volumes = [ "/home/juniper/home-assistant:/config" ];
     environment.TZ = "Europe/Berlin";
     image = "ghcr.io/home-assistant/home-assistant:stable";
     extraOptions = [
