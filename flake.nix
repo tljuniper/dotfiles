@@ -99,6 +99,7 @@
         };
         blazer = lib.nixosSystem rec {
           system = "x86_64-linux";
+          pkgs = pkgsForSystem system;
           modules = [
             ./hosts/blazer/configuration.nix
             ./system/desktop-base.nix
@@ -107,7 +108,6 @@
             ./system/user-agillert.nix
             home-manager.nixosModules.home-manager
             {
-              pkgs = pkgsForSystem system;
               home-manager.users.agillert = { config, lib, pkgs, ... }:
                 {
                   imports = [
