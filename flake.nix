@@ -15,10 +15,7 @@
     , ...
     }:
     let
-      # system = "aarch64-linux";
-      system = "x86_64-linux";
-
-      pkgs = import nixpkgs {
+      pkgsForSystem = system: import nixpkgs {
         inherit system;
         config = { allowUnfree = true; };
       };
@@ -35,6 +32,7 @@
       nixosConfigurations = {
         rust = lib.nixosSystem rec {
           system = "aarch64-linux";
+          pkgs = pkgsForSystem system;
           modules = [
             ./hosts/rust/configuration.nix
             ./system/home-assistant.nix
@@ -42,55 +40,60 @@
             ./system/pihole.nix
             ./system/rezepte-server.nix
             ./system/user-juniper.nix
-            home-manager.nixosModules.home-manager {
-              home-manager.users.juniper = { config, lib, pkgs, ...}:
-              {
-                imports = [
-                  ./home-manager/home.nix
-                  ./home-manager/git-juniper.nix
-                ];
-                home = juniper-home;
-              };
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.users.juniper = { config, lib, pkgs, ... }:
+                {
+                  imports = [
+                    ./home-manager/home.nix
+                    ./home-manager/git-juniper.nix
+                  ];
+                  home = juniper-home;
+                };
             }
           ];
         };
         pascal = lib.nixosSystem rec {
           system = "x86_64-linux";
+          pkgs = pkgsForSystem system;
           modules = [
             ./hosts/pascal/configuration.nix
             ./system/locales.nix
             ./system/user-juniper.nix
             ./system/home-assistant.nix
-            home-manager.nixosModules.home-manager {
-              home-manager.users.juniper = { config, lib, pkgs, ...}:
-              {
-                imports = [
-                  ./home-manager/home.nix
-                  ./home-manager/git-juniper.nix
-                ];
-                home = juniper-home;
-              };
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.users.juniper = { config, lib, pkgs, ... }:
+                {
+                  imports = [
+                    ./home-manager/home.nix
+                    ./home-manager/git-juniper.nix
+                  ];
+                  home = juniper-home;
+                };
             }
           ];
         };
         swift = lib.nixosSystem rec {
           system = "x86_64-linux";
+          pkgs = pkgsForSystem system;
           modules = [
             ./hosts/swift/configuration.nix
             ./system/desktop-base.nix
             ./system/locales.nix
             ./system/user-juniper.nix
-            home-manager.nixosModules.home-manager {
-              home-manager.users.juniper = { config, lib, pkgs, ...}:
-              {
-                imports = [
-                  ./home-manager/home.nix
-                  ./home-manager/git-juniper.nix
-                  ./home-manager/desktop.nix
-                  ./home-manager/vscode.nix
-                ];
-                home = juniper-home;
-              };
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.users.juniper = { config, lib, pkgs, ... }:
+                {
+                  imports = [
+                    ./home-manager/home.nix
+                    ./home-manager/git-juniper.nix
+                    ./home-manager/desktop.nix
+                    ./home-manager/vscode.nix
+                  ];
+                  home = juniper-home;
+                };
             }
           ];
         };
@@ -102,21 +105,23 @@
             ./system/headset.nix
             ./system/locales.nix
             ./system/user-agillert.nix
-            home-manager.nixosModules.home-manager {
-              home-manager.users.agillert = { config, lib, pkgs, ...}:
-              {
-                imports = [
-                  ./home-manager/home.nix
-                  ./home-manager/git-agillert.nix
-                  ./home-manager/desktop.nix
-                  ./home-manager/vscode.nix
-                  ./home-manager/work.nix
-                ];
-                home = {
-                  username = "agillert";
-                  homeDirectory = "/home/agillert";
+            home-manager.nixosModules.home-manager
+            {
+              pkgs = pkgsForSystem system;
+              home-manager.users.agillert = { config, lib, pkgs, ... }:
+                {
+                  imports = [
+                    ./home-manager/home.nix
+                    ./home-manager/git-agillert.nix
+                    ./home-manager/desktop.nix
+                    ./home-manager/vscode.nix
+                    ./home-manager/work.nix
+                  ];
+                  home = {
+                    username = "agillert";
+                    homeDirectory = "/home/agillert";
+                  };
                 };
-              };
             }
           ];
         };

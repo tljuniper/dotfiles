@@ -1,6 +1,10 @@
 { pkgs, ... }:
 
 {
+  home.packages = with pkgs; [
+    # Needed by Nix IDE extension
+    rnix-lsp
+  ];
   programs.vscode = {
     enable = true;
     userSettings =
@@ -53,6 +57,7 @@
           "yml"
         ];
         "terminal.integrated.scrollback" = 100000;
+        "update.mode" = "none";
       };
     keybindings = [
       {
