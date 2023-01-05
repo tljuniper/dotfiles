@@ -36,7 +36,7 @@
           modules = [
             ./hosts/rust/configuration.nix
             ./system/home-assistant.nix
-            ./system/locales.nix
+            ./system/general.nix
             ./system/pihole.nix
             ./system/rezepte-server.nix
             ./system/user-juniper.nix
@@ -58,7 +58,7 @@
           pkgs = pkgsForSystem system;
           modules = [
             ./hosts/pascal/configuration.nix
-            ./system/locales.nix
+            ./system/general.nix
             ./system/user-juniper.nix
             ./system/home-assistant.nix
             home-manager.nixosModules.home-manager
@@ -80,7 +80,7 @@
           modules = [
             ./hosts/swift/configuration.nix
             ./system/desktop-base.nix
-            ./system/locales.nix
+            ./system/general.nix
             ./system/user-juniper.nix
             home-manager.nixosModules.home-manager
             {
@@ -104,7 +104,7 @@
             ./hosts/blazer/configuration.nix
             ./system/desktop-base.nix
             ./system/headset.nix
-            ./system/locales.nix
+            ./system/general.nix
             ./system/user-agillert.nix
             home-manager.nixosModules.home-manager
             {

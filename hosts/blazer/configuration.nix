@@ -6,14 +6,13 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./nix-cache.nix
     ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  boot.initrd.luks.devices =  {
+  boot.initrd.luks.devices = {
     root = {
       device = "/dev/nvme0n1p2";
       preLVM = true;
@@ -23,12 +22,13 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.grub.configurationLimit = 13;
 
   networking.hostName = "blazer"; # Define your hostname.
 
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   services.tailscale.enable = true;
   networking.firewall.checkReversePath = "loose";

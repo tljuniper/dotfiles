@@ -22,14 +22,14 @@ let
   audio_switch_script = pkgs.writeScript "audio_switch_script.sh" ''
     #!/usr/bin/env bash
     # See: https://gist.github.com/ruzickap/53080ade88544661afa52bc7c7892cf4
-    set -euo pipefail
+    set -euox pipefail
 
     # Note: We always switch the mic too so chances are higher the setup's correct upon reboot
 
     if [ "$1" = "headset" ]; then
 
-      SPEAKER="alsa_output.usb-Plantronics_Plantronics_BT600_a056d9f0c35ea34b99704caa539a6fe0-00.analog-stereo"
-      MIC="alsa_output.usb-Plantronics_Plantronics_BT600_a056d9f0c35ea34b99704caa539a6fe0-00.analog-stereo.monitor"
+      SPEAKER="alsa_output.usb-Plantronics_Plantronics_BT600_a056d9f0c35ea34b99704caa539a6fe0-00.iec958-stereo"
+      MIC="alsa_output.usb-Plantronics_Plantronics_BT600_a056d9f0c35ea34b99704caa539a6fe0-00.iec958-stereo.monitor"
 
       # Wait a second so user can put the headset on
       sleep 2
@@ -37,7 +37,7 @@ let
     elif [ "$1" = "speakers" ]; then
 
       SPEAKER="alsa_output.pci-0000_00_1f.3.analog-stereo"
-      MIC="alsa_output.usb-Plantronics_Plantronics_BT600_a056d9f0c35ea34b99704caa539a6fe0-00.analog-stereo.monitor"
+      MIC="alsa_output.usb-Plantronics_Plantronics_BT600_a056d9f0c35ea34b99704caa539a6fe0-00.iec958-stereo.monitor"
 
     else
       echo "Usage: audio_switch_script.sh [headset|speakers]"
@@ -68,9 +68,9 @@ let
   '';
 in
 {
-    # Add additional UDEV rule to switch audio over to headset
-    services.udev.extraRules = ''
-      ACTION=="remove", SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ENV{PRODUCT}=="47f/127/500", RUN+="${pkgs.su}/bin/su agillert --command='${audio_switch_script} headset'"
-      ACTION=="add", SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ENV{PRODUCT}=="47f/127/500", RUN+="${pkgs.su}/bin/su agillert --command='${audio_switch_script} speakers'"
-    '';
+  # Add additional UDEV rule to switch audio over to headset
+  services.udev.extraRules = ''
+    ACTION=="remove", SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ENV{PRODUCT}=="47f/127/500", RUN+="${pkgs.su}/bin/su agillert --command='${audio_switch_script} headset'"
+    ACTION=="add", SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ENV{PRODUCT}=="47f/127/500", RUN+="${pkgs.su}/bin/su agillert --command='${audio_switch_script} speakers'"
+  '';
 }

@@ -8,6 +8,7 @@
         "agillert",
         "nixos",
         "nixpkgs",
+        "optimise",
         "pihole",
         "pkgs"
     ],
