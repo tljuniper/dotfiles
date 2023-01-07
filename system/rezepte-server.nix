@@ -34,8 +34,19 @@
     root = "/var/www/essensplaner";
   };
 
-  networking.firewall.interfaces."eth0".allowedTCPPorts = [
+  networking.firewall.allowedTCPPorts = [
     80 # nginx
     5000 # python backend
+    8081 # tandoor
   ];
+
+  services.tandoor-recipes = {
+    enable = true;
+    address = "0.0.0.0";
+    port = 8081;
+  };
+
+  systemd.services.tandoor-recipes.serviceConfig = {
+    TimeoutStartSec = 600;
+  };
 }
