@@ -94,18 +94,20 @@
       bbenoist.nix
       davidanson.vscode-markdownlint
       eamodio.gitlens
+      gitlab.gitlab-workflow
       haskell.haskell
       jnoortheen.nix-ide
       justusadam.language-haskell
       ms-azuretools.vscode-docker
       ms-python.python
       ms-python.vscode-pylance
+      ms-vscode-remote.remote-ssh
       pkief.material-icon-theme
       shardulm94.trailing-spaces
+      streetsidesoftware.code-spell-checker
       timonwong.shellcheck
       vscodevim.vim
-      ms-vscode-remote.remote-ssh
-      streetsidesoftware.code-spell-checker
+      wholroyd.jinja
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
         name = "haskell-linter";
@@ -131,14 +133,6 @@
         version = "0.6.1";
         sha256 = "sha256-5/Tqpn/7byl+z2ATflgKV1+rhdqj+XMEZNbGwDmGwLQ=";
       }
-      # can't access OS Keychain error, wait for fix here:
-      # https://gitlab.com/gitlab-org/gitlab-vscode-extension/-/issues/580
-      # {
-      #   name = "gitlab-workflow";
-      #   publisher = "GitLab";
-      #   version = "3.47.1";
-      #   sha256 = "sha256-qEj49bjb/FU0uVo0XTM9wlZRfX2EgSgl5EGnSeT2OIU=";
-      # }
       {
         name = "json-tools";
         publisher = "eriklynd";

@@ -10,6 +10,7 @@
     chromium
     evince
     firefox
+    flameshot
     gnome.cheese
     gnome.gedit
     gnome.gnome-tweaks
