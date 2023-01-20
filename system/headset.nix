@@ -26,24 +26,24 @@ let
 
     # Note: We always switch the mic too so chances are higher the setup's correct upon reboot
 
+    cmd="pactl --server=/run/user/1000/pulse/native"
+
     if [ "$1" = "headset" ]; then
 
-      SPEAKER="alsa_output.usb-Plantronics_Plantronics_BT600_a056d9f0c35ea34b99704caa539a6fe0-00.iec958-stereo"
-      MIC="alsa_output.usb-Plantronics_Plantronics_BT600_a056d9f0c35ea34b99704caa539a6fe0-00.iec958-stereo.monitor"
+      SPEAKER=`$cmd list sinks | grep Name: | grep "Plantronics" | head -1 | awk '{print $2 }'`
+      MIC=`$cmd list sources | grep Name: | grep "Plantronics" | head -1 | awk '{ print $2 }'`
 
       # Wait a second so user can put the headset on
       sleep 2
 
     elif [ "$1" = "speakers" ]; then
 
-      SPEAKER="alsa_output.pci-0000_00_1f.3.analog-stereo"
-      MIC="alsa_output.usb-Plantronics_Plantronics_BT600_a056d9f0c35ea34b99704caa539a6fe0-00.iec958-stereo.monitor"
+      SPEAKER=`$cmd list sinks | grep Name: | grep "pci" | head -1 | awk '{print $2 }'`
+      MIC=`$cmd list sources | grep Name: | grep "Plantronics" | head -1 | awk '{ print $2 }'`
 
     else
       echo "Usage: audio_switch_script.sh [headset|speakers]"
     fi
-
-    cmd="pactl --server=/run/user/1000/pulse/native"
 
     $cmd set-default-sink $SPEAKER
     $cmd set-default-source $MIC
@@ -61,7 +61,7 @@ let
 
     OUTPUTS=`$cmd list source-outputs short | cut -f 1`
     for i in $OUTPUTS; do
-      $cmd move-source-output $i "$MIC"
+      $cmd move-source-output $i "$MIC" || true
     done
 
     DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus notify-send --urgency=normal --hint int:transient:1 "Audio Switching" "Now playing on $1"
