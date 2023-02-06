@@ -9,8 +9,6 @@
     enable = true;
     userSettings =
       {
-        "brittany.showErrorNotification" = true;
-        "brittany.path" = "/nix/store/ffw1gywbywsjskm1midbx8x5acfg6l81-brittany-0.14.0.2/bin/brittany";
         "cabal-fmt.indent" = 4;
         "diffEditor.renderSideBySide" = false;
         "editor.formatOnSave" = true;
@@ -28,7 +26,7 @@
         "haskell.formattingProvider" = "brittany";
         "haskell.serverExecutablePath" = "haskell-language-server";
         "nix.enableLanguageServer" = true;
-        "python.formatting.blackPath" = "/nix/store/s9ijw34ckdfj71inlswdc49is7l86iw6-python3.8-black-20.8b1/bin/black";
+        "python.formatting.blackPath" = "${pkgs.python3Packages.black}/bin/black";
         "python.formatting.provider" = "black";
         "workbench.colorTheme" = "Default Dark+";
         "workbench.iconTheme" = "material-icon-theme";
@@ -114,12 +112,6 @@
         publisher = "hoovercj";
         version = "0.0.6";
         sha256 = "sha256-MjgqR547GC0tMnBJDMsiB60hJE9iqhKhzP6GLhcLZzk=";
-      }
-      {
-        name = "brittany";
-        publisher = "MaxGabriel";
-        version = "0.0.9";
-        sha256 = "sha256-04zGi3solPJgzObKJf8/hOa4v7Y7hMyd79rt6hD7y7E=";
       }
       {
         name = "esphome-vscode";

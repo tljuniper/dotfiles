@@ -31,7 +31,7 @@ let
     if [ "$1" = "headset" ]; then
 
       SPEAKER=`$cmd list sinks | grep Name: | grep "Plantronics" | head -1 | awk '{print $2 }'`
-      MIC=`$cmd list sources | grep Name: | grep "Plantronics" | head -1 | awk '{ print $2 }'`
+      MIC=`$cmd list sources | grep Name: | grep "Plantronics" | grep "mono" | head -1 | awk '{ print $2 }'`
 
       # Wait a second so user can put the headset on
       sleep 2
@@ -39,7 +39,7 @@ let
     elif [ "$1" = "speakers" ]; then
 
       SPEAKER=`$cmd list sinks | grep Name: | grep "pci" | head -1 | awk '{print $2 }'`
-      MIC=`$cmd list sources | grep Name: | grep "Plantronics" | head -1 | awk '{ print $2 }'`
+      MIC=`$cmd list sources | grep Name: | grep "Plantronics" | grep "mono" | head -1 | awk '{ print $2 }'`
 
     else
       echo "Usage: audio_switch_script.sh [headset|speakers]"

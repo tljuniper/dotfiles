@@ -48,6 +48,7 @@
   environment.systemPackages = with pkgs; [
     bat
     curl
+    dstat
     git
     vim
     wget
