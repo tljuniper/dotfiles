@@ -17,13 +17,6 @@
   #   useXkbConfig = true; # use xkbOptions in tty.
   # };
 
-  # Enable the function keys for Keychron keyboard
-  # https://mikeshade.com/posts/keychron-linux-function-keys/
-  environment.etc."modprobe.d/hid_apple.conf".text =
-    ''
-      options hid_apple fnmode=0
-    '';
-
   nix.settings = {
     # Timeout for connecting to cache
     connect-timeout = 5;
