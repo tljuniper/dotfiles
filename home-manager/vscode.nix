@@ -1,5 +1,6 @@
 { pkgs, ... }:
 
+# cSpell:disable
 {
   home.packages = with pkgs; [
     # Needed by Nix IDE extension
@@ -26,8 +27,8 @@
         "haskell.formattingProvider" = "brittany";
         "haskell.serverExecutablePath" = "haskell-language-server";
         "nix.enableLanguageServer" = true;
-        "python.formatting.blackPath" = "${pkgs.python3Packages.black}/bin/black";
         "python.formatting.provider" = "black";
+        "python.languageServer" = "Pylance";
         "workbench.colorTheme" = "Default Dark+";
         "workbench.iconTheme" = "material-icon-theme";
         "window.title" = "\${rootName}";
@@ -56,6 +57,10 @@
         ];
         "terminal.integrated.scrollback" = 100000;
         "update.mode" = "none";
+        "nixEnvSelector.nixFile" = "\${workspaceRoot}/shell.nix";
+        "cSpell.ignorePaths" = [
+          "**/.vscode/**"
+        ];
       };
     keybindings = [
       {
@@ -165,3 +170,4 @@
     ];
   };
 }
+# cSpell:enable

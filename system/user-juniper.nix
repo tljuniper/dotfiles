@@ -7,7 +7,7 @@
   users.users.juniper = {
     isNormalUser = true;
     home = "/home/juniper";
-    extraGroups = ["wheel" "networkmanager"];
+    extraGroups = [ "wheel" "networkmanager" "dialout" ];
     shell = pkgs.zsh;
   };
 
