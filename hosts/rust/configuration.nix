@@ -29,6 +29,9 @@
     allowUnfree = true;
   };
 
+  nix.settings.trusted-users = [ "@wheel" ];
+  security.sudo.wheelNeedsPassword = false;
+
   environment.systemPackages = with pkgs; [
     bat
     git
