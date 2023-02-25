@@ -19,13 +19,13 @@
 
   systemd.services.rezepte-server = {
     description = "Backend for recipe app that connects to Bring!";
-    after = ["network.target"];
+    after = [ "network.target" ];
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       User = "juniper";
       WorkingDirectory = "/home/juniper/Rezepte/webapp/server";
       ExecStart = "/home/juniper/Rezepte/webapp/server/env/bin/python3 app.py";
-      Restart= "always";
+      Restart = "always";
     };
   };
 
@@ -37,16 +37,7 @@
   networking.firewall.allowedTCPPorts = [
     80 # nginx
     5000 # python backend
-    8081 # tandoor
   ];
 
-  services.tandoor-recipes = {
-    enable = true;
-    address = "0.0.0.0";
-    port = 8081;
-  };
 
-  systemd.services.tandoor-recipes.serviceConfig = {
-    TimeoutStartSec = 600;
-  };
 }
