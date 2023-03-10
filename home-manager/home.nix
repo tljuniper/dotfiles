@@ -64,10 +64,26 @@
         "copyfile"
         "dirhistory"
         "git"
+        "sudo"
         "history"
         "web-search"
       ];
       theme = "af-magic";
+    };
+  };
+
+  programs.starship = {
+    enable = true;
+    settings = {
+      git_branch = {
+        symbol = "🌱 ";
+      };
+      nix_shell = {
+        format = "via [❄️ ](bold blue) ";
+      };
+      sudo = {
+        disabled = false;
+      };
     };
   };
 
