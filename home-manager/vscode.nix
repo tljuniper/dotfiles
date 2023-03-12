@@ -169,5 +169,22 @@
       }
     ];
   };
+  xdg.desktopEntries.code = {
+    exec = "code %F";
+    name = "VS Code";
+    icon = "code";
+    type = "Application";
+    categories = [ "Utility" "TextEditor" "Development" "IDE" ];
+    mimeType = [ "text/plain" "inode/directory" ];
+
+    actions = {
+      "dotfiles" = {
+        exec = "code dotfiles";
+      };
+      "nixpkgs" = {
+        exec = "code github/nixpkgs";
+      };
+    };
+  };
 }
 # cSpell:enable
