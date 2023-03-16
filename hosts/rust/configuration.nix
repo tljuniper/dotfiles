@@ -25,6 +25,9 @@
 
   networking.hostName = "rust";
 
+  services.tailscale.enable = true;
+  networking.firewall.checkReversePath = "loose";
+
   nixpkgs.config = {
     allowUnfree = true;
   };
