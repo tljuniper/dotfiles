@@ -32,6 +32,7 @@
     signal-desktop
     thunderbird
     vlc
+    xclip
   ];
 
   programs.terminator = {

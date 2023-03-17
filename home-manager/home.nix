@@ -176,9 +176,11 @@
     '';
     plugins = with pkgs.vimPlugins; [
       commentary
+      ctrlp
       repeat
       vim-snipmate
       vim-snippets
+      vim-sneak
       surround
     ];
   };

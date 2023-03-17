@@ -61,6 +61,11 @@
         "cSpell.ignorePaths" = [
           "**/.vscode/**"
         ];
+        "vim" = {
+          sneak = true;
+          # commentary is on by default
+          # surround is on by default
+        };
       };
     keybindings = [
       {
