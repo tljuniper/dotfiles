@@ -17,17 +17,7 @@
   # ------------------------------------------------------------------
 
   home.packages = with pkgs; [
-    bat
     cachix
-    diff-so-fancy
-    dos2unix
-    rsync
-    screen
-    fzf
-    htop
-    jq
-    tree
-    unzip
   ];
 
   home.file.".aspell.de_DE.prepl".source = ./aspell.de_DE.prepl;

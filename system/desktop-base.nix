@@ -43,18 +43,6 @@
     atomix # puzzle game
   ]);
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    bat
-    curl
-    dstat
-    git
-    vim
-    wget
-    unixtools.netstat
-  ];
-
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   # Enable the function keys for Keychron keyboard

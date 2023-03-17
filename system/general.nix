@@ -17,6 +17,29 @@
   #   useXkbConfig = true; # use xkbOptions in tty.
   # };
 
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs; [
+    bat # cat but fancy
+    curl
+    diff-so-fancy # Mainly for use with git
+    dos2unix
+    dstat # Resource usage
+    fzf # Command line fuzzy finder
+    git
+    htop
+    jq # Json pretty print
+    rsync
+    screen
+    tree
+    unixtools.netstat
+    unzip
+    usbutils
+    vim
+    wget
+  ];
+
+
   nix.settings = {
     # Timeout for connecting to cache
     connect-timeout = 5;

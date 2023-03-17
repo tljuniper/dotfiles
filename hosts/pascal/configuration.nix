@@ -6,7 +6,8 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
@@ -22,21 +23,12 @@
   networking.hostName = "pascal"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   services.logind.lidSwitch = "ignore";
 
   nix.settings.trusted-users = [ "@wheel" ];
   security.sudo.wheelNeedsPassword = false;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-      bat
-      git
-      vim
-      wget
-  ];
 
   # List services that you want to enable:
 

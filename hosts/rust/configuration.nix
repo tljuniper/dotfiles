@@ -36,14 +36,7 @@
   security.sudo.wheelNeedsPassword = false;
 
   environment.systemPackages = with pkgs; [
-    bat
-    git
     minicom
-    tree
-    unixtools.netstat
-    usbutils
-    vim
-    wget
   ];
 
   # List the services that you want to enable:
