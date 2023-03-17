@@ -47,9 +47,7 @@
   ];
 
   # List the services that you want to enable:
-  systemd.services.home-manager-juniper.serviceConfig = lib.mkForce {
-    TimeoutStartSec = 120;
-  };
+  systemd.services.home-manager-juniper.serviceConfig.TimeoutStartSec = lib.mkForce 120;
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
