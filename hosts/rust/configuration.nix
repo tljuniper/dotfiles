@@ -35,6 +35,8 @@
   nix.settings.trusted-users = [ "@wheel" ];
   security.sudo.wheelNeedsPassword = false;
 
+  nix.settings.min-free = lib.mkForce 4000000000;
+
   environment.systemPackages = with pkgs; [
     minicom
   ];
