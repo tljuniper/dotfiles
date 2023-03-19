@@ -32,6 +32,7 @@
     rsync
     screen
     tree
+    tmux
     unixtools.netstat
     unzip
     usbutils
