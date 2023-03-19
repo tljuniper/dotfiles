@@ -74,6 +74,10 @@
       sudo = {
         disabled = false;
       };
+      python = {
+        # Is installed by default and therefore printed everywhere
+        disabled = true;
+      };
     };
   };
 
