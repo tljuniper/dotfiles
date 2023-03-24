@@ -4,7 +4,7 @@
   virtualisation.oci-containers.containers.home-assistant = {
     volumes = [ "/home/juniper/home-assistant:/config" ];
     environment.TZ = "Europe/Berlin";
-    image = "ghcr.io/home-assistant/home-assistant:2022.12";
+    image = "ghcr.io/home-assistant/home-assistant:2023.3";
     extraOptions = [
       "--network=host"
     ];
