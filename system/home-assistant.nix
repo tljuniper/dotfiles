@@ -49,4 +49,46 @@
     ];
   };
 
+  systemd.services.home-assistant-backup = {
+    description = "Backup service for HA";
+    after = [ "network.target" ];
+    script = ''
+      #!/usr/bin/env bash
+
+      set -euo pipefail
+
+      readonly SOURCE_DIR="/home/juniper/home-assistant/backups"
+      readonly BACKUP_DIR="/backup/home-assistant"
+      readonly DATETIME="$(date '+%Y-%m-%d_%H:%M:%S')"
+      readonly BACKUP_PATH="''${BACKUP_DIR}/''${DATETIME}"
+      readonly LATEST_LINK="''${BACKUP_DIR}/latest"
+
+      mkdir -p "''${BACKUP_DIR}"
+
+      # --dry-run
+      ${pkgs.rsync}/bin/rsync --verbose --archive \
+        "''${SOURCE_DIR}/" \
+        --link-dest "''${LATEST_LINK}" \
+        "''${BACKUP_PATH}"
+
+      rm -rf "''${LATEST_LINK}"
+      ln -s "''${BACKUP_PATH}" "''${LATEST_LINK}"
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+    };
+  };
+
+  systemd.timers.home-assistant-backup-timer = {
+    description = "Backup timer for HA backup";
+    partOf = [ "home-assistant-backup.service" ];
+    wantedBy = [ "timers.target" ];
+    # Home Assistant backup runs at 3:00
+    timerConfig = {
+      OnCalendar = "*-*-* 03:30:00";
+      # Launch the service even if the system was turned off last time the timer triggered
+      Persistent = true;
+      Unit = "home-assistant-backup.service";
+    };
+  };
 }
