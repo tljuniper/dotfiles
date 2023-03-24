@@ -8,10 +8,10 @@
       fsType = "ext4";
     };
 
-    # "/backup" = {
-    #   device = "/dev/disk/by-label/backup";
-    #   fsType = "ext4";
-    # };
+    "/backup" = {
+      device = "/dev/disk/by-label/backup";
+      fsType = "ext4";
+    };
   };
 
   # !!! Adding a swap file is optional, but strongly recommended!

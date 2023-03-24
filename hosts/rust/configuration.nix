@@ -35,10 +35,13 @@
   nix.settings.trusted-users = [ "@wheel" ];
   security.sudo.wheelNeedsPassword = false;
 
+  # Less storage on this device --> start garbage collection when only 4GB remain
   nix.settings.min-free = lib.mkForce 4000000000;
 
   environment.systemPackages = with pkgs; [
     minicom
+    # Nodejs for VSCode remote https://nixos.wiki/wiki/Visual_Studio_Code
+    nodejs-16_x
   ];
 
   # List the services that you want to enable:
