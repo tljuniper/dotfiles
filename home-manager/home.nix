@@ -75,6 +75,14 @@
         # Is installed by default and therefore printed everywhere
         disabled = true;
       };
+      # Uses nerd font otherwise
+      battery = {
+        full_symbol = "• ";
+        charging_symbol = "⇡ ";
+        discharging_symbol = "⇣ ";
+        unknown_symbol = "❓ ";
+        empty_symbol = "❗ ";
+      };
     };
   };
 
