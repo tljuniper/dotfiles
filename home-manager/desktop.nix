@@ -10,6 +10,9 @@
     chromium
     evince
     firefox
+    # Manually configure "flameshot gui" command on keystroke CTRL-Print.
+    # Use "flameshot config" once to configure default save locations/filenames
+    # and other flameshot settings
     flameshot
     gnome.cheese
     gnome.gedit
