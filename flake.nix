@@ -91,6 +91,7 @@
                     ./home-manager/git-juniper.nix
                     ./home-manager/desktop.nix
                     ./home-manager/vscode.nix
+                    ./home-manager/xdg-user-dirs.nix
                   ];
                   home = juniper-home;
                 };
