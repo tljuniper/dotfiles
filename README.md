@@ -25,3 +25,13 @@ Manual steps after new desktop install:
 - Set up keyboard shortcuts
 - Install bookmarks
 - Install browser extensions
+
+Backups:
+
+Started automatically via udev rules when the correct disk is plugged in.
+Or manually via the systemd user service.
+
+```sh
+sudo systemctl start backup.mount
+systemctl --user start backup-swift.service
+```

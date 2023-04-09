@@ -82,6 +82,7 @@
             ./system/desktop-base.nix
             ./system/general.nix
             ./system/user-juniper.nix
+            ./system/trigger-backup-swift.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.users.juniper = { config, lib, pkgs, ... }:
@@ -92,6 +93,7 @@
                     ./home-manager/desktop.nix
                     ./home-manager/vscode.nix
                     ./home-manager/xdg-user-dirs.nix
+                    ./home-manager/backup-swift.nix
                   ];
                   home = juniper-home;
                 };
