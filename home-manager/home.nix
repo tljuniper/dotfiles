@@ -16,10 +16,6 @@
 
   # ------------------------------------------------------------------
 
-  home.packages = with pkgs; [
-    cachix
-  ];
-
   home.file.".aspell.de_DE.prepl".source = ./aspell.de_DE.prepl;
   home.file.".aspell.de_DE.pws".source = ./aspell.de_DE.pws;
   home.file.".aspell.en.prepl".source = ./aspell.en.prepl;
