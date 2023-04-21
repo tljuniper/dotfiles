@@ -28,10 +28,11 @@
 
   fileSystems."/backup" =
     {
-      # Toshiba 1000G
+      # External disk
       device = "/dev/disk/by-uuid/fb4ac636-c61b-41db-b2ac-a8a80aacd40c";
       fsType = "ext4";
       neededForBoot = false;
+      options = [ "nofail" ];
     };
 
   swapDevices = [ ];
