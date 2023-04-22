@@ -38,6 +38,7 @@
             ./system/home-assistant.nix
             ./system/general.nix
             ./system/pihole.nix
+            ./system/prometheus.nix
             ./system/rezepte-server.nix
             ./system/user-juniper.nix
             home-manager.nixosModules.home-manager
