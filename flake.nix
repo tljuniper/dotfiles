@@ -35,8 +35,9 @@
           pkgs = pkgsForSystem system;
           modules = [
             ./hosts/rust/configuration.nix
-            ./system/home-assistant.nix
             ./system/general.nix
+            ./system/home-assistant.nix
+            ./system/paperless-ngx.nix
             ./system/pihole.nix
             ./system/prometheus.nix
             ./system/rezepte-server.nix
