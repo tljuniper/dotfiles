@@ -36,4 +36,9 @@ System Volume Information
 My Saved Places.
 \#*#
 *.sb-*
-node_modules
+node_modules/
+.git/
+.esphome/
+build/
+.metadata/
+result/

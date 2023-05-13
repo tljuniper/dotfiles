@@ -9,6 +9,7 @@
     baobab
     chromium
     evince
+    exiftool
     firefox
     # Manually configure "flameshot gui" command on keystroke CTRL-Print.
     # Use "flameshot config" once to configure default save locations/filenames
@@ -30,7 +31,10 @@
     keepassxc
     libreoffice
     libnotify
+    # nautilus-open-any-terminal --> doesn't seem to work so far, more research needed
     nextcloud-client
+    ocrmypdf
+    poppler_utils
     python3
     signal-desktop
     thunderbird

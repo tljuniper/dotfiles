@@ -22,6 +22,7 @@
   environment.systemPackages = with pkgs; [
     bat # cat but fancy
     curl
+    detox # Cleanup filenames with special characters
     diff-so-fancy # Mainly for use with git
     dos2unix
     dstat # Resource usage
@@ -29,6 +30,7 @@
     git
     htop
     jq # Json pretty print
+    pdfgrep
     rsync
     screen
     tree

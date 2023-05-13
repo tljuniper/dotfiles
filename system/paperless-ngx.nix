@@ -24,8 +24,8 @@ in
     ];
   };
 
-  # Files are placed here by the scanner
   systemd.tmpfiles.rules = [
+    # Files are placed here by the scanner
     "d ${consumptionDir} 0777 scanner users"
   ];
 
