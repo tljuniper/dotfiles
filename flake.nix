@@ -37,6 +37,7 @@
             ./hosts/rust/configuration.nix
             ./system/general.nix
             ./system/home-assistant.nix
+            ./system/nextcloud.nix
             ./system/paperless-ngx.nix
             ./system/pihole.nix
             ./system/prometheus.nix
