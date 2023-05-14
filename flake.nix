@@ -35,11 +35,11 @@
           pkgs = pkgsForSystem system;
           modules = [
             ./hosts/rust/configuration.nix
+            ./system/adguard.nix
             ./system/general.nix
             ./system/home-assistant.nix
             ./system/nextcloud.nix
             ./system/paperless-ngx.nix
-            ./system/pihole.nix
             ./system/prometheus.nix
             ./system/rezepte-server.nix
             ./system/user-juniper.nix
