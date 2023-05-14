@@ -1,17 +1,10 @@
 { pkgs, config, ... }:
 
 let
-  consumptionDir = "/var/lib/paperless-consume";
+  scannerDir = "/var/lib/scanned-files";
 in
 {
-  # services.paperless = {
-  #   enable = true;
-  #   address = "0.0.0.0";
-  #   port = 58080;
-  #   inherit consumptionDir;
-  #   consumptionDirIsPublic = true;
-  #   extraConfig.PAPERLESS_OCR_LANGUAGE = "deu+eng";
-  # };
+  networking.firewall.allowedTCPPorts = [ 58080 ];
 
   users.users.scanner = {
     # Must be a normal user, otherwise the scanner will fail to establish a connection
@@ -26,7 +19,7 @@ in
 
   systemd.tmpfiles.rules = [
     # Files are placed here by the scanner
-    "d ${consumptionDir} 0777 scanner users"
+    "d ${scannerDir} 0777 scanner users"
   ];
 
   # Debugging

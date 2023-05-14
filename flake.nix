@@ -39,9 +39,9 @@
             ./system/general.nix
             ./system/home-assistant.nix
             ./system/nextcloud.nix
-            ./system/paperless-ngx.nix
             ./system/prometheus.nix
             ./system/rezepte-server.nix
+            ./system/scanner.nix
             ./system/user-juniper.nix
             home-manager.nixosModules.home-manager
             {
