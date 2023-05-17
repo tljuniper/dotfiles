@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, nixpkgs, ... }:
 {
 
   # Set your time zone.
@@ -31,6 +31,7 @@
     htop
     jq # Json pretty print
     pdfgrep
+    nix
     rsync
     screen
     tree
@@ -61,5 +62,13 @@
     # Flakes
     experimental-features = [ "nix-command" "flakes" ];
   };
+
+  # <nixpkgs> is evaluated to what's in the NIX_PATH variable
+  # Use separate folder nix/inputs/nixpkgs so changes are easier to apply to already running processes
+  environment.etc."nix/inputs/nixpkgs".source = nixpkgs.outPath;
+  nix.nixPath = [ "nixpkgs=/etc/nix/inputs/nixpkgs" ];
+
+  # Make sure flake registry uses this version of nixpkgs
+  nix.registry.nixpkgs.flake = nixpkgs;
 
 }
