@@ -6,6 +6,9 @@
 
     home-manager.url = "github:nix-community/home-manager/release-23.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    ha-relay.url = "github:pinpox/home-assistant-grafana-relay";
+    ha-relay.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -13,6 +16,7 @@
     inputs@ { self
     , home-manager
     , nixpkgs
+    , ha-relay
     , ...
     }:
     let
@@ -55,6 +59,19 @@
                   ];
                   home = juniper-home;
                 };
+            }
+            ha-relay.nixosModules.ha-relay
+            {
+              pinpox.services.home-assistant-grafana-relay = {
+                enable = true;
+                # Manually add grafana webhook for URL: http://localhost:12000
+                listenHost = "localhost";
+                listenPort = "12000";
+                haUri = "http://localhost:8123/api/services/notify/notify";
+                # File with ha-relay user permissions and content:
+                # AUTH_TOKEN="LONG_LIVED_HOME_ASSISTANT_ACCESS_TOKEN"
+                envFile = "/var/grafana-ha-relay-long-lived-token";
+              };
             }
           ];
         };

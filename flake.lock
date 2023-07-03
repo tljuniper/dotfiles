@@ -1,5 +1,58 @@
 {
   "nodes": {
+    "flake-compat": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1627913399,
+        "narHash": "sha256-hY8g6H2KFL8ownSiFeMOjwPC8P0ueXpCVEbxgda3pko=",
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "rev": "12c64ca55c1014cdc1b16ed5a804aa8576601ff2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "type": "github"
+      }
+    },
+    "flake-utils": {
+      "locked": {
+        "lastModified": 1634851050,
+        "narHash": "sha256-N83GlSGPJJdcqhUxSCS/WwW5pksYf3VP1M13cDRTSVA=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "c91f3de5adaf1de973b797ef7485e441a65b8935",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "ha-relay": {
+      "inputs": {
+        "flake-compat": "flake-compat",
+        "flake-utils": "flake-utils",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1668415457,
+        "narHash": "sha256-sHVvs9tuta/h4ac1MAdlqwPHwvvhfe5Zq4yn/8CAYjE=",
+        "owner": "pinpox",
+        "repo": "home-assistant-grafana-relay",
+        "rev": "692d9c0b651b42597fae909d078349620790fd1f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pinpox",
+        "repo": "home-assistant-grafana-relay",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -38,6 +91,7 @@
     },
     "root": {
       "inputs": {
+        "ha-relay": "ha-relay",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs"
       }
