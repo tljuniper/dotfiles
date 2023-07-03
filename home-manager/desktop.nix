@@ -22,6 +22,7 @@
     # Gnome extensions. Note: These are now present in "extensions" app where
     # they have to be turned on and configured manually
     gnomeExtensions.dash-to-dock
+    gnomeExtensions.tailscale-status
     google-chrome
     hunspell
     hunspellDicts.de_DE
