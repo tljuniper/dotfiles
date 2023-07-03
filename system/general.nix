@@ -1,4 +1,4 @@
-{ config, lib, pkgs, nixpkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 {
 
   # Set your time zone.
@@ -73,10 +73,10 @@
 
   # <nixpkgs> is evaluated to what's in the NIX_PATH variable
   # Use separate folder nix/inputs/nixpkgs so changes are easier to apply to already running processes
-  environment.etc."nix/inputs/nixpkgs".source = nixpkgs.outPath;
+  environment.etc."nix/inputs/nixpkgs".source = inputs.nixpkgs.outPath;
   nix.nixPath = [ "nixpkgs=/etc/nix/inputs/nixpkgs" ];
 
   # Make sure flake registry uses this version of nixpkgs
-  nix.registry.nixpkgs.flake = nixpkgs;
+  nix.registry.nixpkgs.flake = inputs.nixpkgs;
 
 }

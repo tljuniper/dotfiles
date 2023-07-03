@@ -33,7 +33,7 @@
       nixosConfigurations = {
         rust = lib.nixosSystem rec {
           system = "aarch64-linux";
-          specialArgs = inputs;
+          specialArgs = { inherit inputs; };
           pkgs = pkgsForSystem system;
           modules = [
             ./hosts/rust/configuration.nix
@@ -60,7 +60,7 @@
         };
         pascal = lib.nixosSystem rec {
           system = "x86_64-linux";
-          specialArgs = inputs;
+          specialArgs = { inherit inputs; };
           pkgs = pkgsForSystem system;
           modules = [
             ./hosts/pascal/configuration.nix
@@ -82,7 +82,7 @@
         };
         swift = lib.nixosSystem rec {
           system = "x86_64-linux";
-          specialArgs = inputs;
+          specialArgs = { inherit inputs; };
           pkgs = pkgsForSystem system;
           modules = [
             ./hosts/swift/configuration.nix
@@ -109,7 +109,7 @@
         };
         blazer = lib.nixosSystem rec {
           system = "x86_64-linux";
-          specialArgs = inputs;
+          specialArgs = { inherit inputs; };
           pkgs = pkgsForSystem system;
           modules = [
             ./hosts/blazer/configuration.nix
