@@ -65,16 +65,4 @@
       };
     };
   };
-
-  services.spotifyd = {
-    enable = true;
-    settings = {
-      global = {
-        username_cmd = "cat ~/.spotify/username";
-        password_cmd = "cat ~/.spotify/password";
-        # device_name = "${config.networking.hostName}";
-        device_name = "swift";
-      };
-    };
-  };
 }

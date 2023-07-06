@@ -126,7 +126,6 @@
                     ./home-manager/git-agillert.nix
                     ./home-manager/desktop.nix
                     ./home-manager/vscode.nix
-                    ./home-manager/work.nix
                   ];
                   home = {
                     username = "agillert";

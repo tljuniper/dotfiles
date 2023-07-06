@@ -106,10 +106,10 @@
       haskell.haskell
       jnoortheen.nix-ide
       justusadam.language-haskell
+      editorconfig.editorconfig
       ms-azuretools.vscode-docker
       ms-python.python
       ms-python.vscode-pylance
-      ms-vscode-remote.remote-ssh
       pkief.material-icon-theme
       shardulm94.trailing-spaces
       streetsidesoftware.code-spell-checker
@@ -126,27 +126,20 @@
       {
         name = "esphome-vscode";
         publisher = "ESPHome";
-        version = "2022.10.0";
-        sha256 = "sha256-7vBPKvT62U/FODY0DbuzQAKL0GjFyqUybukoQItnmdo=";
+        version = "2023.6.0";
+        sha256 = "sha256-/o2eFxxF84dDk8qgkVeA1B6RvAgCSDhulOWHRmjOjng=";
       }
       {
         name = "direnv";
         publisher = "mkhl";
-        version = "0.6.1";
-        sha256 = "sha256-5/Tqpn/7byl+z2ATflgKV1+rhdqj+XMEZNbGwDmGwLQ=";
+        version = "0.14.0";
+        sha256 = "sha256-T+bt6ku+zkqzP1gXNLcpjtFAevDRiSKnZaE7sM4pUOs=";
       }
       {
         name = "json-tools";
         publisher = "eriklynd";
         version = "1.0.2";
         sha256 = "sha256-7tBjhcqCUnwOXwjhLK8iYtXH/my6ATpWvgrfDNi8tzw=";
-      }
-      {
-        # Is needed by shfmt extension
-        name = "EditorConfig";
-        publisher = "EditorConfig";
-        version = "0.16.4";
-        sha256 = "sha256-j+P2oprpH0rzqI0VKt0JbZG19EDE7e7+kAb3MGGCRDk=";
       }
       {
         name = "language-yesod";
@@ -157,8 +150,8 @@
       {
         name = "shfmt";
         publisher = "mkhl";
-        version = "1.1.1";
-        sha256 = "sha256-PikNlXJNqIkTbyYv4R45ikAtmLrGVA1RhTulU7rmYnU=";
+        version = "1.2.0";
+        sha256 = "sha256-jgKJz6FQt6jBsiDQCKYnEuWhHg+9zD0P+GOMYTt1ZZA=";
       }
       {
         name = "vscode-cabal-fmt";
