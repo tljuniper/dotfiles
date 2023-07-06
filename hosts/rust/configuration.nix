@@ -40,8 +40,6 @@
 
   environment.systemPackages = with pkgs; [
     minicom
-    # Nodejs for VSCode remote https://nixos.wiki/wiki/Visual_Studio_Code
-    nodejs-16_x
   ];
 
   # List the services that you want to enable:

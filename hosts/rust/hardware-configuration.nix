@@ -1,13 +1,9 @@
 { config, lib, pkgs, modulesPath, ... }:
 {
 
-  # File systems configuration for using the installer's partition layout
   fileSystems = {
-    "/" = {
-      device = "/dev/disk/by-label/NIXOS_SD";
-      fsType = "ext4";
-    };
-
+    # USB drive labelled 'backup'
+    # The main drive is configured via the SD image installer
     "/backup" = {
       device = "/dev/disk/by-label/backup";
       fsType = "ext4";
