@@ -54,3 +54,11 @@ Or manually via the systemd user service.
 sudo systemctl start backup.mount
 systemctl --user start backup-swift.service
 ```
+
+Nextcloud:
+
+Database:
+
+```bash
+sudo -u postgres pg_dump nextcloud -f /tmp/nextcloud-sqlbkp_`date +"%Y%m%d"`.bak
+```

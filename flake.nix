@@ -74,12 +74,6 @@
                 envFile = "/var/grafana-ha-relay-long-lived-token";
               };
             }
-            ({ ... }: {
-              config = {
-                # This makes the build be a .img instead of a .img.zst
-                sdImage.compressImage = false;
-              };
-            })
           ];
         };
         pascal = lib.nixosSystem rec {

@@ -1,6 +1,6 @@
 { config, lib, pkgs, modulesPath, ... }:
-{
 
+{
   fileSystems = {
     # USB drive labelled 'backup'
     # The main drive is configured via the SD image installer
@@ -14,5 +14,4 @@
   swapDevices = [{ device = "/swapfile"; size = 1024; }];
 
   hardware.enableRedistributableFirmware = true;
-
 }

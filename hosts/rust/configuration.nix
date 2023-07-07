@@ -6,44 +6,34 @@
 {
   imports =
     [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
-
-  nix = {
-    package = pkgs.nixFlakes;
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
-  };
 
   # NixOS wants to enable GRUB by default
   boot.loader.grub.enable = false;
   # Enables the generation of /boot/extlinux/extlinux.conf
   boot.loader.generic-extlinux-compatible.enable = true;
 
-  # boot.kernelPackages = pkgs.linuxPackages_latest;
-
-  networking.hostName = "rust";
+  networking.hostName = "rust"; # Define your hostname.
+  # Pick only one of the below networking options.
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   services.tailscale.enable = true;
   networking.firewall.checkReversePath = "loose";
 
-  nixpkgs.config = {
-    allowUnfree = true;
-  };
-
   nix.settings.trusted-users = [ "@wheel" ];
   security.sudo.wheelNeedsPassword = false;
 
-  # Less storage on this device --> start garbage collection when only 4GB remain
-  nix.settings.min-free = lib.mkForce 4000000000;
-
-  environment.systemPackages = with pkgs; [
-    minicom
-  ];
+  # This makes the build be a .img instead of a .img.zst
+  sdImage.compressImage = false;
 
   # List the services that you want to enable:
-  systemd.services.home-manager-juniper.serviceConfig.TimeoutStartSec = lib.mkForce 120;
+  environment.systemPackages = with pkgs; [
+    # For USB serial adapter
+    minicom
+  ];
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
