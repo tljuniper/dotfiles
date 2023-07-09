@@ -18,5 +18,5 @@
     settings.bind_port = 3000;
   };
 
-  networking.firewall.interfaces."end0".allowedUDPPorts = [ 53 ];
+  networking.firewall.allowedUDPPorts = [ 53 ];
 }

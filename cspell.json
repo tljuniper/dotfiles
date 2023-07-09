@@ -6,11 +6,14 @@
     "words": [
         "aarch",
         "agillert",
+        "Nextcloud",
         "nixos",
         "nixpkgs",
         "optimise",
         "pihole",
-        "pkgs"
+        "pkgs",
+        "psql",
+        "Tailscale"
     ],
     "ignoreWords": [],
     "import": []

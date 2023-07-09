@@ -144,19 +144,23 @@ in
 
       set -euo pipefail
 
-      readonly SOURCE_DIR="/var/lib/nextcloud/data"
-      readonly BACKUP_DIR="/backup/nextcloud-data"
+      readonly SOURCE_DIR="/var/lib/nextcloud"
+      readonly BACKUP_DIR="/backup/nextcloud"
       readonly DATETIME="$(date '+%Y-%m-%d_%H:%M:%S')"
       readonly BACKUP_PATH="''${BACKUP_DIR}/''${DATETIME}"
       readonly LATEST_LINK="''${BACKUP_DIR}/latest"
 
       mkdir -p "''${BACKUP_DIR}"
 
-      # --dry-run
+      # Backup nextcloud files dir
       ${pkgs.rsync}/bin/rsync --verbose --archive \
         "''${SOURCE_DIR}/" \
         --link-dest "''${LATEST_LINK}" \
         "''${BACKUP_PATH}"
+
+      # Backup database
+      ${pkgs.sudo}/bin/sudo -u postgres ${pkgs.postgresql}/bin/pg_dump nextcloud -f /tmp/nextcloud-db.bak
+      mv /tmp/nextcloud-db.bak ''${BACKUP_PATH}/
 
       rm -rf "''${LATEST_LINK}"
       ln -s "''${BACKUP_PATH}" "''${LATEST_LINK}"

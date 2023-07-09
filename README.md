@@ -34,31 +34,47 @@ Building an SD card image for Raspberry:
 nix build --flake .#nixosConfigurations.rust.config.system.build.sdImage
 ```
 
-Flash the image to SD card or USB disk, plug in another disk labeled `backup`,
-then boot. SSH access should work out of the box.
+Flash the image to SD card or USB disk, then boot. SSH access should work out of
+the box.
 
-- Tailscale: Maybe remove other device first, then `sudo tailscale up`
-- Home assistant: Install backup to `~/home-assistant`
-- Nextcloud: Restore nginx certs and password files, install backup
-- Adguard home: Set up login (instructions in `adguard.nix`)
-- Grafana: Set up login
-- ha-relay: Set up access token
+- Tailscale: `sudo tailscale up`
+- Home assistant: Install backup to `~/home-assistant` by extracting the
+`backup.tar` file into the directory
+- Nextcloud:
+  - Restore postgres database backup (see below)
+  - Restore `nextcloud` folder
+  - Restore nginx certs and password files
+- Adguard home:
+  - Set up login (instructions in `adguard.nix`)
+- Grafana:
+  - For a new install admin password is `admin`.
+- ha-relay: Set up access token (copy file)
 - Rezepte server: Set up venv, copy vue stuff
 
 ## Backups
 
-Started automatically via udev rules when the correct disk is plugged in.
-Or manually via the systemd user service.
+### Swift
+
+Can be started via the systemd user service.
 
 ```sh
 sudo systemctl start backup.mount
 systemctl --user start backup-swift.service
 ```
 
-Nextcloud:
+### Raspberry Pis
 
-Database:
+Run backups for Home Assistant and Nextcloud at night if applicable.
+
+### Nextcloud Database (manual backup)
+
+See also [the official docs](https://docs.nextcloud.com/server/latest/admin_manual/maintenance/restore.html).
 
 ```bash
-sudo -u postgres pg_dump nextcloud -f /tmp/nextcloud-sqlbkp_`date +"%Y%m%d"`.bak
+# Create backup
+sudo -u postgres pg_dump nextcloud -f /tmp/nextcloud-db_`date +"%Y%m%d"`.bak
+# Restore from backup
+sudo -u postgres psql -d template1 -c "DROP DATABASE \"nextcloud\";"
+sudo -u postgres psql -d template1 -c "CREATE DATABASE \"nextcloud\";"
+sudo -u postgres psql -d nextcloud -f nextcloud-db_000000.bak
 ```
