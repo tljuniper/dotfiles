@@ -12,13 +12,6 @@
   services.prometheus = {
     enable = true;
     port = 9001;
-    exporters = {
-      node = {
-        enable = true;
-        enabledCollectors = [ "systemd" "processes" ];
-        port = 9100;
-      };
-    };
     scrapeConfigs = [
       {
         job_name = "rust";
@@ -29,5 +22,5 @@
     ];
   };
 
-  networking.firewall.allowedTCPPorts = [ 9100 2342 ];
+  networking.firewall.allowedTCPPorts = [ 9100 9001 2342 ];
 }

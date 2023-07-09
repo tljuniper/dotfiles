@@ -10,11 +10,6 @@
       ./hardware-configuration.nix
     ];
 
-  # NixOS wants to enable GRUB by default
-  boot.loader.grub.enable = false;
-  # Enables the generation of /boot/extlinux/extlinux.conf
-  boot.loader.generic-extlinux-compatible.enable = true;
-
   networking.hostName = "rust"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.

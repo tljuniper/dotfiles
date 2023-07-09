@@ -40,11 +40,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1668415457,
-        "narHash": "sha256-sHVvs9tuta/h4ac1MAdlqwPHwvvhfe5Zq4yn/8CAYjE=",
+        "lastModified": 1688652509,
+        "narHash": "sha256-ZHJ/t04xMbopb6Sa4mCUlYN0oNexStSFY5iKYjO8rcg=",
         "owner": "pinpox",
         "repo": "home-assistant-grafana-relay",
-        "rev": "692d9c0b651b42597fae909d078349620790fd1f",
+        "rev": "f19007770b774862c0425de434b893f277ba57f0",
         "type": "github"
       },
       "original": {

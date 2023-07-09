@@ -48,6 +48,7 @@
             ./system/nextcloud.nix
             ./system/prometheus.nix
             ./system/rezepte-server.nix
+            ./system/prometheus-exporter.nix
             ./system/scanner.nix
             ./system/user-juniper.nix
             home-manager.nixosModules.home-manager
