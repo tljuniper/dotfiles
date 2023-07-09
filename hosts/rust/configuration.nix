@@ -30,6 +30,9 @@
     minicom
   ];
 
+  # Try to boot, even if some file systems are missing
+  systemd.enableEmergencyMode = false;
+
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 

@@ -2,8 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
-
+{ config, pkgs, lib, ... }:
 {
   imports =
     [
@@ -11,26 +10,25 @@
       ./hardware-configuration.nix
     ];
 
-  # Use the GRUB 2 boot loader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.version = 2;
-  # boot.loader.grub.efiSupport = true;
-  # boot.loader.grub.efiInstallAsRemovable = true;
-  # boot.loader.efi.efiSysMountPoint = "/boot/efi";
-  # Define on which hard drive you want to install Grub.
-  boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
-
   networking.hostName = "pascal"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
-  services.logind.lidSwitch = "ignore";
+  services.tailscale.enable = true;
+  networking.firewall.checkReversePath = "loose";
 
   nix.settings.trusted-users = [ "@wheel" ];
   security.sudo.wheelNeedsPassword = false;
 
-  # List services that you want to enable:
+  # This makes the build be a .img instead of a .img.zst
+  sdImage.compressImage = false;
+
+  # This Pi is slow and starting up home manager might take longer
+  systemd.services.home-manager-juniper.serviceConfig.TimeoutStartSec = lib.mkForce 120;
+
+  # Try to boot, even if some file systems are missing
+  systemd.enableEmergencyMode = false;
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;

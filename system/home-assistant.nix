@@ -1,10 +1,13 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
+let
+  home-assistant-dir = if config.networking.hostName == "pascal" then "/data/home-assistant" else "/home/juniper/home-assistant";
+in
 {
   virtualisation.oci-containers.containers.home-assistant = {
-    volumes = [ "/home/juniper/home-assistant:/config" ];
+    volumes = [ "${home-assistant-dir}:/config" ];
     environment.TZ = "Europe/Berlin";
-    image = "ghcr.io/home-assistant/home-assistant:2023.4";
+    image = "ghcr.io/home-assistant/home-assistant:2023.6";
     extraOptions = [
       "--network=host"
     ];
@@ -57,7 +60,7 @@
 
       set -euo pipefail
 
-      readonly SOURCE_DIR="/home/juniper/home-assistant/backups"
+      readonly SOURCE_DIR="${home-assistant-dir}/backups"
       readonly BACKUP_DIR="/backup/home-assistant"
       readonly DATETIME="$(date '+%Y-%m-%d_%H:%M:%S')"
       readonly BACKUP_PATH="''${BACKUP_DIR}/''${DATETIME}"

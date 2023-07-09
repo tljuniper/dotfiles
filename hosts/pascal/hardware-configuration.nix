@@ -4,36 +4,29 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
-    ];
+  fileSystems = {
+    # The main drive is configured via the SD image installer
 
-  boot.initrd.availableKernelModules = [ "uhci_hcd" "ehci_pci" "ahci" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ ];
-  boot.extraModulePackages = [ ];
-
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/8dfd16c5-773a-445d-b00b-56e7412027d4";
+    # USB drive labelled 'backup'
+    "/backup" = {
+      device = "/dev/disk/by-label/backup";
       fsType = "ext4";
     };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/BB84-7826";
-      fsType = "vfat";
+    # USB SATA drive labelled 'data'
+    "/data" = {
+      device = "/dev/disk/by-label/data";
+      fsType = "ext4";
     };
+  };
+  # https://forums.raspberrypi.com/viewtopic.php?t=245931
+  # USB adapter for SSD doesn't work well with uas
+  # Disable uas for this device and fall back to normal storage driver
+  boot.kernelParams = [ "usb-storage.quirks=174c:225c:u" ];
 
-  swapDevices =
-    [ { device = "/dev/disk/by-uuid/400efe04-de5b-42f0-9ed9-a498d9a94fdb"; }
-    ];
 
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp1s0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlp2s0.useDHCP = lib.mkDefault true;
+  # !!! Adding a swap file is optional, but strongly recommended!
+  swapDevices = [{ device = "/swapfile"; size = 1024; }];
 
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.enableRedistributableFirmware = true;
 }

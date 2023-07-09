@@ -19,6 +19,14 @@
           targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.node.port}" ];
         }];
       }
+      {
+        job_name = "pascal";
+        scrape_interval = "2m";
+        scrape_timeout = "1m";
+        static_configs = [{
+          targets = [ "pascal:${toString config.services.prometheus.exporters.node.port}" ];
+        }];
+      }
     ];
   };
 

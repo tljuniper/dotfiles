@@ -78,14 +78,16 @@
           ];
         };
         pascal = lib.nixosSystem rec {
-          system = "x86_64-linux";
+          system = "aarch64-linux";
           specialArgs = { inherit inputs; };
           pkgs = pkgsForSystem system;
           modules = [
+            "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
             ./hosts/pascal/configuration.nix
             ./system/general.nix
             ./system/user-juniper.nix
             ./system/home-assistant.nix
+            ./system/prometheus-exporter.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.users.juniper = { config, lib, pkgs, ... }:
