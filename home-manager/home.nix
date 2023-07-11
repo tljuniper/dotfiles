@@ -10,6 +10,7 @@
   # the Home Manager release notes for a list of state version
   # changes in each release.
   # home.stateVersion = "21.11";
+  nixpkgs.config.allowUnfree = true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
