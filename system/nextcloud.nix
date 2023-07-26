@@ -56,33 +56,36 @@ in
     '';
 
 
-  # # Automated certificate renewal
-  # systemd.services.tailscale-cert-renewal = {
-  #   description = "Run tailscale cert to update certs";
-  #   after = [ "network.target" ];
-  #   script = ''
-  #     #!/usr/bin/env bash
-  #     tailscale cert ${hostName} --cert-file ${certFile} --key-file ${certKeyFile}
-  #     chown nginx:users ${certFile}
-  #     chown nginx:users ${certKeyFile}
-  #   '';
-  #   serviceConfig = {
-  #     Type = "oneshot";
-  #   };
-  # };
+  # Automated certificate renewal
+  systemd.services.tailscale-cert-renewal = {
+    description = "Run tailscale cert to update certs";
+    after = [ "network.target" ];
+    script = ''
+      #!/usr/bin/env bash
+      set -xeou pipefail
+      ${pkgs.tailscale}/bin/tailscale cert --cert-file ${certFile} --key-file ${certKeyFile} ${hostName}
+      chown nginx:nginx ${certFile}
+      chown nginx:nginx ${certKeyFile}
+      # Restart nginx service so that new certs are used
+      systemctl try-restart nginx.service
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+    };
+  };
 
-  # systemd.timers.tailscale-cert-renewal-timer = {
-  #   description = "Timer for renewal of tailscale cert";
-  #   partOf = [ "tailscale-cert-renewal.service" ];
-  #   wantedBy = [ "timers.target" ];
-  #   timerConfig = {
-  #     # Run every two months on the 13nth
-  #     OnCalendar = "*-2,4,6,8,10,12-13 16:37:00";
-  #     # Launch the service even if the system was turned off last time the timer triggered
-  #     Persistent = true;
-  #     Unit = "tailscale-cert-renewal.service";
-  #   };
-  # };
+  systemd.timers.tailscale-cert-renewal-timer = {
+    description = "Timer for renewal of tailscale cert";
+    partOf = [ "tailscale-cert-renewal.service" ];
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      # Run every two months on the 13th
+      OnCalendar = "*-2,4,6,8,10,12-13 16:37:00";
+      # Launch the service even if the system was turned off last time the timer triggered
+      Persistent = true;
+      Unit = "tailscale-cert-renewal.service";
+    };
+  };
 
   # Enable Nginx
   services.nginx = {
