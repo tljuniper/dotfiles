@@ -7,7 +7,7 @@ in
   virtualisation.oci-containers.containers.home-assistant = {
     volumes = [ "${home-assistant-dir}:/config" ];
     environment.TZ = "Europe/Berlin";
-    image = "ghcr.io/home-assistant/home-assistant:2023.6";
+    image = "ghcr.io/home-assistant/home-assistant:2023.7";
     extraOptions = [
       "--network=host"
     ];
