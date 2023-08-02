@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, config, options, ... }:
 
 let
   scannerDir = "/var/lib/scanned-files";
@@ -23,7 +23,7 @@ in
   ];
 
   # Debugging
-  # services.openssh.logLevel = "DEBUG3";
+  # services.openssh.settings.LogLevel = "DEBUG3";
   # services.openssh.sftpFlags = [
   #   "-l DEBUG3"
   #   "-e"
@@ -39,4 +39,25 @@ in
     HostKeyAlgorithms +ssh-rsa
     PubkeyAcceptedAlgorithms +ssh-rsa
   '';
+
+  # Now, we need to add another MAC as well because the scanner only supports
+  # antediluvian ones.
+  # We can't add it to extraConfig like `HostKeyAlgorithms` above because there
+  # is already a Macs line in sshd_conf and with recent versions of OpenSSH it's
+  # "first match wins".
+  # See: https://nixos.org/manual/nixos/stable/release-notes.html#sec-release-22.11-incompatibilities
+  # But: We have a separate setting for setting the MACs, great! So we can just
+  # add the antediluvian stuff there, right?
+  # Well, almost. We need to add it to the existing list, after all.
+  # So... how do we get that default setting?
+  # Turns out, we need to do some really fucked up introspection stuff to get to
+  # the submodule they're in. Luckily, other people also use seem to use
+  # scanners.
+  # https://discourse.nixos.org/t/extend-default-value-for-services-openssh-settings-macs-in-23-05/28673/2
+  # There goes another hour of my life that I'll never get back...
+  services.openssh.settings.Macs = (options.services.openssh.settings.type.getSubOptions [ ]).Macs.default ++ [ "hmac-sha2-512" ];
+
+  # Additional config in scanner:
+  # Add public key on server machine to scanner config via scanner Web UI
+  # /etc/ssh/ssh_host_rsa_key.pub
 }
