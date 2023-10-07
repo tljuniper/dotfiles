@@ -27,6 +27,9 @@
   # This Pi is slow and starting up home manager might take longer
   systemd.services.home-manager-juniper.serviceConfig.TimeoutStartSec = lib.mkForce 120;
 
+  # Small-ish SD-card
+  nix.settings.min-free = lib.mkForce 4000000000; # (4 GB)
+
   # Try to boot, even if some file systems are missing
   systemd.enableEmergencyMode = false;
 
