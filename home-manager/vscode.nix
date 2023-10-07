@@ -102,7 +102,6 @@
       bbenoist.nix
       davidanson.vscode-markdownlint
       eamodio.gitlens
-      gitlab.gitlab-workflow
       haskell.haskell
       jnoortheen.nix-ide
       justusadam.language-haskell

@@ -27,7 +27,9 @@
     hunspellDicts.en_US
     imagemagick
     inkscape
+    joplin-desktop
     keepassxc
+    kicad-small
     libreoffice
     libnotify
     # nautilus-open-any-terminal --> doesn't seem to work so far, more research needed
