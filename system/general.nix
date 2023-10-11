@@ -38,6 +38,7 @@
     git
     htop
     jq # Json pretty print
+    lm_sensors
     pdfgrep
     nix
     rsync
