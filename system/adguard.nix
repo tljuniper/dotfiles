@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+_:
 
 {
   # Manual configuration required for setting up user login

@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+_:
 
 {
   services.prometheus.exporters = {

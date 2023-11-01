@@ -1,4 +1,4 @@
-{ pkgs, config, options, ... }:
+{ options, ... }:
 
 let
   scannerDir = "/var/lib/scanned-files";

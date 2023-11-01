@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+_:
 
 # cSpell:disable
 {

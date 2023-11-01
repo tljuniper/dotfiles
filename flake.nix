@@ -35,7 +35,7 @@
         config = { allowUnfree = true; };
       };
 
-      lib = nixpkgs.lib;
+      inherit (nixpkgs) lib;
 
       juniper-home = {
         username = "juniper";
@@ -43,9 +43,9 @@
       };
 
     in
-    # We want to be able to have a devShell and deploy the configs from any system
-      # Therefore we need to define a devShell for each of those systems
     flake-utils.lib.eachDefaultSystem
+      # We want to be able to have a devShell + pre-commit-checks for any system
+      # Therefore we need to define a devShell for each of those systems
       (system:
       let pkgs = pkgsForSystem system;
       in
@@ -109,7 +109,7 @@
             ./system/user-juniper.nix
             home-manager.nixosModules.home-manager
             {
-              home-manager.users.juniper = { config, lib, pkgs, ... }:
+              home-manager.users.juniper = _:
                 {
                   imports = [
                     ./home-manager/home.nix
@@ -146,7 +146,7 @@
             ./system/prometheus-exporter.nix
             home-manager.nixosModules.home-manager
             {
-              home-manager.users.juniper = { config, lib, pkgs, ... }:
+              home-manager.users.juniper = _:
                 {
                   imports = [
                     ./home-manager/home.nix
@@ -169,7 +169,7 @@
             ./system/trigger-backup-swift.nix
             home-manager.nixosModules.home-manager
             {
-              home-manager.users.juniper = { config, lib, pkgs, ... }:
+              home-manager.users.juniper = _:
                 {
                   imports = [
                     ./home-manager/home.nix
@@ -196,7 +196,7 @@
             ./system/user-agillert.nix
             home-manager.nixosModules.home-manager
             {
-              home-manager.users.agillert = { config, lib, pkgs, ... }:
+              home-manager.users.agillert = _:
                 {
                   imports = [
                     ./home-manager/home.nix
