@@ -9,6 +9,14 @@
 
     ha-relay.url = "github:pinpox/home-assistant-grafana-relay";
     ha-relay.inputs.nixpkgs.follows = "nixpkgs";
+
+    flake-utils.url = "github:numtide/flake-utils";
+
+    pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
+    pre-commit-hooks.inputs.flake-utils.follows = "flake-utils";
+    pre-commit-hooks.inputs.nixpkgs.follows = "nixpkgs";
+    pre-commit-hooks.inputs.nixpkgs-stable.follows = "nixpkgs";
+
   };
 
   outputs =
@@ -17,6 +25,8 @@
     , home-manager
     , nixpkgs
     , ha-relay
+    , flake-utils
+    , pre-commit-hooks
     , ...
     }:
     let
@@ -33,6 +43,52 @@
       };
 
     in
+    # We want to be able to have a devShell and deploy the configs from any system
+      # Therefore we need to define a devShell for each of those systems
+    flake-utils.lib.eachDefaultSystem
+      (system:
+      let pkgs = pkgsForSystem system;
+      in
+      with pkgs;
+      {
+        checks = {
+          pre-commit-check = pre-commit-hooks.lib.${system}.run {
+            src = ./.;
+            hooks = {
+              nixpkgs-fmt.enable = true;
+              statix.enable = true;
+              deadnix.enable = true;
+              shellcheck.enable = true;
+              # Hooks from pre-commit-hooks
+              # See: https://github.com/cachix/pre-commit-hooks.nix/issues/31
+              trailing-whitespace = {
+                enable = true;
+                name = "Trim Trailing Whitespace";
+                entry = "${pkgs.python3Packages.pre-commit-hooks}/bin/trailing-whitespace-fixer";
+                types = [ "text" ];
+              };
+              end-of-file-fixer = {
+                enable = true;
+                name = "Fix End of Files";
+                entry = "${pkgs.python3Packages.pre-commit-hooks}/bin/end-of-file-fixer";
+                types = [ "text" ];
+              };
+              check-executables-have-shebangs = {
+                enable = true;
+                name = "Check that executables have shebangs";
+                description = "Ensures that (non-binary) executables have a shebang.";
+                entry = "${pkgs.python3Packages.pre-commit-hooks}/bin/check-executables-have-shebangs";
+                types = [ "text" "executable" ];
+              };
+            };
+          };
+        };
+        devShells.default = mkShell {
+          inherit (self.checks.${system}.pre-commit-check) shellHook;
+          buildInputs = [ black statix deadnix shellcheck ];
+        };
+      })
+    //
     {
       nixosConfigurations = {
         rust = lib.nixosSystem rec {
