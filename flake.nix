@@ -4,6 +4,8 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-23.05";
 
+    nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
+
     home-manager.url = "github:nix-community/home-manager/release-23.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -17,6 +19,10 @@
     pre-commit-hooks.inputs.nixpkgs.follows = "nixpkgs";
     pre-commit-hooks.inputs.nixpkgs-stable.follows = "nixpkgs";
 
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+    nix-vscode-extensions.inputs.nixpkgs.follows = "nixpkgs";
+    nix-vscode-extensions.inputs.flake-utils.follows = "flake-utils";
+
   };
 
   outputs =
@@ -24,6 +30,7 @@
     inputs@ { self
     , home-manager
     , nixpkgs
+    , nixpkgs-unstable
     , ha-relay
     , flake-utils
     , pre-commit-hooks
@@ -31,6 +38,11 @@
     }:
     let
       pkgsForSystem = system: import nixpkgs {
+        inherit system;
+        config = { allowUnfree = true; };
+      };
+
+      pkgsUnstableForSystem = system: import nixpkgs-unstable {
         inherit system;
         config = { allowUnfree = true; };
       };
@@ -186,7 +198,10 @@
         };
         blazer = lib.nixosSystem rec {
           system = "x86_64-linux";
-          specialArgs = { inherit inputs; };
+          specialArgs = {
+            inherit inputs system;
+            pkgs-unstable = pkgsUnstableForSystem system;
+          };
           pkgs = pkgsForSystem system;
           modules = [
             ./hosts/blazer/configuration.nix
@@ -196,6 +211,7 @@
             ./system/user-agillert.nix
             home-manager.nixosModules.home-manager
             {
+              home-manager.extraSpecialArgs = specialArgs;
               home-manager.users.agillert = _:
                 {
                   imports = [

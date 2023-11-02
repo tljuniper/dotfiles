@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-unstable, system, inputs, ... }:
 
 # cSpell:disable
 {
@@ -8,6 +8,7 @@
   ];
   programs.vscode = {
     enable = true;
+    package = pkgs-unstable.vscode;
     userSettings =
       {
         "cabal-fmt.indent" = 4;
@@ -97,73 +98,39 @@
         when = "editorTextFocus";
       }
     ];
-    extensions = with pkgs.vscode-extensions; [
-      arrterian.nix-env-selector
-      bbenoist.nix
+    extensions = with inputs.nix-vscode-extensions.extensions.${system}.vscode-marketplace; [
       davidanson.vscode-markdownlint
       eamodio.gitlens
-      haskell.haskell
       jnoortheen.nix-ide
-      justusadam.language-haskell
       editorconfig.editorconfig
+      eriklynd.json-tools
+      esphome.esphome-vscode
+      fabiospampinato.vscode-open-multiple-files
+      gitlab.gitlab-workflow
+      mkhl.direnv
       ms-azuretools.vscode-docker
-      ms-python.python
-      ms-python.vscode-pylance
       pkief.material-icon-theme
       shardulm94.trailing-spaces
       streetsidesoftware.code-spell-checker
-      timonwong.shellcheck
       vscodevim.vim
+      # Nix
+      arrterian.nix-env-selector
+      bbenoist.nix
+      jnoortheen.nix-ide
+      # Ansible
       wholroyd.jinja
-    ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-      {
-        name = "haskell-linter";
-        publisher = "hoovercj";
-        version = "0.0.6";
-        sha256 = "sha256-MjgqR547GC0tMnBJDMsiB60hJE9iqhKhzP6GLhcLZzk=";
-      }
-      {
-        name = "esphome-vscode";
-        publisher = "ESPHome";
-        version = "2023.6.0";
-        sha256 = "sha256-/o2eFxxF84dDk8qgkVeA1B6RvAgCSDhulOWHRmjOjng=";
-      }
-      {
-        name = "direnv";
-        publisher = "mkhl";
-        version = "0.14.0";
-        sha256 = "sha256-T+bt6ku+zkqzP1gXNLcpjtFAevDRiSKnZaE7sM4pUOs=";
-      }
-      {
-        name = "json-tools";
-        publisher = "eriklynd";
-        version = "1.0.2";
-        sha256 = "sha256-7tBjhcqCUnwOXwjhLK8iYtXH/my6ATpWvgrfDNi8tzw=";
-      }
-      {
-        name = "language-yesod";
-        publisher = "BIGMOON";
-        version = "0.9.0";
-        sha256 = "sha256-77tsTExt+rstjwQGkHIYRckX7KkjiBViMGaWmgRn4+4=";
-      }
-      {
-        name = "shfmt";
-        publisher = "mkhl";
-        version = "1.2.0";
-        sha256 = "sha256-jgKJz6FQt6jBsiDQCKYnEuWhHg+9zD0P+GOMYTt1ZZA=";
-      }
-      {
-        name = "vscode-cabal-fmt";
-        publisher = "berberman";
-        version = "0.0.3";
-        sha256 = "sha256-TY1fxdhjktsdRDqWAioUKSBd8I0ztroPIeC4Cv+NzE0=";
-      }
-      {
-        name = "vscode-open-multiple-files";
-        publisher = "fabiospampinato";
-        version = "1.4.0";
-        sha256 = "sha256-gTBOH1w4i02ezPaNq1tPI9BXbSBuBOvWTn4RKBvMV0o=";
-      }
+      # Bash
+      mkhl.shfmt
+      timonwong.shellcheck
+      # Python
+      ms-python.python
+      ms-python.vscode-pylance
+      # Haskell
+      haskell.haskell
+      hoovercj.haskell-linter
+      justusadam.language-haskell
+      berberman.vscode-cabal-fmt
+      bigmoon.language-yesod
     ];
   };
   xdg.desktopEntries.code = {
