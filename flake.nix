@@ -171,7 +171,10 @@
         };
         swift = lib.nixosSystem rec {
           system = "x86_64-linux";
-          specialArgs = { inherit inputs; };
+          specialArgs = {
+            inherit inputs system;
+            pkgs-unstable = pkgsUnstableForSystem system;
+          };
           pkgs = pkgsForSystem system;
           modules = [
             ./hosts/swift/configuration.nix
@@ -181,6 +184,7 @@
             ./system/trigger-backup-swift.nix
             home-manager.nixosModules.home-manager
             {
+              home-manager.extraSpecialArgs = specialArgs;
               home-manager.users.juniper = _:
                 {
                   imports = [

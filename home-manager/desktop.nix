@@ -46,6 +46,9 @@
   programs.terminator = {
     enable = true;
     config = {
+      global_config = {
+        enabled_plugins = "LaunchpadBugURLHandler, LaunchpadCodeURLHandler, ActivityWatch";
+      };
       layouts.default.child1 = {
         parent = "window0";
         type = "Terminal";
@@ -62,6 +65,9 @@
         show_titlebar = false;
         use_system_font = false;
         scrollback_infinite = true;
+      };
+      plugins.ActivityWatch = {
+        hush_period = 30.0;
       };
     };
   };
