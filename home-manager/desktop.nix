@@ -21,6 +21,7 @@
     # they have to be turned on and configured manually
     gnomeExtensions.dash-to-dock
     gnomeExtensions.tailscale-status
+    gnomeExtensions.always-show-titles-in-overview
     google-chrome
     hunspell
     hunspellDicts.de_DE
