@@ -66,6 +66,12 @@
           sneak = true;
           # commentary is on by default
           # surround is on by default
+          useCtrlKeys = false;
+        };
+        "peacock.elementAdjustments" = {
+          "activityBar" = "none";
+          "statusBar" = "none";
+          "titleBar" = "none";
         };
       };
     keybindings = [
