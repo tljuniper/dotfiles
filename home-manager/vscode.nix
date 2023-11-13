@@ -105,26 +105,21 @@
       }
     ];
     extensions = with inputs.nix-vscode-extensions.extensions.${system}.vscode-marketplace; [
-      davidanson.vscode-markdownlint
-      eamodio.gitlens
-      jnoortheen.nix-ide
-      editorconfig.editorconfig
-      eriklynd.json-tools
-      esphome.esphome-vscode
-      fabiospampinato.vscode-open-multiple-files
-      gitlab.gitlab-workflow
-      mkhl.direnv
-      ms-azuretools.vscode-docker
+      # Navigation & Themes
       pkief.material-icon-theme
-      shardulm94.trailing-spaces
-      streetsidesoftware.code-spell-checker
+      johnpapa.vscode-peacock
+      fabiospampinato.vscode-open-multiple-files
+      mkhl.direnv
+      eamodio.gitlens
+      tonybaloney.vscode-pets
+      # Editor
+      editorconfig.editorconfig
       vscodevim.vim
+      shardulm94.trailing-spaces
       # Nix
       arrterian.nix-env-selector
       bbenoist.nix
       jnoortheen.nix-ide
-      # Ansible
-      wholroyd.jinja
       # Bash
       mkhl.shfmt
       timonwong.shellcheck
@@ -137,6 +132,13 @@
       justusadam.language-haskell
       berberman.vscode-cabal-fmt
       bigmoon.language-yesod
+      # Other linters & language support
+      davidanson.vscode-markdownlint
+      streetsidesoftware.code-spell-checker
+      ms-azuretools.vscode-docker
+      esphome.esphome-vscode
+      eriklynd.json-tools
+      wholroyd.jinja
     ];
   };
   xdg.desktopEntries.code = {
