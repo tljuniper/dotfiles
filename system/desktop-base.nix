@@ -1,10 +1,21 @@
 { pkgs, ... }:
 {
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  services = {
+    xserver = {
+      # Enable the X11 windowing system.
+      enable = true;
 
-  # Configure keymap in X11
-  services.xserver.layout = "us";
+      # Configure keymap in X11
+      layout = "us";
+      # Enable touchpad support (enabled default in most desktopManager).
+      libinput.enable = true;
+
+      # Install gnome
+      displayManager.gdm.enable = true;
+      desktopManager.gnome.enable = true;
+    };
+  };
+
   # services.xserver.xkbOptions = {
   #   "eurosign:e";
   #   "caps:escape" # map caps to escape.
@@ -16,13 +27,6 @@
   # Enable sound.
   sound.enable = true;
   hardware.pulseaudio.enable = true;
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
-
-  # Install gnome
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
 
   xdg.autostart.enable = true;
 
@@ -43,8 +47,6 @@
     atomix # puzzle game
   ]);
 
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
-
   # Enable the function keys for Keychron keyboard
   # https://mikeshade.com/posts/keychron-linux-function-keys/
   environment.etc."modprobe.d/hid_apple.conf".text =
@@ -52,7 +54,11 @@
       options hid_apple fnmode=0
     '';
 
-  boot.extraModprobeConfig = ''
-    options hid_apple fnmode=0
-  '';
+  boot = {
+    binfmt.emulatedSystems = [ "aarch64-linux" ];
+    # Function keys for Keychron keyboard
+    extraModprobeConfig = ''
+      options hid_apple fnmode=0
+    '';
+  };
 }

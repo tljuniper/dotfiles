@@ -9,31 +9,37 @@
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
-
-  fileSystems."/" =
-    {
-      device = "/dev/disk/by-uuid/45b57c4f-d0ef-4f0d-ab9f-09cc8fa2f36c";
-      fsType = "ext4";
+  boot = {
+    initrd = {
+      availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" ];
+      kernelModules = [ ];
     };
+    kernelModules = [ "kvm-intel" ];
+    extraModulePackages = [ ];
+  };
 
-  fileSystems."/boot" =
-    {
-      device = "/dev/disk/by-uuid/DED0-8D2A";
-      fsType = "vfat";
-    };
+  fileSystems = {
+    "/" =
+      {
+        device = "/dev/disk/by-uuid/45b57c4f-d0ef-4f0d-ab9f-09cc8fa2f36c";
+        fsType = "ext4";
+      };
 
-  fileSystems."/backup" =
-    {
-      # External disk
-      device = "/dev/disk/by-uuid/fb4ac636-c61b-41db-b2ac-a8a80aacd40c";
-      fsType = "ext4";
-      neededForBoot = false;
-      options = [ "nofail" ];
-    };
+    "/boot" =
+      {
+        device = "/dev/disk/by-uuid/DED0-8D2A";
+        fsType = "vfat";
+      };
+
+    "/backup" =
+      {
+        # External disk
+        device = "/dev/disk/by-uuid/fb4ac636-c61b-41db-b2ac-a8a80aacd40c";
+        fsType = "ext4";
+        neededForBoot = false;
+        options = [ "nofail" ];
+      };
+  };
 
   swapDevices = [ ];
 

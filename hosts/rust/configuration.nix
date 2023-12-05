@@ -10,13 +10,18 @@
       ./hardware-configuration.nix
     ];
 
-  networking.hostName = "rust"; # Define your hostname.
-  # Pick only one of the below networking options.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
+  networking = {
+    hostName = "rust"; # Define your hostname.
+
+    # Pick only one of the below networking options.
+    # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+    networkmanager.enable = true; # Easiest to use and most distros use this by default.
+
+    # Required for tailscale
+    firewall.checkReversePath = "loose";
+  };
 
   services.tailscale.enable = true;
-  networking.firewall.checkReversePath = "loose";
 
   nix.settings.trusted-users = [ "@wheel" ];
   security.sudo.wheelNeedsPassword = false;

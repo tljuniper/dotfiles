@@ -52,32 +52,35 @@
     wget
   ];
 
-
-  nix.settings = {
-    # Timeout for connecting to cache
-    connect-timeout = 5;
-    # Output lines to show for for failed builds
-    log-lines = 25;
-    # When to start running garbage collection
-    min-free = 32000000000; # (32 GB)
-    # When to stop running garbage collection
-    max-free = 64000000000; # (64 GB)
-    # Don't warn when seeing dirty git trees
-    warn-dirty = false;
-    # Hard link duplicate paths in the store
-    auto-optimise-store = true;
-    # For development
-    keep-outputs = true;
-    # Flakes
-    experimental-features = [ "nix-command" "flakes" ];
-  };
-
   # <nixpkgs> is evaluated to what's in the NIX_PATH variable
   # Use separate folder nix/inputs/nixpkgs so changes are easier to apply to already running processes
   environment.etc."nix/inputs/nixpkgs".source = inputs.nixpkgs.outPath;
-  nix.nixPath = [ "nixpkgs=/etc/nix/inputs/nixpkgs" ];
 
-  # Make sure flake registry uses this version of nixpkgs
-  nix.registry.nixpkgs.flake = inputs.nixpkgs;
+  nix = {
+    nixPath = [ "nixpkgs=/etc/nix/inputs/nixpkgs" ];
+
+    # Make sure flake registry uses this version of nixpkgs
+    registry.nixpkgs.flake = inputs.nixpkgs;
+
+    settings = {
+      # Timeout for connecting to cache
+      connect-timeout = 5;
+      # Output lines to show for for failed builds
+      log-lines = 25;
+      # When to start running garbage collection
+      min-free = 32000000000; # (32 GB)
+      # When to stop running garbage collection
+      max-free = 64000000000; # (64 GB)
+      # Don't warn when seeing dirty git trees
+      warn-dirty = false;
+      # Hard link duplicate paths in the store
+      auto-optimise-store = true;
+      # For development
+      keep-outputs = true;
+      # Flakes
+      experimental-features = [ "nix-command" "flakes" ];
+    };
+
+  };
 
 }

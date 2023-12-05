@@ -11,20 +11,30 @@ _:
       ./hardware-configuration.nix
     ];
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.systemd-boot.configurationLimit = 20;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader =
+    {
+      # Use the systemd-boot EFI boot loader.
+      systemd-boot = {
+        enable = true;
+        configurationLimit = 20;
+      };
+      efi.canTouchEfiVariables = true;
+    };
 
-  networking.hostName = "swift"; # Define your hostname.
-  # Pick only one of the below networking options.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
+  networking = {
+    hostName = "swift"; # Define your hostname.
+    # Pick only one of the below networking options.
+    # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+    networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
-  services.tailscale.enable = true;
-  networking.firewall.checkReversePath = "loose";
+    # Required for tailscale
+    firewall.checkReversePath = "loose";
+  };
 
-  services.printing.enable = true;
+  services = {
+    tailscale.enable = true;
+    printing.enable = true;
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

@@ -12,26 +12,34 @@ _:
       ./nix-cache.nix
     ];
 
-  boot.initrd.luks.devices = {
-    root = {
-      device = "/dev/nvme0n1p2";
-      preLVM = true;
+  boot = {
+    initrd.luks.devices = {
+      root = {
+        device = "/dev/nvme0n1p2";
+        preLVM = true;
+      };
     };
+    loader = {
+      # Use the systemd-boot EFI boot loader.
+      systemd-boot.enable = true;
+      systemd-boot.configurationLimit = 13;
+      efi.canTouchEfiVariables = true;
+    };
+    binfmt.emulatedSystems = [ "aarch64-linux" ];
   };
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.systemd-boot.configurationLimit = 13;
-  boot.loader.efi.canTouchEfiVariables = true;
+  networking = {
+    hostName = "blazer"; # Define your hostname.
 
-  networking.hostName = "blazer"; # Define your hostname.
+    # Pick only one of the below networking options.
+    # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+    networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
-  # Pick only one of the below networking options.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
+    # Required for tailscale
+    firewall.checkReversePath = "loose";
+  };
 
   services.tailscale.enable = true;
-  networking.firewall.checkReversePath = "loose";
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -41,6 +49,5 @@ _:
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.05"; # Did you read the comment?
 
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
 }
