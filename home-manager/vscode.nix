@@ -112,6 +112,7 @@
       mkhl.direnv
       eamodio.gitlens
       tonybaloney.vscode-pets
+      tomoki1207.pdf
       # Editor
       editorconfig.editorconfig
       vscodevim.vim

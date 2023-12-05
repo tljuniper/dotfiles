@@ -41,7 +41,13 @@
     thunderbird
     vlc
     xclip
+    # Fonts
+    dejavu_fonts
+    ubuntu_font_family
+    powerline-fonts
   ];
+
+  fonts.fontconfig.enable = true;
 
   programs.terminator = {
     enable = true;
