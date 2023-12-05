@@ -144,7 +144,7 @@
   xdg.desktopEntries.code = {
     exec = "code %F";
     name = "VS Code";
-    icon = "code";
+    icon = "vscode";
     type = "Application";
     categories = [ "Utility" "TextEditor" "Development" "IDE" ];
     mimeType = [ "text/plain" "inode/directory" ];

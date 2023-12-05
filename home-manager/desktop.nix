@@ -13,7 +13,6 @@
     # Use "flameshot config" once to configure default save locations/filenames
     # and other flameshot settings
     flameshot
-    gnome.cheese
     gnome.gedit
     gnome.gnome-tweaks
     gnome.gnome-screenshot
