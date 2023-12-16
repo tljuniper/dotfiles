@@ -9,13 +9,10 @@ in
     # Actual Nextcloud Config
     nextcloud = {
       enable = true;
-      package = pkgs.nextcloud26;
+      package = pkgs.nextcloud27;
       inherit hostName;
       https = true;
       maxUploadSize = "514M";
-
-      # Get rid of broken RC4 cipher warning
-      enableBrokenCiphersForSSE = false;
 
       logLevel = 0;
       logType = "file";
@@ -53,7 +50,7 @@ in
       ensureUsers = [
         {
           name = "nextcloud";
-          ensurePermissions."DATABASE nextcloud" = "ALL PRIVILEGES";
+          ensureDBOwnership = true;
         }
       ];
     };
