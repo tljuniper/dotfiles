@@ -9,8 +9,11 @@
     home-manager.url = "github:nix-community/home-manager/release-23.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    ha-relay.url = "github:pinpox/home-assistant-grafana-relay";
-    ha-relay.inputs.nixpkgs.follows = "nixpkgs";
+    ha-relay = {
+      url = "github:pinpox/home-assistant-grafana-relay";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
 
     flake-utils.url = "github:numtide/flake-utils";
 
