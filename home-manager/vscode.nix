@@ -73,6 +73,9 @@
           "statusBar" = "none";
           "titleBar" = "none";
         };
+        # Make vscode not overwrite existing shell environment
+        # We need this for python environments sometimes
+        "terminal.integrated.inheritEnv" = false;
       };
     keybindings = [
       {
