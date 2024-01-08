@@ -18,6 +18,69 @@ Update:
 nix flake update
 ```
 
+## Desktop install with disko and nixos-anywhere
+
+First off, check that you'll have some way to access your machine once the
+installation is done (e.g. ssh daemon turned on and key configured, or initial
+password).
+
+In theory, nixos-anywhere is pretty much a one-click install. In practice, the
+swift notebook still refuses to boot any NixOS stick in UEFI mode which makes
+things more difficult.
+
+### Workaround for booting into nixos installer
+
+On target machine swift:
+
+- Change BIOS setting to allow Legacy and UEFI boot mode
+- Boot Ubuntu Live stick
+- Change to tty3 with STRG+ALT+F3 to avoid Ubuntu GUI
+
+```sh
+# Install and enable openssh daemon
+sudo apt install openssh-server
+sudo systemctl start ssh
+# Note ip address of this machine
+ip addr
+# Set password for user "ubuntu"
+passwd
+```
+
+On source machine:
+
+```sh
+nix run github:nix-community/nixos-anywhere -- --flake '.#swift' ubuntu@<ip>
+```
+
+This will run kexec and then the target machine will boot into nixos.
+
+### The actual install
+
+On the installer at the target machine, login as user nixos and then:
+
+```sh
+# Create the password file for disk encryption
+# -n is important so that echo does not create a newline
+echo -n "password" > /tmp/secret.key
+# Note down new ip address
+ip addr
+# Change root password
+sudo su
+passwd
+```
+
+On source machine:
+
+```sh
+nix run github:nix-community/nixos-anywhere -- --flake '.#swift' root@<other-ip>
+```
+
+This won't run kexec again because we're already in a nixos installer on the
+target. It should then run disk formatting, install nixos and then reboot the
+machine.
+
+On swift, change BIOS settings back to UEFI only after the install.
+
 ## Manual steps after new desktop install
 
 - Configure gnome basics in `gnome-tweaks`

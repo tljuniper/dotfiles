@@ -9,6 +9,9 @@
     home-manager.url = "github:nix-community/home-manager/release-23.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
+
     ha-relay = {
       url = "github:pinpox/home-assistant-grafana-relay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -40,6 +43,7 @@
     , home-manager
     , nixpkgs
     , nixpkgs-unstable
+    , disko
     , ha-relay
     , flake-utils
     , pre-commit-hooks
@@ -186,7 +190,9 @@
           };
           pkgs = pkgsForSystem system;
           modules = [
+            disko.nixosModules.disko
             ./hosts/swift/configuration.nix
+            ./hosts/swift/disk-config.nix
             ./system/desktop-base.nix
             ./system/general.nix
             ./system/user-juniper.nix

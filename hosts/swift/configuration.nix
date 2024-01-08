@@ -36,6 +36,10 @@ _:
     printing.enable = true;
   };
 
+  # No ssh daemon on this machine, so we need some way to login after an automated install
+  # Don't move this to the user-juniper.nix file, we don't want this setting for other machines
+  users.users.juniper.initialPassword = "change-me";
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
