@@ -182,3 +182,15 @@ sudo -u postgres psql -d template1 -c "DROP DATABASE \"nextcloud\";"
 sudo -u postgres psql -d template1 -c "CREATE DATABASE \"nextcloud\";"
 sudo -u postgres psql -d nextcloud -f nextcloud-db_000000.bak
 ```
+
+### Dconf settings (manual)
+
+```bash
+# 1. Backup the existing settings
+dconf dump / > dconf-settings.ini
+# 2. Edit and manually remove everything that should not be transferred (e.g. window positions etc.)
+vim dconf-settings.nix
+# 3. Convert to nix
+nix-shell -p dconf2nix --command "dconf2nix -i dconf-settings.ini -o dconf-settings.nix"
+# 4. Compare and overwrite home-manager/dconf-settings.nix
+```

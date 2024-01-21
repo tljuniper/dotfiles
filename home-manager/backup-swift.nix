@@ -7,6 +7,9 @@ let
     notify-send "Swift backup" "Disk plugged in, starting backup..."
     start=`date +%s`
 
+    # TODO: check switching from --include-from to --files-from
+    # TODO: Add backup of dconf settings (dconf dump)
+    # TODO: Add backups for browser bookmarks & settings
     readonly SOURCE_DIR="/home/juniper"
     readonly INCLUDES_FROM="/home/juniper/backup-files.txt"
     readonly BACKUP_DIR="/backup/backup-rsync"

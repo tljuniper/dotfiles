@@ -206,6 +206,7 @@
                     ./home-manager/home.nix
                     ./home-manager/git-juniper.nix
                     ./home-manager/desktop.nix
+                    ./home-manager/dconf-settings.nix
                     ./home-manager/vscode.nix
                     ./home-manager/xdg-user-dirs.nix
                     ./home-manager/backup-swift.nix
