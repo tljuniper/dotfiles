@@ -4,22 +4,19 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-23.11";
 
+    # vscode with current plugins works better with unstable
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
 
     home-manager.url = "github:nix-community/home-manager/release-23.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    flake-utils.url = "github:numtide/flake-utils";
+
+    # For automatic disk formatting on system reinstall
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
-    ha-relay = {
-      url = "github:pinpox/home-assistant-grafana-relay";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
-    };
-
-    flake-utils.url = "github:numtide/flake-utils";
-
+    # For quality checks for this repo
     pre-commit-hooks = {
       url = "github:cachix/pre-commit-hooks.nix";
       inputs = {
@@ -29,8 +26,16 @@
       };
     };
 
+    # Up-to-date and large list of vscode extensions
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
+
+    # For relaying grafana alerts to Home Assistant
+    ha-relay = {
+      url = "github:pinpox/home-assistant-grafana-relay";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };

@@ -16,13 +16,14 @@ Update:
 
 ```bash
 nix flake update
+nixos-rebuild switch --use-remote-sudo --flake .#<hostname>
 ```
 
-## Desktop install with disko and nixos-anywhere
+## Swift desktop install with disko and nixos-anywhere
 
-First off, check that you'll have some way to access your machine once the
-installation is done (e.g. ssh daemon turned on and key configured, or initial
-password).
+First off, check that the configuration you want to apply has some way to access
+your machine once the installation is done (e.g. ssh daemon turned on and key
+configured, or initial password).
 
 In theory, nixos-anywhere is pretty much a one-click install. In practice, the
 swift notebook still refuses to boot any NixOS stick in UEFI mode which makes
@@ -81,13 +82,27 @@ machine.
 
 On swift, change BIOS settings back to UEFI only after the install.
 
-## Manual steps after new desktop install
+### Manual steps after new desktop install
 
-- Configure gnome basics in `gnome-tweaks`
-- Configure gnome extensions in gnome extensions app (enable & configure)
-- Set up keyboard shortcuts
-- Install bookmarks
+- Set up custom keyboard shortcuts
+  - Some shortcuts are handled by dconf and are applied via home-manager
+  - Shortcuts in the "custom" section need to be filled manually:
+    - Terminator
+    - Firefox
+    - Thunderbird
+- Set desktop background
+- Set up KeePassXC (including browser extension settings)
+- Install browser bookmarks
+  - Chrome: automatic restore from file in `.config/chromium/Default/Bookmarks` or restore from `bookmarks.html`
+  - Firefox: restore from `bookmarks.json`
 - Install browser extensions
+  - Privacy Badger
+  - vim something
+  - KeepassXC
+- Link signal-desktop
+- Enable tailscale (`sudo tailscale up`)
+- Set up nextcloud sync client
+- Set up joplin webdav sync
 
 ## Manual steps for a new Raspberry install
 
@@ -166,11 +181,30 @@ sudo systemctl start backup.mount
 systemctl --user start backup-swift.service
 ```
 
+### Dconf settings (manual)
+
+Gnome settings are not backed up automatically. The file
+`home-manager/dconf-settings.nix` manages the most important settings via nix.
+It can be updated as follows:
+
+```bash
+# 1. Backup the existing settings
+dconf dump / > dconf-settings.ini
+# 2. Edit and manually remove everything that should not be transferred (e.g. window positions etc.)
+vim dconf-settings.nix
+# 3. Convert to nix
+nix-shell -p dconf2nix --command "dconf2nix -i dconf-settings.ini -o dconf-settings.nix"
+# 4. Compare and overwrite home-manager/dconf-settings.nix
+```
+
 ### Raspberry Pis
 
-Run backups for Home Assistant and Nextcloud at night if applicable.
+Backups for Home Assistant and Nextcloud are run nightly.
 
 ### Nextcloud Database (manual backup)
+
+The nextcloud database dump is needed when restoring an entire install (not just
+the files) from backup.
 
 See also [the official docs](https://docs.nextcloud.com/server/latest/admin_manual/maintenance/restore.html).
 
@@ -181,16 +215,4 @@ sudo -u postgres pg_dump nextcloud -f /tmp/nextcloud-db_`date +"%Y%m%d"`.bak
 sudo -u postgres psql -d template1 -c "DROP DATABASE \"nextcloud\";"
 sudo -u postgres psql -d template1 -c "CREATE DATABASE \"nextcloud\";"
 sudo -u postgres psql -d nextcloud -f nextcloud-db_000000.bak
-```
-
-### Dconf settings (manual)
-
-```bash
-# 1. Backup the existing settings
-dconf dump / > dconf-settings.ini
-# 2. Edit and manually remove everything that should not be transferred (e.g. window positions etc.)
-vim dconf-settings.nix
-# 3. Convert to nix
-nix-shell -p dconf2nix --command "dconf2nix -i dconf-settings.ini -o dconf-settings.nix"
-# 4. Compare and overwrite home-manager/dconf-settings.nix
 ```
