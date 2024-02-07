@@ -9,7 +9,7 @@ in
     # Actual Nextcloud Config
     nextcloud = {
       enable = true;
-      package = pkgs.nextcloud27;
+      package = pkgs.nextcloud28;
       inherit hostName;
       https = true;
       maxUploadSize = "514M";

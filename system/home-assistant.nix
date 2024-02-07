@@ -7,7 +7,7 @@ in
   virtualisation.oci-containers.containers.home-assistant = {
     volumes = [ "${home-assistant-dir}:/config" ];
     environment.TZ = "Europe/Berlin";
-    image = "ghcr.io/home-assistant/home-assistant:2023.11";
+    image = "ghcr.io/home-assistant/home-assistant:2024.1"; # Months formatted with one digit if possible, e.g. "2024.3"
     extraOptions = [
       "--network=host"
     ];
