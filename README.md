@@ -122,6 +122,7 @@ the box.
   - Restore postgres database backup (see below)
   - Restore `nextcloud` folder
   - Restore nginx certs and password files
+  - Maybe: reinstall "External Storage" App via GUI and enable link to local scanner folder
 - Adguard home:
   - Set up login (instructions in `adguard.nix`)
 - Grafana:
