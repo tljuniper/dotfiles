@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-_:
+{ config, lib, ... }:
 
 {
   imports =
@@ -39,6 +39,20 @@ _:
   # No ssh daemon on this machine, so we need some way to login after an automated install
   # Don't move this to the user-juniper.nix file, we don't want this setting for other machines
   users.users.juniper.initialPassword = "change-me";
+
+  system.autoUpgrade = {
+    enable = true;
+    persistent = true;
+    flake = "${config.users.users.juniper.home}/dotfiles";
+    flags = [
+      "--update-input"
+      "nixpkgs"
+    ];
+  };
+
+  # Workaround for https://github.com/NixOS/nixpkgs/issues/180175
+  systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
+  systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
