@@ -128,7 +128,7 @@ the box.
 - Grafana:
   - For a new install admin password is `admin`.
 - ha-relay: Set up access token (copy file)
-- Rezepte server: Set up venv, copy vue stuff
+- nomnombring-backend: Create config file and recipes file
 
 ### Raspi boot issues - 2023-11-01
 

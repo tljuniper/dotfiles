@@ -47,6 +47,12 @@
       };
     };
 
+    nomnombring = {
+      url = "git+file:///home/juniper/cloud/hobby/nomnombring";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
+
   };
 
   outputs =
@@ -59,6 +65,7 @@
     , ha-relay
     , flake-utils
     , pre-commit-hooks
+    , nomnombring
     , ...
     }:
     let
@@ -144,7 +151,6 @@
             ./system/nextcloud.nix
             ./system/prometheus-exporter.nix
             ./system/prometheus.nix
-            ./system/rezepte-server.nix
             ./system/scanner.nix
             ./system/user-juniper.nix
             home-manager.nixosModules.home-manager
@@ -157,6 +163,13 @@
                   ];
                   home = juniper-home;
                 };
+            }
+            nomnombring.nixosModules.nomnombring
+            {
+              tljuniper.services.nomnombring = {
+                enable = true;
+                configFile = "/var/nomnombring-config.ini";
+              };
             }
             ha-relay.nixosModules.ha-relay
             {
