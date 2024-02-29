@@ -130,12 +130,9 @@
       # Python
       ms-python.python
       ms-python.vscode-pylance
-      # Haskell
-      haskell.haskell
-      hoovercj.haskell-linter
-      justusadam.language-haskell
-      berberman.vscode-cabal-fmt
-      bigmoon.language-yesod
+      # Vue.js
+      vue.volar
+      vue.vscode-typescript-vue-plugin
       # Other linters & language support
       davidanson.vscode-markdownlint
       streetsidesoftware.code-spell-checker
