@@ -2,22 +2,32 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{ ... }:
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader =
+    {
+      # Use the systemd-boot EFI boot loader.
+      systemd-boot = {
+        enable = true;
+        configurationLimit = 20;
+      };
+      efi.canTouchEfiVariables = false;
 
-  # networking.hostName = "nixos"; # Define your hostname.
-  # Pick only one of the below networking options.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  # networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+    };
+
+  networking = {
+    hostName = "carbon"; # Define your hostname.
+    # Pick only one of the below networking options.
+    # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+    networkmanager.enable = true; # Easiest to use and most distros use this by default.
+  };
 
   # Set your time zone.
   # time.timeZone = "Europe/Amsterdam";
@@ -38,7 +48,7 @@
   # services.xserver.enable = true;
 
 
-  
+  users.users.agillert.initialPassword = "change-me";
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
@@ -114,4 +124,3 @@
   system.stateVersion = "23.11"; # Did you read the comment?
 
 }
-

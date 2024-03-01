@@ -221,7 +221,7 @@
             }
           ];
         };
-        blazer = lib.nixosSystem rec {
+        carbon = lib.nixosSystem rec {
           system = "x86_64-linux";
           specialArgs = {
             inherit inputs system;
@@ -229,7 +229,9 @@
           };
           pkgs = pkgsForSystem system;
           modules = [
-            ./hosts/blazer/configuration.nix
+            disko.nixosModules.disko
+            ./hosts/carbon/configuration.nix
+            ./hosts/carbon/disk-config.nix
             ./system/desktop-base.nix
             ./system/headset.nix
             ./system/general.nix
@@ -241,9 +243,10 @@
                 {
                   imports = [
                     ./home-manager/home.nix
-                    ./home-manager/git-agillert.nix
                     ./home-manager/desktop.nix
+                    ./home-manager/dconf-settings.nix
                     ./home-manager/vscode.nix
+                    ./home-manager/xdg-user-dirs.nix
                   ];
                   home = {
                     username = "agillert";
