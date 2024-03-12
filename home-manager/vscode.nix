@@ -38,10 +38,7 @@
         };
         "shfmt.executablePath" = "${pkgs.shfmt}/bin/shfmt";
         "cSpell.enabledLanguageIds" = [
-          "css"
-          "cabal"
           "git-commit"
-          "haskell"
           "html"
           "javascript"
           "json"
@@ -55,6 +52,14 @@
           "text"
           "yaml"
           "yml"
+        ];
+        "cSpell.dictionaries" = [ "custom-words" ];
+        "cSpell.dictionaryDefinitions" = [
+          {
+            "name" = "custom-words";
+            "path" = "${./cspell-words.txt}";
+            "addWords" = true;
+          }
         ];
         "terminal.integrated.scrollback" = 100000;
         "update.mode" = "none";
@@ -132,7 +137,6 @@
       ms-python.vscode-pylance
       # Vue.js
       vue.volar
-      vue.vscode-typescript-vue-plugin
       # Other linters & language support
       davidanson.vscode-markdownlint
       streetsidesoftware.code-spell-checker

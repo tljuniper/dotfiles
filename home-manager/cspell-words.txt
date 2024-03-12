@@ -1,0 +1,13 @@
+aarch
+cachix
+deadnix
+kexec
+nixos
+nixpkgs
+pkgs
+shellcheck
+statix
+tljuniper
+builtins
+stdenv
+concat
