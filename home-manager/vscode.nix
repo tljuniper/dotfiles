@@ -3,8 +3,8 @@
 # cSpell:disable
 {
   home.packages = with pkgs; [
-    # Needed by Nix IDE extension
-    rnix-lsp
+    # Language server needed by Nix IDE extension
+    nil
   ];
   programs.vscode = {
     enable = true;
