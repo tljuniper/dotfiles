@@ -245,6 +245,7 @@
                     ./home-manager/home.nix
                     ./home-manager/desktop.nix
                     ./home-manager/dconf-settings.nix
+                    ./home-manager/run-rotation.nix
                     ./home-manager/vscode.nix
                     ./home-manager/xdg-user-dirs.nix
                   ];

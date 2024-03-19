@@ -49,6 +49,13 @@
 
   fonts.fontconfig.enable = true;
 
+  programs.gpg.enable = true;
+  services.gpg-agent = {
+    enable = true;
+    enableZshIntegration = true;
+    pinentryFlavor = "gnome3";
+  };
+
   programs.terminator = {
     enable = true;
     config = {
