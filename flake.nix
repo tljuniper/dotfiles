@@ -115,7 +115,7 @@
         };
         devShells.default = mkShell {
           inherit (self.checks.${system}.pre-commit-check) shellHook;
-          buildInputs = [ black statix deadnix shellcheck ];
+          buildInputs = [ black statix deadnix shellcheck nix-output-monitor nodePackages.cspell ];
         };
       })
     //

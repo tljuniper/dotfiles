@@ -129,6 +129,7 @@
       arrterian.nix-env-selector
       bbenoist.nix
       jnoortheen.nix-ide
+      brettm12345.nixfmt-vscode
       # Bash
       mkhl.shfmt
       timonwong.shellcheck

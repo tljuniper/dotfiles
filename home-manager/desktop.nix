@@ -21,6 +21,7 @@
     gnomeExtensions.dash-to-dock
     gnomeExtensions.tailscale-status
     gnomeExtensions.always-show-titles-in-overview
+    gnupg
     google-chrome
     hunspell
     hunspellDicts.de_DE
@@ -39,6 +40,7 @@
     python3
     signal-desktop
     thunderbird
+    timewarrior
     vlc
     xclip
     # Fonts

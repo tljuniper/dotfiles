@@ -106,6 +106,8 @@
         unstage = "restore --staged";
         switchMr = "!sh -c 'git fetch $1 merge-requests/$2/head:mr-$1-$2 && git checkout mr-$1-$2' -";
       };
+      diff-so-fancy.enable = true;
+      ignores = [ ".vscode/" ];
       extraConfig = {
         pager = {
           branch = false;
@@ -124,6 +126,7 @@
 
     vim = {
       enable = true;
+      defaultEditor = true;
       settings = {
         tabstop = 2;
         shiftwidth = 2;
