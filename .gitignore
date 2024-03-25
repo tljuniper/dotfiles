@@ -1,5 +1,4 @@
 result
-home-manager/git-agillert.nix
 .direnv/
 .pre-commit-config.yaml
 .vscode/

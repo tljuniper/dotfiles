@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, ... }:
+{ ... }:
 {
   imports =
     [
@@ -28,12 +28,6 @@
 
   # This makes the build be a .img instead of a .img.zst
   sdImage.compressImage = false;
-
-  # List the services that you want to enable:
-  environment.systemPackages = with pkgs; [
-    # For USB serial adapter
-    minicom
-  ];
 
   # Try to boot, even if some file systems are missing
   systemd.enableEmergencyMode = false;
