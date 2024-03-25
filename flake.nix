@@ -95,12 +95,14 @@
                 enable = true;
                 name = "Trim Trailing Whitespace";
                 entry = "${pkgs.python3Packages.pre-commit-hooks}/bin/trailing-whitespace-fixer";
+                package = pkgs.python3Packages.pre-commit-hooks;
                 types = [ "text" ];
               };
               end-of-file-fixer = {
                 enable = true;
                 name = "Fix End of Files";
                 entry = "${pkgs.python3Packages.pre-commit-hooks}/bin/end-of-file-fixer";
+                package = pkgs.python3Packages.pre-commit-hooks;
                 types = [ "text" ];
               };
               check-executables-have-shebangs = {
@@ -108,6 +110,7 @@
                 name = "Check that executables have shebangs";
                 description = "Ensures that (non-binary) executables have a shebang.";
                 entry = "${pkgs.python3Packages.pre-commit-hooks}/bin/check-executables-have-shebangs";
+                package = pkgs.python3Packages.pre-commit-hooks;
                 types = [ "text" "executable" ];
               };
             };
@@ -115,7 +118,7 @@
         };
         devShells.default = mkShell {
           inherit (self.checks.${system}.pre-commit-check) shellHook;
-          buildInputs = [ black statix deadnix shellcheck nix-output-monitor nodePackages.cspell ];
+          buildInputs = [ nix-output-monitor nodePackages.cspell ] ++ self.checks.${system}.pre-commit-check.enabledPackages;
         };
       })
     //
