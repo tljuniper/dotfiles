@@ -177,6 +177,28 @@
         "type": "indirect"
       }
     },
+    "nomnombring": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "dirtyRev": "8cf42039c1c8fe860f98f291f0f52f08ae3368ea-dirty",
+        "dirtyShortRev": "8cf4203-dirty",
+        "lastModified": 1709241553,
+        "narHash": "sha256-WXCuwXK2cRcnbrnAynwNXknX07HjGkNBSSQHh6h7+ow=",
+        "type": "git",
+        "url": "file:///home/juniper/cloud/hobby/nomnombring"
+      },
+      "original": {
+        "type": "git",
+        "url": "file:///home/juniper/cloud/hobby/nomnombring"
+      }
+    },
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": [
@@ -214,6 +236,7 @@
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
+        "nomnombring": "nomnombring",
         "pre-commit-hooks": "pre-commit-hooks"
       }
     },

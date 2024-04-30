@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs-unstable, ... }:
 
 {
   services.grafana = {
@@ -12,6 +12,7 @@
   services.prometheus = {
     enable = true;
     port = 9001;
+    package = pkgs-unstable.prometheus;
     scrapeConfigs = [
       {
         job_name = "rust";

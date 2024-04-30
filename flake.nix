@@ -140,8 +140,11 @@
       nixosConfigurations = {
         rust = lib.nixosSystem rec {
           system = "aarch64-linux";
-          specialArgs = { inherit inputs; };
           pkgs = pkgsForSystem system;
+          specialArgs = {
+            inherit inputs system;
+            pkgs-unstable = pkgsUnstableForSystem system;
+          };
           modules = [
             "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
             ./hosts/rust/configuration.nix
@@ -188,7 +191,10 @@
         };
         pascal = lib.nixosSystem rec {
           system = "aarch64-linux";
-          specialArgs = { inherit inputs; };
+          specialArgs = {
+            inherit inputs system;
+            pkgs-unstable = pkgsUnstableForSystem system;
+          };
           pkgs = pkgsForSystem system;
           modules = [
             "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
