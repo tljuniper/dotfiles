@@ -139,6 +139,7 @@
       # Vue.js
       vue.volar
       # Other linters & language support
+      golang.go
       davidanson.vscode-markdownlint
       streetsidesoftware.code-spell-checker
       ms-azuretools.vscode-docker

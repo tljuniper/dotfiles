@@ -107,7 +107,7 @@
         switchMr = "!sh -c 'git fetch $1 merge-requests/$2/head:mr-$1-$2 && git checkout mr-$1-$2' -";
       };
       diff-so-fancy.enable = true;
-      ignores = [ ".vscode/" ];
+      ignores = [ ".vscode/" "*.pem" ];
       extraConfig = {
         pager = {
           branch = false;
