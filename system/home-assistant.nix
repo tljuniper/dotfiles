@@ -40,6 +40,13 @@ in
               "readwrite homeassistant/sensor/watermeter/#"
             ];
           };
+          opendtu = {
+            hashedPassword = "$7$101$qn8M/mVdkiUQ7P5r$vlU+21lXFXwgMq4+W2iM3guDZ3eOWiTOzoQNsKulvjsDINA9jVwmpI5sc1DFsEfIUIIehHVlZ+iJgVk8h7kz1Q==";
+            acl = [
+              "readwrite solar/#"
+              "readwrite homeassistant/#"
+            ];
+          };
           ha_user = {
             hashedPassword = "$7$101$eB9lWqPtXfPbUaaj$bgM475TrtqBhCJBCvdxs/SSUWme2W17qTQGxhRnJkyzRRSjH0vCLP7P0aucV6SHUO68N/L9veEVI/mO7k8WKtQ==";
             acl = [
