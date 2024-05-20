@@ -149,11 +149,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1715668745,
-        "narHash": "sha256-xp62OkRkbUDNUc6VSqH02jB0FbOS+MsfMb7wL1RJOfA=",
+        "lastModified": 1716061101,
+        "narHash": "sha256-H0eCta7ahEgloGIwE/ihkyGstOGu+kQwAiHvwVoXaA0=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "9ddcaffecdf098822d944d4147dd8da30b4e6843",
+        "rev": "e7cc61784ddf51c81487637b3031a6dd2d6673a2",
         "type": "github"
       },
       "original": {
@@ -187,16 +187,17 @@
         ]
       },
       "locked": {
-        "dirtyRev": "8cf42039c1c8fe860f98f291f0f52f08ae3368ea-dirty",
-        "dirtyShortRev": "8cf4203-dirty",
-        "lastModified": 1709241553,
-        "narHash": "sha256-WXCuwXK2cRcnbrnAynwNXknX07HjGkNBSSQHh6h7+ow=",
+        "lastModified": 1716225113,
+        "narHash": "sha256-7iMstGDwbe8dXPtXnvXkgmN0SvNzkUgKdqONC29L7dM=",
+        "ref": "refs/heads/main",
+        "rev": "e070a3350b21bae55dd2764d6fb006e2a2872e59",
+        "revCount": 2,
         "type": "git",
-        "url": "file:///home/juniper/cloud/hobby/nomnombring"
+        "url": "ssh://git@github.com/tljuniper/nomnombring.git"
       },
       "original": {
         "type": "git",
-        "url": "file:///home/juniper/cloud/hobby/nomnombring"
+        "url": "ssh://git@github.com/tljuniper/nomnombring.git"
       }
     },
     "pre-commit-hooks": {

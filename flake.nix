@@ -48,7 +48,7 @@
     };
 
     nomnombring = {
-      url = "git+file:///home/juniper/cloud/hobby/nomnombring";
+      url = "git+ssh://git@github.com/tljuniper/nomnombring.git";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
