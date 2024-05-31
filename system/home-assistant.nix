@@ -7,7 +7,7 @@ in
   virtualisation.oci-containers.containers.home-assistant = {
     volumes = [ "${home-assistant-dir}:/config" ];
     environment.TZ = "Europe/Berlin";
-    image = "ghcr.io/home-assistant/home-assistant:2024.3"; # Months formatted with one digit if possible, e.g. "2024.3"
+    image = "ghcr.io/home-assistant/home-assistant:2024.5"; # Months formatted with one digit if possible, e.g. "2024.3"
     extraOptions = [
       "--network=host"
     ];
@@ -48,7 +48,7 @@ in
             ];
           };
           ha_user = {
-            hashedPassword = "$7$101$eB9lWqPtXfPbUaaj$bgM475TrtqBhCJBCvdxs/SSUWme2W17qTQGxhRnJkyzRRSjH0vCLP7P0aucV6SHUO68N/L9veEVI/mO7k8WKtQ==";
+            hashedPassword = "$7$101$jk+9uKedIA4EWQ/Z$Gb5d7fl9rXCjSCeE0zs3C9G/0IsmOaSO6zoBf+hz+wt9tvRfYLcHgr1OpSM3vL6Jk47Np1E7p7nUQ8zg17LUiQ==";
             acl = [
               "read #"
               "readwrite homeassistant/#"
