@@ -275,6 +275,7 @@
                     ./home-manager/desktop.nix
                     ./home-manager/dconf-settings.nix
                     ./home-manager/run-rotation.nix
+                    ./home-manager/timetracking.nix
                     ./home-manager/vscode.nix
                     ./home-manager/xdg-user-dirs.nix
                   ];
