@@ -14,13 +14,7 @@ in
       https = true;
       maxUploadSize = "514M";
 
-      logLevel = 0;
-      logType = "file";
-
       config = {
-        # Further forces Nextcloud to use HTTPS
-        overwriteProtocol = "https";
-
         # Nextcloud PostegreSQL database configuration, recommended over using SQLite
         dbtype = "pgsql";
         dbuser = "nextcloud";
@@ -32,7 +26,13 @@ in
         adminpassFile = "/var/nextcloud-admin-pass";
       };
 
-      extraOptions = {
+      settings = {
+        # Further forces Nextcloud to use HTTPS
+        overwriteprotocol = "https";
+
+        logLevel = 0;
+        logType = "file";
+
         # Attempt to fix "too many files error"
         "bulkupload.enabled" = false;
 

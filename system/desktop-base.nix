@@ -1,14 +1,14 @@
 { pkgs, ... }:
 {
   services = {
+    libinput.enable = true;
     xserver = {
       # Enable the X11 windowing system.
       enable = true;
 
       # Configure keymap in X11
-      layout = "us";
+      xkb.layout = "us";
       # Enable touchpad support (enabled default in most desktopManager).
-      libinput.enable = true;
 
       # Install gnome
       displayManager.gdm.enable = true;

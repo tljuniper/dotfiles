@@ -13,7 +13,7 @@
     # Use "flameshot config" once to configure default save locations/filenames
     # and other flameshot settings
     flameshot
-    gnome.gedit
+    gedit
     gnome.gnome-tweaks
     gnome.gnome-screenshot
     # Gnome extensions. Note: These are now present in "extensions" app where
@@ -55,7 +55,7 @@
   services.gpg-agent = {
     enable = true;
     enableZshIntegration = true;
-    pinentryFlavor = "gnome3";
+    pinentryPackage = pkgs.pinentry-gnome3;
   };
 
   programs.terminator = {
