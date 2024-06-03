@@ -47,11 +47,11 @@
       };
     };
 
-    nomnombring = {
-      url = "git+ssh://git@github.com/tljuniper/nomnombring.git";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
-    };
+    # nomnombring = {
+    #   url = "git+ssh://git@github.com/tljuniper/nomnombring.git";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    #   inputs.flake-utils.follows = "flake-utils";
+    # };
 
   };
 
@@ -65,7 +65,7 @@
     , ha-relay
     , flake-utils
     , pre-commit-hooks
-    , nomnombring
+      # , nomnombring
     , ...
     }:
     let
@@ -167,13 +167,13 @@
                   home = juniper-home;
                 };
             }
-            nomnombring.nixosModules.nomnombring
-            {
-              tljuniper.services.nomnombring = {
-                enable = true;
-                configFile = "/var/nomnombring-config.ini";
-              };
-            }
+            # nomnombring.nixosModules.nomnombring
+            # {
+            #   tljuniper.services.nomnombring = {
+            #     enable = true;
+            #     configFile = "/var/nomnombring-config.ini";
+            #   };
+            # }
             ha-relay.nixosModules.ha-relay
             {
               pinpox.services.home-assistant-grafana-relay = {
