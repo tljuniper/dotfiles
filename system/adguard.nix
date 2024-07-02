@@ -15,7 +15,7 @@ _:
     openFirewall = true;
     # Debugging
     # extraArgs = [ "--verbose" ];
-    settings.bind_port = 3000;
+    port = 3000;
   };
 
   networking.firewall.allowedUDPPorts = [ 53 ];
