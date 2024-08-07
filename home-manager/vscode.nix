@@ -136,8 +136,6 @@
       # Python
       ms-python.python
       ms-python.vscode-pylance
-      # Vue.js
-      vue.volar
       # Other linters & language support
       golang.go
       davidanson.vscode-markdownlint
