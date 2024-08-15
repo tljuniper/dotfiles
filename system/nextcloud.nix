@@ -159,8 +159,9 @@ in
         # Home Assistant backup runs at 3:30
         timerConfig = {
           OnCalendar = "*-*-* 04:00:00";
-          # Launch the service even if the system was turned off last time the timer triggered
-          Persistent = true;
+          # Don't launch the service if it couldn't run the last time
+          # Slows down the server too much if run during the day
+          Persistent = false;
           Unit = "nextcloud-backup.service";
         };
       };

@@ -96,8 +96,9 @@ in
     # Home Assistant backup runs at 3:00
     timerConfig = {
       OnCalendar = "*-*-* 03:30:00";
-      # Launch the service even if the system was turned off last time the timer triggered
-      Persistent = true;
+      # Don't launch the service if it couldn't run the last time
+      # Slows down the server too much if run during the day
+      Persistent = false;
       Unit = "home-assistant-backup.service";
     };
   };
