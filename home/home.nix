@@ -15,13 +15,6 @@
 
   # ------------------------------------------------------------------
 
-  home.file = {
-    ".aspell.de_DE.prepl".source = ./aspell.de_DE.prepl;
-    ".aspell.de_DE.pws".source = ./aspell.de_DE.pws;
-    ".aspell.en.prepl".source = ./aspell.en.prepl;
-    ".aspell.en.pws".source = ./aspell.en.pws;
-  };
-
   programs = {
 
     # Let Home Manager install and manage itself.
