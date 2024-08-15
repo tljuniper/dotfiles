@@ -112,6 +112,11 @@
     allowedUDPPorts = [ 51820 ]; # wireguard
   };
 
+  services.udev.extraRules = ''
+    # Enable access to USB device boot to users in the plugdev group
+    SUBSYSTEM=="usb", ATTR{idVendor}=="1b8e", MODE:="0666", GROUP="plugdev"
+  '';
+
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix.
