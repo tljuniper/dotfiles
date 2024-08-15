@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
+    ./atuin.nix
     ./direnv.nix
     ./git.nix
     ./starship.nix
