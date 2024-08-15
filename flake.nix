@@ -18,8 +18,8 @@
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
     # For quality checks for this repo
-    pre-commit-hooks = {
-      url = "github:cachix/pre-commit-hooks.nix";
+    git-hooks = {
+      url = "github:cachix/git-hooks.nix";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         nixpkgs-stable.follows = "nixpkgs";
@@ -64,7 +64,7 @@
     , disko
     , ha-relay
     , flake-utils
-    , pre-commit-hooks
+    , git-hooks
     , nomnombring
     , ...
     }:
@@ -96,37 +96,16 @@
       with pkgs;
       {
         checks = {
-          pre-commit-check = pre-commit-hooks.lib.${system}.run {
+          pre-commit-check = git-hooks.lib.${system}.run {
             src = ./.;
             hooks = {
-              nixpkgs-fmt.enable = true;
-              statix.enable = true;
+              check-executables-have-shebangs.enable = true;
               deadnix.enable = true;
+              end-of-file-fixer.enable = true;
+              nixpkgs-fmt.enable = true;
               shellcheck.enable = true;
-              # Hooks from pre-commit-hooks
-              # See: https://github.com/cachix/pre-commit-hooks.nix/issues/31
-              trailing-whitespace = {
-                enable = true;
-                name = "Trim Trailing Whitespace";
-                entry = "${pkgs.python3Packages.pre-commit-hooks}/bin/trailing-whitespace-fixer";
-                package = pkgs.python3Packages.pre-commit-hooks;
-                types = [ "text" ];
-              };
-              end-of-file-fixer = {
-                enable = true;
-                name = "Fix End of Files";
-                entry = "${pkgs.python3Packages.pre-commit-hooks}/bin/end-of-file-fixer";
-                package = pkgs.python3Packages.pre-commit-hooks;
-                types = [ "text" ];
-              };
-              check-executables-have-shebangs = {
-                enable = true;
-                name = "Check that executables have shebangs";
-                description = "Ensures that (non-binary) executables have a shebang.";
-                entry = "${pkgs.python3Packages.pre-commit-hooks}/bin/check-executables-have-shebangs";
-                package = pkgs.python3Packages.pre-commit-hooks;
-                types = [ "text" "executable" ];
-              };
+              statix.enable = true;
+              trim-trailing-whitespace.enable = true;
             };
           };
         };
@@ -147,7 +126,7 @@
           };
           modules = [
             "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
-            ./hosts/rust/configuration.nix
+            ./host/rust/configuration.nix
             ./system/adguard.nix
             ./system/general.nix
             ./system/home-assistant.nix
@@ -161,8 +140,8 @@
               home-manager.users.juniper = _:
                 {
                   imports = [
-                    ./home-manager/home.nix
-                    ./home-manager/git-juniper.nix
+                    ./home/home.nix
+                    ./home/git-juniper.nix
                   ];
                   home = juniper-home;
                 };
@@ -198,7 +177,7 @@
           pkgs = pkgsForSystem system;
           modules = [
             "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
-            ./hosts/pascal/configuration.nix
+            ./host/pascal/configuration.nix
             ./system/general.nix
             ./system/user-juniper.nix
             ./system/home-assistant.nix
@@ -208,8 +187,8 @@
               home-manager.users.juniper = _:
                 {
                   imports = [
-                    ./home-manager/home.nix
-                    ./home-manager/git-juniper.nix
+                    ./home/home.nix
+                    ./home/git-juniper.nix
                   ];
                   home = juniper-home;
                 };
@@ -225,8 +204,8 @@
           pkgs = pkgsForSystem system;
           modules = [
             disko.nixosModules.disko
-            ./hosts/swift/configuration.nix
-            ./hosts/swift/disk-config.nix
+            ./host/swift/configuration.nix
+            ./host/swift/disk-config.nix
             ./system/desktop-base.nix
             ./system/general.nix
             ./system/user-juniper.nix
@@ -237,13 +216,13 @@
               home-manager.users.juniper = _:
                 {
                   imports = [
-                    ./home-manager/home.nix
-                    ./home-manager/git-juniper.nix
-                    ./home-manager/desktop.nix
-                    ./home-manager/dconf-settings.nix
-                    ./home-manager/vscode.nix
-                    ./home-manager/xdg-user-dirs.nix
-                    ./home-manager/backup-swift.nix
+                    ./home/home.nix
+                    ./home/git-juniper.nix
+                    ./home/desktop.nix
+                    ./home/dconf-settings.nix
+                    ./home/vscode.nix
+                    ./home/xdg-user-dirs.nix
+                    ./home/backup-swift.nix
                   ];
                   home = juniper-home;
                 };
@@ -259,8 +238,8 @@
           pkgs = pkgsForSystem system;
           modules = [
             disko.nixosModules.disko
-            ./hosts/carbon/configuration.nix
-            ./hosts/carbon/disk-config.nix
+            ./host/carbon/configuration.nix
+            ./host/carbon/disk-config.nix
             ./system/desktop-base.nix
             ./system/headset.nix
             ./system/general.nix
@@ -271,13 +250,13 @@
               home-manager.users.agillert = _:
                 {
                   imports = [
-                    ./home-manager/home.nix
-                    ./home-manager/desktop.nix
-                    ./home-manager/dconf-settings.nix
-                    ./home-manager/run-rotation.nix
-                    ./home-manager/timetracking.nix
-                    ./home-manager/vscode.nix
-                    ./home-manager/xdg-user-dirs.nix
+                    ./home/home.nix
+                    ./home/desktop.nix
+                    ./home/dconf-settings.nix
+                    ./home/run-rotation.nix
+                    ./home/timetracking.nix
+                    ./home/vscode.nix
+                    ./home/xdg-user-dirs.nix
                   ];
                   home = {
                     username = "agillert";
