@@ -215,9 +215,7 @@
                 {
                   imports = [
                     ./home
-                    ./home/desktop.nix
-                    ./home/dconf-settings.nix
-                    ./home/vscode.nix
+                    ./home/desktop
                     ./home/backup-swift.nix
                   ];
                   home = juniper-home;
@@ -247,11 +245,9 @@
                 {
                   imports = [
                     ./home
-                    ./home/desktop.nix
-                    ./home/dconf-settings.nix
+                    ./home/desktop
                     ./home/run-rotation.nix
                     ./home/timetracking.nix
-                    ./home/vscode.nix
                   ];
                   home = {
                     username = "agillert";
