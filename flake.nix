@@ -140,8 +140,7 @@
               home-manager.users.juniper = _:
                 {
                   imports = [
-                    ./home/home.nix
-                    ./home/git-juniper.nix
+                    ./home
                   ];
                   home = juniper-home;
                 };
@@ -187,8 +186,7 @@
               home-manager.users.juniper = _:
                 {
                   imports = [
-                    ./home/home.nix
-                    ./home/git-juniper.nix
+                    ./home
                   ];
                   home = juniper-home;
                 };
@@ -216,12 +214,10 @@
               home-manager.users.juniper = _:
                 {
                   imports = [
-                    ./home/home.nix
-                    ./home/git-juniper.nix
+                    ./home
                     ./home/desktop.nix
                     ./home/dconf-settings.nix
                     ./home/vscode.nix
-                    ./home/xdg-user-dirs.nix
                     ./home/backup-swift.nix
                   ];
                   home = juniper-home;
@@ -250,13 +246,12 @@
               home-manager.users.agillert = _:
                 {
                   imports = [
-                    ./home/home.nix
+                    ./home
                     ./home/desktop.nix
                     ./home/dconf-settings.nix
                     ./home/run-rotation.nix
                     ./home/timetracking.nix
                     ./home/vscode.nix
-                    ./home/xdg-user-dirs.nix
                   ];
                   home = {
                     username = "agillert";
