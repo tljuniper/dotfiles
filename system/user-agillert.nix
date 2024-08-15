@@ -9,7 +9,7 @@
     home = "/home/agillert";
     createHome = true;
     group = "users";
-    extraGroups = [ "wheel" "video" "audio" "disk" "networkmanager" "docker" ];
+    extraGroups = [ "wheel" "video" "audio" "disk" "networkmanager" "docker" "plugdev" ];
     shell = pkgs.zsh;
   };
 }
