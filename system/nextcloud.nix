@@ -171,8 +171,10 @@ in
         partOf = [ "tailscale-cert-renewal.service" ];
         wantedBy = [ "timers.target" ];
         timerConfig = {
-          # Run every two months on the 13th
-          OnCalendar = "*-2,4,6,8,10,12-13 16:37:00";
+          # Run weekly because Let's Encrypt might decide not to renew when the
+          # certificate expiry is too far off
+          # So we just run this again until hopefully we get to renew the cert
+          OnCalendar = "Mon *-*-* 16:37:00";
           # Launch the service even if the system was turned off last time the timer triggered
           Persistent = true;
           Unit = "tailscale-cert-renewal.service";
