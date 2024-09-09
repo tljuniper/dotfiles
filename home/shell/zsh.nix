@@ -19,7 +19,6 @@ _:
           "copybuffer"
           "copyfile"
           "colored-man-pages"
-          "dirhistory"
           "git"
           "sudo"
           "history"

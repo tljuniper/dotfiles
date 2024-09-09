@@ -221,3 +221,9 @@ sudo -u postgres psql -d template1 -c "DROP DATABASE \"nextcloud\";"
 sudo -u postgres psql -d template1 -c "CREATE DATABASE \"nextcloud\";"
 sudo -u postgres psql -d nextcloud -f nextcloud-db_000000.bak
 ```
+
+## Garbage collection
+
+```
+sudo nix-collect-garbage --older-than 30d
+```
