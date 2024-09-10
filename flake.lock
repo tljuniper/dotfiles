@@ -216,15 +216,15 @@
       "locked": {
         "lastModified": 1725961784,
         "narHash": "sha256-e2IV+Jjl7uVbHQoW3IsLqBZrb7C3/2941Zt+IurSLAA=",
-        "ref": "refs/heads/main",
+        "owner": "tljuniper",
+        "repo": "nomnombring",
         "rev": "799e3188288607f286efe1b3417d2577020cc28f",
-        "revCount": 1,
-        "type": "git",
-        "url": "ssh://git@github.com/tljuniper/nomnombring.git"
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "ssh://git@github.com/tljuniper/nomnombring.git"
+        "owner": "tljuniper",
+        "repo": "nomnombring",
+        "type": "github"
       }
     },
     "root": {
