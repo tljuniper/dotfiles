@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-unstable, ... }:
 
 {
   imports = [
@@ -34,7 +34,7 @@
     hunspellDicts.en_US
     imagemagick
     inkscape
-    joplin-desktop
+    pkgs-unstable.joplin-desktop # iOS app has been updated to v3 while nixpkgs 24.05 is still at v2 -> now refuses to sync -> use unstable
     keepassxc
     kicad-small
     libreoffice
