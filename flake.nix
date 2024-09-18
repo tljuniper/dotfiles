@@ -39,7 +39,7 @@
 
     # For relaying grafana alerts to Home Assistant
     ha-relay = {
-      url = "github:pinpox/home-assistant-grafana-relay";
+      url = "github:tljuniper/home-assistant-grafana-relay/remove-image-url";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-utils.follows = "flake-utils";
