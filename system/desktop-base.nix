@@ -24,17 +24,12 @@
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
-  # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
-
   xdg.autostart.enable = true;
 
   # Exclude gnome applications
-  environment.gnome.excludePackages = (with pkgs; [
+  environment.gnome.excludePackages = with pkgs; [
     gnome-photos
     gnome-tour
-  ]) ++ (with pkgs.gnome; [
     gnome-music
     gnome-terminal
     epiphany # web browser
@@ -45,7 +40,7 @@
     iagno # go game
     hitori # sudoku game
     atomix # puzzle game
-  ]);
+  ];
 
   # Enable the function keys for Keychron keyboard
   # https://mikeshade.com/posts/keychron-linux-function-keys/

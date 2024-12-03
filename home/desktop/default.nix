@@ -15,13 +15,9 @@
     evince
     exiftool
     firefox
-    # Manually configure "flameshot gui" command on keystroke CTRL-Print.
-    # Use "flameshot config" once to configure default save locations/filenames
-    # and other flameshot settings
-    flameshot
     gedit
-    gnome.gnome-tweaks
-    gnome.gnome-screenshot
+    gnome-tweaks
+    gnome-screenshot
     # Gnome extensions. Note: These are now present in "extensions" app where
     # they have to be turned on and configured manually
     gnomeExtensions.dash-to-dock
