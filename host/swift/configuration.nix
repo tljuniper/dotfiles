@@ -33,7 +33,6 @@
 
   services = {
     tailscale.enable = true;
-    printing.enable = true;
   };
 
   # No ssh daemon on this machine, so we need some way to login after an automated install
