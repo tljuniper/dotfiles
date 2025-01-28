@@ -4,6 +4,21 @@ _:
     starship = {
       enable = true;
       settings = {
+        # Uses nerd font otherwise
+        battery = {
+          full_symbol = "• ";
+          charging_symbol = "⇡ ";
+          discharging_symbol = "⇣ ";
+          unknown_symbol = "❓ ";
+          empty_symbol = "❗ ";
+        };
+        character = {
+          success_symbol = "[❯](bold green) ";
+          error_symbol = "[✗](bold red) ";
+        };
+        cmd_duration = {
+          show_notifications = true;
+        };
         git_branch = {
           symbol = "🌱 ";
         };
@@ -13,14 +28,6 @@ _:
         python = {
           # Is installed by default and therefore printed everywhere
           disabled = true;
-        };
-        # Uses nerd font otherwise
-        battery = {
-          full_symbol = "• ";
-          charging_symbol = "⇡ ";
-          discharging_symbol = "⇣ ";
-          unknown_symbol = "❓ ";
-          empty_symbol = "❗ ";
         };
       };
     };
