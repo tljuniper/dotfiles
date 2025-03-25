@@ -29,7 +29,6 @@
         "haskell.serverExecutablePath" = "haskell-language-server";
         "nix.enableLanguageServer" = true;
         "python.formatting.provider" = "black";
-        "python.languageServer" = "Pylance";
         "workbench.colorTheme" = "Default Dark+";
         "workbench.iconTheme" = "material-icon-theme";
         "window.title" = "\${rootName}";
@@ -135,7 +134,6 @@
       timonwong.shellcheck
       # Python
       ms-python.python
-      ms-python.vscode-pylance
       # Other linters & language support
       golang.go
       davidanson.vscode-markdownlint
