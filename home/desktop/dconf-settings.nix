@@ -102,7 +102,7 @@ with lib.hm.gvariant;
     "org/gnome/shell" = {
       disabled-extensions = [ "apps-menu@gnome-shell-extensions.gcampax.github.com" "drive-menu@gnome-shell-extensions.gcampax.github.com" "native-window-placement@gnome-shell-extensions.gcampax.github.com" "window-list@gnome-shell-extensions.gcampax.github.com" "auto-move-windows@gnome-shell-extensions.gcampax.github.com" "screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com" "windowsNavigator@gnome-shell-extensions.gcampax.github.com" ];
       enabled-extensions = [ "audio-output-switcher@anduchs" "workspace-indicator@gnome-shell-extensions.gcampax.github.com" "tailscale-status@maxgallup.github.com" "places-menu@gnome-shell-extensions.gcampax.github.com" "dash-to-dock@micxgx.gmail.com" "Always-Show-Titles-In-Overview@gmail.com" ];
-      favorite-apps = [ "firefox.desktop" "chromium-browser.desktop" "code.desktop" "terminator.desktop" "org.gnome.Nautilus.desktop" "signal-desktop.desktop" "org.keepassxc.KeePassXC.desktop" "@joplinapp-desktop.desktop" "thunderbird.desktop" ];
+      favorite-apps = [ "firefox.desktop" "chromium-browser.desktop" "code.desktop" "terminator.desktop" "org.gnome.Nautilus.desktop" "signal-desktop.desktop" "org.keepassxc.KeePassXC.desktop" "joplin.desktop" "thunderbird.desktop" ];
       last-selected-power-profile = "performance";
       welcome-dialog-last-shown-version = "42.4";
     };
