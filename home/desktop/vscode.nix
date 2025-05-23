@@ -11,7 +11,6 @@
     package = pkgs-unstable.vscode;
     userSettings =
       {
-        "cabal-fmt.indent" = 4;
         "diffEditor.renderSideBySide" = false;
         "editor.formatOnSave" = true;
         "editor.formatOnType" = false;
@@ -21,34 +20,23 @@
         };
         "files.insertFinalNewline" = true;
         "files.trimFinalNewlines" = true;
-        "files.associations" = {
-          "*.hs" = "haskell";
-        };
-        "gitlab.showPipelineUpdateNotifications" = true;
-        "haskell.formattingProvider" = "brittany";
-        "haskell.serverExecutablePath" = "haskell-language-server";
         "nix.enableLanguageServer" = true;
         "python.formatting.provider" = "black";
         "workbench.colorTheme" = "Default Dark+";
         "workbench.iconTheme" = "material-icon-theme";
         "window.title" = "\${rootName}";
-        "[haskell]" = {
-          "editor.defaultFormatter" = "MaxGabriel.brittany";
-        };
         "shfmt.executablePath" = "${pkgs.shfmt}/bin/shfmt";
-        "cSpell.enabledLanguageIds" = [
-          "git-commit"
+        "cSpell.enabledFileTypes" = [
           "html"
-          "javascript"
+          "js"
           "json"
           "jsonc"
-          "latex"
-          "markdown"
+          "md"
           "nix"
-          "plaintext"
-          "python"
-          "shellscript"
-          "text"
+          "py"
+          "sh"
+          "tex"
+          "txt"
           "yaml"
           "yml"
         ];
