@@ -33,7 +33,7 @@
     detox # Cleanup filenames with special characters
     diff-so-fancy # Mainly for use with git
     dos2unix
-    dstat # Resource usage
+    dool # Resource usage
     fzf # Command line fuzzy finder
     git
     htop
