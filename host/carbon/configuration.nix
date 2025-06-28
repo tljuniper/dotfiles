@@ -80,7 +80,10 @@
   environment.systemPackages = with pkgs; [
     awscli2
     awsume
+    dig
     ssm-session-manager-plugin
+    wireguard-tools
+    wireshark
     yubikey-manager
   ];
 
