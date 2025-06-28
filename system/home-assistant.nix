@@ -13,6 +13,13 @@ in
     ];
   };
 
+  # No systemd tmpfiles rules so that home assistant doesn't simply start up on
+  # a fresh install -- we want to manually copy an old back up in because
+  # restoring from backups apparently doesn't work in the docker version
+  # systemd.tmpfiles.rules = [
+  #       "d ${home-assistant-dir} juniper users -"
+  # ];
+
   networking.firewall.allowedTCPPorts = [
     8123 # Home assistant web UI
     1883 # Mosquitto
