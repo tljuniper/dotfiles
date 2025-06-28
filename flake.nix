@@ -221,6 +221,33 @@
             }
           ];
         };
+        matlab = lib.nixosSystem rec {
+          system = "x86_64-linux";
+          specialArgs = {
+            inherit inputs system;
+            pkgs-unstable = pkgsUnstableForSystem system;
+          };
+          pkgs = pkgsForSystem system;
+          modules = [
+            disko.nixosModules.disko
+            ./host/matlab/configuration.nix
+            ./host/matlab/disk-config.nix
+            ./system/desktop-base.nix
+            ./system/general.nix
+            ./system/user-juniper.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.extraSpecialArgs = specialArgs;
+              home-manager.users.juniper = _:
+                {
+                  imports = [
+                    ./home
+                  ];
+                  home = juniper-home;
+                };
+            }
+          ];
+        };
         carbon = lib.nixosSystem rec {
           system = "x86_64-linux";
           specialArgs = {
