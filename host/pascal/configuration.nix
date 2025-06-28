@@ -21,7 +21,15 @@
     firewall.checkReversePath = "loose";
   };
 
-  services.tailscale.enable = true;
+  services = {
+    tailscale.enable = true;
+
+    # Enable the OpenSSH daemon.
+    openssh.enable = true;
+
+    # Store journald config in RAM to help preserve the sd card
+    journald.storage = "volatile";
+  };
 
   nix.settings.trusted-users = [ "@wheel" ];
   security.sudo.wheelNeedsPassword = false;
@@ -37,9 +45,6 @@
 
   # Try to boot, even if some file systems are missing
   systemd.enableEmergencyMode = false;
-
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
