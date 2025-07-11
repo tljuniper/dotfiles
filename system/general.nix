@@ -49,12 +49,19 @@
     unzip
     usbutils
     vim
+    neovim
     wget
   ];
 
-  # <nixpkgs> is evaluated to what's in the NIX_PATH variable
-  # Use separate folder nix/inputs/nixpkgs so changes are easier to apply to already running processes
-  environment.etc."nix/inputs/nixpkgs".source = inputs.nixpkgs.outPath;
+  environment = {
+    # <nixpkgs> is evaluated to what's in the NIX_PATH variable
+    # Use separate folder nix/inputs/nixpkgs so changes are easier to apply to already running processes
+    etc."nix/inputs/nixpkgs".source = inputs.nixpkgs.outPath;
+    # zsh auto-completion for system tools
+    pathsToLink = [ "/share/zsh" ];
+  };
+
+
 
   nix = {
     nixPath = [ "nixpkgs=/etc/nix/inputs/nixpkgs" ];

@@ -44,7 +44,7 @@
     persistent = true;
     flake = "${config.users.users.juniper.home}/dotfiles";
     flags = [
-      "--update-input"
+      "update"
       "nixpkgs"
     ];
   };

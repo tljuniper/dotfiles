@@ -18,6 +18,7 @@
           "editor.renderWhitespace" = "boundary";
           "files.exclude" = {
             "**/.git" = true;
+            "**/.direnv" = true;
           };
           "files.insertFinalNewline" = true;
           "files.trimFinalNewlines" = true;
