@@ -196,9 +196,10 @@ It can be updated as follows:
 # 1. Backup the existing settings
 dconf dump / > dconf-settings.ini
 # 2. Edit and manually remove everything that should not be transferred (e.g. window positions etc.)
-vim dconf-settings.nix
+vim dconf-settings.ini
 # 3. Convert to nix
 nix-shell -p dconf2nix --command "dconf2nix -i dconf-settings.ini -o dconf-settings.nix"
+(If dconf2nix fails for some settings, just delete or modify them)
 # 4. Compare and overwrite home-manager/dconf-settings.nix
 ```
 
