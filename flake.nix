@@ -109,7 +109,7 @@
         };
         devShells.default = mkShell {
           inherit (self.checks.${system}.pre-commit-check) shellHook;
-          buildInputs = [ nix-output-monitor nodePackages.cspell ] ++ self.checks.${system}.pre-commit-check.enabledPackages;
+          buildInputs = [ nix-output-monitor ] ++ self.checks.${system}.pre-commit-check.enabledPackages;
         };
       })
     //

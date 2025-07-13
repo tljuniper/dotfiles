@@ -17,7 +17,20 @@ _:
           error_symbol = "[✗](bold red) ";
         };
         cmd_duration = {
+          min_time = 5000;
+          min_time_to_notify = 120000;
           show_notifications = true;
+          notification_timeout = 5000;
+        };
+        direnv = {
+          disabled = false;
+          symbol = "";
+          format = "[$symbol$loaded]($style)";
+          not_allowed_msg = "direnv not allowed";
+          unloaded_msg = "direnv not loaded";
+          denied_msg = "direnv denied";
+          allowed_msg = "";
+          loaded_msg = "";
         };
         git_branch = {
           symbol = "🌱 ";

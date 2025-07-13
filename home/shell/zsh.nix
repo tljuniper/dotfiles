@@ -10,9 +10,10 @@ _:
         Grep = "grep -Hirn --color=auto";
         l = "ls -h -CFAl --color=auto";
       };
-      sessionVariables = {
-        CONDA_DEFAULT_ENV = "";
-      };
+      initContent = ''
+        setopt menu_complete
+        setopt always_to_end
+      '';
       oh-my-zsh = {
         enable = true;
         plugins = [
