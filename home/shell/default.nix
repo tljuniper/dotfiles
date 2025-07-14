@@ -17,6 +17,8 @@
     home-manager.enable = true;
     jq.enable = true;
   };
+  catppuccin.enable = true;
+  catppuccin.flavor = "mocha";
 
   home.packages = with pkgs; [
     age

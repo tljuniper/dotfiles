@@ -17,6 +17,10 @@
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
+    # Colors
+    catppuccin.url = "github:catppuccin/nix";
+    catppuccin.inputs.nixpkgs.follows = "nixpkgs";
+
     # For quality checks for this repo
     git-hooks = {
       url = "github:cachix/git-hooks.nix";
@@ -61,6 +65,7 @@
     , nixpkgs-unstable
     , disko
     , ha-relay
+    , catppuccin
     , flake-utils
     , git-hooks
     , nomnombring
@@ -139,10 +144,12 @@
                 {
                   imports = [
                     ./home
+                    catppuccin.homeModules.catppuccin
                   ];
                   home = juniper-home;
                 };
             }
+            catppuccin.nixosModules.catppuccin
             nomnombring.nixosModules.nomnombring
             {
               tljuniper.services.nomnombring = {
@@ -185,10 +192,12 @@
                 {
                   imports = [
                     ./home
+                    catppuccin.homeModules.catppuccin
                   ];
                   home = juniper-home;
                 };
             }
+            catppuccin.nixosModules.catppuccin
           ];
         };
         swift = lib.nixosSystem rec {
@@ -215,10 +224,12 @@
                     ./home
                     ./home/desktop
                     ./home/backup-swift.nix
+                    catppuccin.homeModules.catppuccin
                   ];
                   home = juniper-home;
                 };
             }
+            catppuccin.nixosModules.catppuccin
           ];
         };
         matlab = lib.nixosSystem rec {
@@ -242,10 +253,12 @@
                 {
                   imports = [
                     ./home
+                    catppuccin.homeModules.catppuccin
                   ];
                   home = juniper-home;
                 };
             }
+            catppuccin.nixosModules.catppuccin
           ];
         };
         carbon = lib.nixosSystem rec {
@@ -273,6 +286,7 @@
                     ./home/desktop
                     ./home/run-rotation.nix
                     ./home/timetracking.nix
+                    catppuccin.homeModules.catppuccin
                   ];
                   home = {
                     username = "agillert";
@@ -280,6 +294,7 @@
                   };
                 };
             }
+            catppuccin.nixosModules.catppuccin
           ];
         };
       };

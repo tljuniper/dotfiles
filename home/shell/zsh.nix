@@ -25,7 +25,6 @@ _:
           "history"
           "web-search"
         ];
-        theme = "af-magic";
       };
     };
   };

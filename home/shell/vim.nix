@@ -67,6 +67,7 @@
 
       '';
       plugins = with pkgs.vimPlugins; [
+        catppuccin-vim
         commentary
         ctrlp
         repeat

@@ -24,7 +24,6 @@
           "files.trimFinalNewlines" = true;
           "nix.enableLanguageServer" = true;
           "python.formatting.provider" = "black";
-          "workbench.colorTheme" = "Default Dark+";
           "workbench.iconTheme" = "material-icon-theme";
           "window.title" = "\${rootName}";
           "shfmt.executablePath" = "${pkgs.shfmt}/bin/shfmt";
