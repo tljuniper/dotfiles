@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
   imports =
@@ -33,6 +33,9 @@
   services = {
     tailscale.enable = true;
   };
+
+  # see: https://github.com/NixOS/nixpkgs/issues/416322
+  services.xserver.displayManager.gdm.wayland = lib.mkForce false;
 
   # Try to boot, even if some file systems are missing
   systemd.enableEmergencyMode = false;
