@@ -20,6 +20,7 @@ _:
           "copybuffer"
           "copyfile"
           "colored-man-pages"
+          "fzf"
           "git"
           "sudo"
           "history"

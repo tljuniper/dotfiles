@@ -70,6 +70,7 @@
         catppuccin-vim
         commentary
         ctrlp
+        fzf-vim
         repeat
         vim-snipmate
         vim-snippets
