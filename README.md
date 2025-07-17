@@ -102,7 +102,6 @@ On swift, change BIOS settings back to UEFI only after the install.
 - Link signal-desktop
 - Enable tailscale (`sudo tailscale up`)
 - Set up nextcloud sync client
-- Set up joplin WebDAV sync
 
 ## Manual steps for a new Raspberry install
 
