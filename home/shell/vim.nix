@@ -34,15 +34,15 @@
         " turn off hlsearch on enter
         nnoremap <CR> :noh<CR><CR>
 
-        set colorcolumn=80,120
+        set colorcolumn=80
         set cursorline
         highlight ColorColumn ctermbg=0
         set textwidth=80
 
         "Spell checking
-        autocmd BufRead,BufNewFile *.md setlocal spell spelllang=en_us
+        autocmd BufRead,BufNewFile *.md setlocal spell spelllang=en,de
         " autocmd BufRead,BufNewFile *.md setlocal spell spelllang=de_de
-        autocmd BufRead,BufNewFile *.tex setlocal spell spelllang=en_us
+        autocmd BufRead,BufNewFile *.tex setlocal spell spelllang=en,de
         " autocmd BufRead,BufNewFile *.tex setlocal spell spelllang=de_de
 
         " Don't insert two spaces after joining a sentence with 'J' or 'gq'
@@ -65,17 +65,22 @@
 
         set t_Co=256  " make use of 256 terminal colors
 
+        let g:vimwiki_list = [{ 'syntax': 'markdown',
+                      \ 'ext': 'md'}]
+
       '';
       plugins = with pkgs.vimPlugins; [
         catppuccin-vim
         commentary
         ctrlp
         fzf-vim
+        mattn-calendar-vim
         repeat
+        surround
+        vim-sneak
         vim-snipmate
         vim-snippets
-        vim-sneak
-        surround
+        vimwiki
       ];
     };
   };
