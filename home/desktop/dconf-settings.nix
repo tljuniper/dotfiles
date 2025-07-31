@@ -34,6 +34,18 @@ with lib.hm.gvariant;
       window-width = 800;
     };
 
+    "org/gnome/Weather" = {
+      window-height = 496;
+      window-maximized = false;
+      window-width = 992;
+    };
+
+    "org/gnome/baobab/ui" = {
+      active-chart = "rings";
+      is-maximized = true;
+      window-size = mkTuple [ 960 600 ];
+    };
+
     "org/gnome/calculator" = {
       accuracy = 9;
       angle-units = "degrees";
@@ -49,6 +61,12 @@ with lib.hm.gvariant;
       window-maximized = false;
       window-size = mkTuple [ 360 666 ];
       word-size = 64;
+    };
+
+    "org/gnome/clocks/state/window" = {
+      maximized = false;
+      panel-id = "world";
+      size = mkTuple [ 870 690 ];
     };
 
     "org/gnome/control-center" = {
@@ -86,6 +104,10 @@ with lib.hm.gvariant;
       picture-uri-dark = "/home/juniper/.config/background";
       primary-color = "#3465a4";
       secondary-color = "#000000";
+    };
+
+    "org/gnome/desktop/break-reminders" = {
+      selected-breaks = [];
     };
 
     "org/gnome/desktop/break-reminders/eyesight" = {
@@ -156,6 +178,18 @@ with lib.hm.gvariant;
       application-id = "gnome-printers-panel.desktop";
     };
 
+    "org/gnome/desktop/notifications/application/gnome-wellbeing-panel" = {
+      application-id = "gnome-wellbeing-panel.desktop";
+    };
+
+    "org/gnome/desktop/notifications/application/impress" = {
+      application-id = "impress.desktop";
+    };
+
+    "org/gnome/desktop/notifications/application/org-gnome-baobab" = {
+      application-id = "org.gnome.baobab.desktop";
+    };
+
     "org/gnome/desktop/notifications/application/org-gnome-evince" = {
       application-id = "org.gnome.Evince.desktop";
     };
@@ -170,6 +204,10 @@ with lib.hm.gvariant;
 
     "org/gnome/desktop/notifications/application/org-gnome-fileroller" = {
       application-id = "org.gnome.FileRoller.desktop";
+    };
+
+    "org/gnome/desktop/notifications/application/org-gnome-gedit" = {
+      application-id = "org.gnome.gedit.desktop";
     };
 
     "org/gnome/desktop/notifications/application/org-gnome-loupe" = {
@@ -196,6 +234,10 @@ with lib.hm.gvariant;
       application-id = "signal.desktop";
     };
 
+    "org/gnome/desktop/notifications/application/terminator" = {
+      application-id = "terminator.desktop";
+    };
+
     "org/gnome/desktop/notifications/application/thunderbird" = {
       application-id = "thunderbird.desktop";
     };
@@ -206,6 +248,7 @@ with lib.hm.gvariant;
 
     "org/gnome/desktop/peripherals/mouse" = {
       accel-profile = "default";
+      natural-scroll = false;
       speed = 3.7879e-2;
     };
 
@@ -213,6 +256,11 @@ with lib.hm.gvariant;
       click-method = "fingers";
       speed = 0.198238;
       two-finger-scrolling-enabled = true;
+    };
+
+    "org/gnome/desktop/privacy" = {
+      old-files-age = mkUint32 30;
+      recent-files-max-age = -1;
     };
 
     "org/gnome/desktop/screensaver" = {
@@ -233,12 +281,12 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/desktop/wm/keybindings" = {
-      maximize = [ ];
-      switch-applications = [ ];
-      switch-applications-backward = [ ];
+      maximize = [];
+      switch-applications = [];
+      switch-applications-backward = [];
       switch-windows = [ "<Alt>Tab" ];
       switch-windows-backward = [ "<Shift><Alt>Tab" ];
-      unmaximize = [ ];
+      unmaximize = [];
     };
 
     "org/gnome/desktop/wm/preferences" = {
@@ -342,8 +390,12 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/mutter/keybindings" = {
-      toggle-tiled-left = [ ];
-      toggle-tiled-right = [ ];
+      toggle-tiled-left = [];
+      toggle-tiled-right = [];
+    };
+
+    "org/gnome/nautilus/compression" = {
+      default-compression-format = "zip";
     };
 
     "org/gnome/nautilus/icon-view" = {
@@ -358,6 +410,7 @@ with lib.hm.gvariant;
 
     "org/gnome/nautilus/preferences" = {
       default-folder-viewer = "icon-view";
+      fts-enabled = false;
       migrated-gtk-settings = true;
       search-filter-time-type = "last_modified";
       search-view = "list-view";
@@ -390,8 +443,10 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/settings-daemon/plugins/power" = {
+      idle-dim = false;
       power-button-action = "suspend";
       sleep-inactive-ac-type = "nothing";
+      sleep-inactive-battery-timeout = 3600;
     };
 
     "org/gnome/shell" = {
@@ -451,6 +506,11 @@ with lib.hm.gvariant;
       unity-backlit-items = false;
     };
 
+    "org/gnome/shell/extensions/tiling-assistant" = {
+      focus-hint-color = "rgb(145,65,172)";
+      last-version-installed = 52;
+    };
+
     "org/gnome/shell/extensions/tilingshell" = {
       enable-autotiling = true;
       enable-blur-snap-assistant = true;
@@ -460,13 +520,13 @@ with lib.hm.gvariant;
       focus-window-left = [ "<Shift><Control>h" ];
       focus-window-right = [ "<Shift><Control>l" ];
       focus-window-up = [ "<Shift><Control>k" ];
-      inner-gaps = mkUint32 8;
+      inner-gaps = mkUint32 3;
       last-version-name-installed = "16.4";
-      layouts-json = "[{\"id\":\"695737\",\"tiles\":[{\"x\":0,\"y\":0,\"width\":0.5,\"height\":0.5,\"groups\":[1,2]},{\"x\":0.5,\"y\":0,\"width\":0.4999999999999998,\"height\":0.5,\"groups\":[3,1]},{\"x\":0,\"y\":0.5,\"width\":0.5,\"height\":0.5,\"groups\":[2,1]},{\"x\":0.5,\"y\":0.5,\"width\":0.4999999999999998,\"height\":0.5,\"groups\":[3,1]}]},{\"id\":\"807969\",\"tiles\":[{\"x\":0,\"y\":0,\"width\":1,\"height\":0.5,\"groups\":[1]},{\"x\":0,\"y\":0.5,\"width\":1,\"height\":0.5,\"groups\":[1]}]},{\"id\":\"1100273\",\"tiles\":[{\"x\":0,\"y\":0,\"width\":0.5,\"height\":1,\"groups\":[1]},{\"x\":0.5,\"y\":0,\"width\":0.4999999999999998,\"height\":0.5,\"groups\":[2,1]},{\"x\":0.5,\"y\":0.5,\"width\":0.2494047619047619,\"height\":0.5,\"groups\":[2,3,1]},{\"x\":0.7494047619047619,\"y\":0.5,\"width\":0.25059523809523787,\"height\":0.5,\"groups\":[2,3]}]}]";
-      outer-gaps = mkUint32 0;
+      layouts-json = "[{\"id\":\"Layout 4\",\"tiles\":[{\"x\":0,\"y\":0,\"width\":0.67,\"height\":1,\"groups\":[1]},{\"x\":0.67,\"y\":0,\"width\":0.33,\"height\":1,\"groups\":[1]}]},{\"id\":\"19427867\",\"tiles\":[{\"x\":0,\"y\":0,\"width\":0.5,\"height\":0.5,\"groups\":[1,3]},{\"x\":0.5,\"y\":0,\"width\":0.5000000000000002,\"height\":0.5,\"groups\":[2,1]},{\"x\":0.5,\"y\":0.5,\"width\":0.5000000000000002,\"height\":0.5000000000000002,\"groups\":[2,1]},{\"x\":0,\"y\":0.5,\"width\":0.5,\"height\":0.49999999999999933,\"groups\":[3,1]}]},{\"id\":\"19498345\",\"tiles\":[{\"x\":0,\"y\":0,\"width\":0.5,\"height\":1,\"groups\":[1]},{\"x\":0.5,\"y\":0,\"width\":0.4999999999999998,\"height\":1,\"groups\":[1]}]}]";
+      outer-gaps = mkUint32 3;
       overridden-settings = "{\"org.gnome.mutter.keybindings\":{\"toggle-tiled-right\":\"['<Super>Right']\",\"toggle-tiled-left\":\"['<Super>Left']\"},\"org.gnome.desktop.wm.keybindings\":{\"maximize\":\"['<Super>Up']\",\"unmaximize\":\"['<Super>Down', '<Alt>F5']\"},\"org.gnome.mutter\":{\"edge-tiling\":\"true\"}}";
       quarter-tiling-threshold = mkUint32 25;
-      selected-layouts = [ [ "1100273" ] [ "1100273" ] ];
+      selected-layouts = [ [ "Layout 4" ] [ "Layout 4" ] ];
       top-edge-maximize = true;
       window-border-color = "rgb(192,97,203)";
     };
@@ -482,7 +542,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/shell/world-clocks" = {
-      locations = [ ];
+      locations = [];
     };
 
     "org/gnome/tweaks" = {
