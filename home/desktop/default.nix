@@ -30,12 +30,13 @@
     imagemagick
     inkscape
     keepassxc
-    kicad-small
+    # kicad-small
     libreoffice
     libnotify
     # nautilus-open-any-terminal --> doesn't seem to work so far, more research needed
     nextcloud-client
     ocrmypdf
+    openscad
     poppler_utils
     python3
     signal-desktop

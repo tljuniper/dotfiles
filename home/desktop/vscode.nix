@@ -24,7 +24,6 @@
           "files.trimFinalNewlines" = true;
           "nix.enableLanguageServer" = true;
           "python.formatting.provider" = "black";
-          "workbench.iconTheme" = "material-icon-theme";
           "window.title" = "\${rootName}";
           "shfmt.executablePath" = "${pkgs.shfmt}/bin/shfmt";
           "cSpell.enabledFileTypes" = [
@@ -102,7 +101,6 @@
       ];
       extensions = with inputs.nix-vscode-extensions.extensions.${system}.vscode-marketplace; [
         # Navigation & Themes
-        pkief.material-icon-theme
         johnpapa.vscode-peacock
         fabiospampinato.vscode-open-multiple-files
         mkhl.direnv

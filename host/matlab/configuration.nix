@@ -51,6 +51,7 @@
       "--update-input"
       "nixpkgs"
     ];
+    dates = "20:30";
   };
 
   programs.zsh.enable = true;
@@ -58,6 +59,14 @@
   users.users.europa = {
     isNormalUser = true;
     home = "/home/europa";
+    extraGroups = [ "networkmanager" ];
+    shell = pkgs.zsh;
+    initialPassword = "change-me";
+  };
+
+  users.users.io = {
+    isNormalUser = true;
+    home = "/home/io";
     extraGroups = [ "networkmanager" ];
     shell = pkgs.zsh;
     initialPassword = "change-me";

@@ -100,9 +100,9 @@ in
     description = "Backup timer for HA backup";
     partOf = [ "home-assistant-backup.service" ];
     wantedBy = [ "timers.target" ];
-    # Home Assistant backup runs at 3:00
+    # Home Assistant backup runs at 5:00
     timerConfig = {
-      OnCalendar = "*-*-* 03:30:00";
+      OnCalendar = "*-*-* 05:30:00";
       # Don't launch the service if it couldn't run the last time
       # Slows down the server too much if run during the day
       Persistent = false;

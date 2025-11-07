@@ -31,6 +31,10 @@
     journald.storage = "volatile";
   };
 
+  users.users."juniper".openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGXUdtGusl9O50PaZHpx8CX/NuGfPUy32p+iltTz9Bgx juniper@matlab"
+  ];
+
   nix.settings.trusted-users = [ "@wheel" ];
   security.sudo.wheelNeedsPassword = false;
 
