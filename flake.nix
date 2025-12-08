@@ -2,12 +2,12 @@
   description = "My flaky system configuration";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-25.05";
+    nixpkgs.url = "nixpkgs/nixos-25.11";
 
     # vscode with current plugins works better with unstable
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
 
-    home-manager.url = "github:nix-community/home-manager/release-25.05";
+    home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     flake-utils.url = "github:numtide/flake-utils";
@@ -16,10 +16,6 @@
     # For automatic disk formatting on system reinstall
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
-
-    # Colors
-    catppuccin.url = "github:catppuccin/nix";
-    catppuccin.inputs.nixpkgs.follows = "nixpkgs";
 
     # For quality checks for this repo
     git-hooks = {
@@ -64,7 +60,6 @@
     , nixpkgs-unstable
     , disko
     , ha-relay
-    , catppuccin
     , flake-utils
     , git-hooks
     , nomnombring
@@ -104,7 +99,10 @@
               check-executables-have-shebangs.enable = true;
               deadnix.enable = true;
               end-of-file-fixer.enable = true;
-              nixpkgs-fmt.enable = true;
+              nixpkgs-fmt = {
+                enable = true;
+                excludes = [ "dconf-settings\\.nix" ];
+              };
               shellcheck.enable = true;
               statix.enable = true;
               trim-trailing-whitespace.enable = true;
@@ -143,12 +141,10 @@
                 {
                   imports = [
                     ./home
-                    catppuccin.homeModules.catppuccin
                   ];
                   home = juniper-home;
                 };
             }
-            catppuccin.nixosModules.catppuccin
             nomnombring.nixosModules.nomnombring
             {
               tljuniper.services.nomnombring = {
@@ -191,12 +187,10 @@
                 {
                   imports = [
                     ./home
-                    catppuccin.homeModules.catppuccin
                   ];
                   home = juniper-home;
                 };
             }
-            catppuccin.nixosModules.catppuccin
           ];
         };
         swift = lib.nixosSystem rec {
@@ -223,12 +217,10 @@
                     ./home
                     ./home/desktop
                     ./home/backup-swift.nix
-                    catppuccin.homeModules.catppuccin
                   ];
                   home = juniper-home;
                 };
             }
-            catppuccin.nixosModules.catppuccin
           ];
         };
         matlab = lib.nixosSystem rec {
@@ -252,12 +244,10 @@
                 {
                   imports = [
                     ./home
-                    catppuccin.homeModules.catppuccin
                   ];
                   home = juniper-home;
                 };
             }
-            catppuccin.nixosModules.catppuccin
           ];
         };
         carbon = lib.nixosSystem rec {
@@ -285,7 +275,6 @@
                     ./home/desktop
                     ./home/run-rotation.nix
                     ./home/timetracking.nix
-                    catppuccin.homeModules.catppuccin
                   ];
                   home = {
                     username = "agillert";
@@ -293,7 +282,6 @@
                   };
                 };
             }
-            catppuccin.nixosModules.catppuccin
           ];
         };
       };

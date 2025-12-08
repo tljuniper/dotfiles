@@ -102,33 +102,28 @@
       extensions = with inputs.nix-vscode-extensions.extensions.${system}.vscode-marketplace; [
         # Navigation & Themes
         johnpapa.vscode-peacock
-        fabiospampinato.vscode-open-multiple-files
         mkhl.direnv
-        eamodio.gitlens
-        tonybaloney.vscode-pets
-        tomoki1207.pdf
+        eamodio.gitlens # from gitkraken.com
         # Editor
         editorconfig.editorconfig
         vscodevim.vim
         shardulm94.trailing-spaces
         # Nix
         arrterian.nix-env-selector
-        bbenoist.nix
-        jnoortheen.nix-ide
-        brettm12345.nixfmt-vscode
+        bbenoist.nix # Nix language support
+        jnoortheen.nix-ide # Autoformatting if nixfmt is in $PATH
+        # brettm12345.nixfmt-vscode
         # Bash
         mkhl.shfmt
         timonwong.shellcheck
         # Python
         ms-python.python
         # Other linters & language support
-        golang.go
+        golang.go # from go.dev
         davidanson.vscode-markdownlint
         streetsidesoftware.code-spell-checker
-        ms-azuretools.vscode-docker
-        esphome.esphome-vscode
+        ms-azuretools.vscode-docker # from microsoft.com
         eriklynd.json-tools
-        wholroyd.jinja
       ];
     };
   };

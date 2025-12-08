@@ -3,17 +3,18 @@ _:
   programs = {
     zsh = {
       enable = true;
-      autosuggestion.enable = true;
+      autosuggestion = {
+        # Sources pkgs.zsh-autosuggestions (--> zsh-users/zsh-autosuggestions)
+        enable = true;
+        strategy = [ "history" "completion" ];
+      };
+      # Add `pkgs.nix-zsh-completions` to home.packages
       enableCompletion = true;
       syntaxHighlighting.enable = true;
       shellAliases = {
         Grep = "grep -Hirn --color=auto";
         l = "ls -h -CFAl --color=auto";
       };
-      initContent = ''
-        setopt menu_complete
-        setopt always_to_end
-      '';
       oh-my-zsh = {
         enable = true;
         plugins = [
@@ -24,7 +25,6 @@ _:
           "git"
           "sudo"
           "history"
-          "web-search"
         ];
       };
     };

@@ -107,7 +107,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/desktop/break-reminders" = {
-      selected-breaks = [];
+      selected-breaks = [ ];
     };
 
     "org/gnome/desktop/break-reminders/eyesight" = {
@@ -265,6 +265,8 @@ with lib.hm.gvariant;
 
     "org/gnome/desktop/screensaver" = {
       color-shading-type = "solid";
+      lock-delay = mkUint32 3600;
+      lock-enabled = false;
       picture-options = "zoom";
       picture-uri = "file:///run/current-system/sw/share/backgrounds/gnome/pixels-l.png";
       primary-color = "#3465a4";
@@ -281,12 +283,12 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/desktop/wm/keybindings" = {
-      maximize = [];
-      switch-applications = [];
-      switch-applications-backward = [];
+      maximize = [ ];
+      switch-applications = [ ];
+      switch-applications-backward = [ ];
       switch-windows = [ "<Alt>Tab" ];
       switch-windows-backward = [ "<Shift><Alt>Tab" ];
-      unmaximize = [];
+      unmaximize = [ ];
     };
 
     "org/gnome/desktop/wm/preferences" = {
@@ -366,7 +368,9 @@ with lib.hm.gvariant;
       network-total-in-bits = false;
       show-dependencies = false;
       show-whose-processes = "user";
+      window-height = 1392;
       window-state = mkTuple [ 2476 1408 0 0 ];
+      window-width = 1668;
     };
 
     "org/gnome/gnome-system-monitor/disktreenew" = {
@@ -386,12 +390,14 @@ with lib.hm.gvariant;
 
     "org/gnome/mutter" = {
       dynamic-workspaces = false;
+      edge-tiling = false;
+      output-luminance = [ (mkTuple [ "DP-1" "SAM" "S34C65xU" "0xa0c5fa75" (mkUint32 1) 95.83333333333333 ]) ];
       overlay-key = "Super_L";
     };
 
     "org/gnome/mutter/keybindings" = {
-      toggle-tiled-left = [];
-      toggle-tiled-right = [];
+      toggle-tiled-left = [ ];
+      toggle-tiled-right = [ ];
     };
 
     "org/gnome/nautilus/compression" = {
@@ -514,7 +520,10 @@ with lib.hm.gvariant;
     "org/gnome/shell/extensions/tilingshell" = {
       enable-autotiling = true;
       enable-blur-snap-assistant = true;
+      enable-screen-edges-windows-suggestions = true;
       enable-smart-window-border-radius = false;
+      enable-snap-assistant-windows-suggestions = true;
+      enable-tiling-system-windows-suggestions = true;
       enable-window-border = true;
       focus-window-down = [ "<Shift><Control>j" ];
       focus-window-left = [ "<Shift><Control>h" ];
@@ -542,7 +551,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/shell/world-clocks" = {
-      locations = [];
+      locations = [ ];
     };
 
     "org/gnome/tweaks" = {
@@ -550,8 +559,8 @@ with lib.hm.gvariant;
     };
 
     "org/gtk/gtk4/settings/color-chooser" = {
-      custom-colors = [ (mkTuple [ 0.5768749713897705 0.3683333396911621 0.7366666793823242 1.0 ]) (mkTuple [ 2.7450986206531525e-2 0.30980393290519714 0.13725489377975464 1.0 ]) (mkTuple [ 0.9254902005195618 0.3686274588108063 0.3686274588108063 1.0 ]) ];
-      selected-color = mkTuple [ true 0.7529411911964417 0.3803921639919281 0.7960784435272217 1.0 ];
+      custom-colors = [ (mkTuple [ 0.576875 0.368333 0.736667 1.0 ]) (mkTuple [ 2.7451e-2 0.309804 0.137255 1.0 ]) (mkTuple [ 0.92549 0.368627 0.368627 1.0 ]) ];
+      selected-color = mkTuple [ true 0.752941 0.380392 0.796078 1.0 ];
     };
 
     "org/gtk/gtk4/settings/file-chooser" = {

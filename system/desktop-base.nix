@@ -1,16 +1,20 @@
 { pkgs, ... }:
 {
   services = {
+    # Install gnome
+    desktopManager = {
+      gnome.enable = true;
+    };
+    displayManager = {
+      gdm.enable = true;
+    };
+
     xserver = {
       # Enable the X11 windowing system.
       enable = true;
 
       # Configure keymap in X11
       xkb.layout = "us";
-
-      # Install gnome
-      displayManager.gdm.enable = true;
-      desktopManager.gnome.enable = true;
     };
     # Enable touchpad support (enabled default in most desktopManager).
     libinput.enable = true;
@@ -50,7 +54,7 @@
     '';
 
   boot = {
-    binfmt.emulatedSystems = [ "aarch64-linux" ];
+    binfmt.emulatedSystems = [ "aarch64-linux" "armv7l-linux" ];
     # Function keys for Keychron keyboard
     extraModprobeConfig = ''
       options hid_apple fnmode=0

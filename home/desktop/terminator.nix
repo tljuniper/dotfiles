@@ -15,10 +15,10 @@ _:
         type = "Window";
       };
       profiles.default = {
-        background_darkness = 0.9;
+        background_darkness = 1;
         background_image = "None";
         background_type = "transparent";
-        font = "DejaVu Sans Mono 12";
+        font = "DejaVu Sans Mono 11";
         show_titlebar = false;
         use_system_font = false;
         scrollback_infinite = true;

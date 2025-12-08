@@ -40,8 +40,6 @@
       ];
     };
   };
-  catppuccin.enable = true;
-  catppuccin.flavor = "mocha";
 
   home.packages = with pkgs; [
     age

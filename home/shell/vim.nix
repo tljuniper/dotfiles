@@ -67,6 +67,8 @@
 
         let g:vimwiki_list = [{ 'syntax': 'markdown',
                       \ 'ext': 'md'}]
+        au BufNewFile ~/vimwiki/diary/*.md :silent 0r !~/vimwiki/bin/generate-vimwiki-diary-template '%'
+        autocmd BufRead,BufNewFile ~/vimwiki/diary/*.md setlocal nospell
 
       '';
       plugins = with pkgs.vimPlugins; [
@@ -74,9 +76,9 @@
         commentary
         ctrlp
         fzf-vim
-        mattn-calendar-vim
         repeat
         surround
+        vim-signify
         vim-sneak
         vim-snipmate
         vim-snippets

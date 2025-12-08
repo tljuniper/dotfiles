@@ -37,7 +37,7 @@
     nextcloud-client
     ocrmypdf
     openscad
-    poppler_utils
+    poppler-utils
     python3
     signal-desktop
     thunderbird
@@ -46,7 +46,7 @@
     xclip
     # Fonts
     dejavu_fonts
-    ubuntu_font_family
+    ubuntu-classic
     powerline-fonts
   ];
 
