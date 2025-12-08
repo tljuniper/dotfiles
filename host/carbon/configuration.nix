@@ -115,7 +115,8 @@
     };
 
   networking.firewall = {
-    allowedUDPPorts = [ 51820 ]; # wireguard
+    allowedUDPPorts = [ 4455 ];
+    allowedTCPPorts = [ 4455 3000 ];
   };
 
   services.udev.extraRules = ''
