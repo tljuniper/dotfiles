@@ -10,6 +10,7 @@
   home.packages = with pkgs; [
     aspell
     aspellDicts.de
+    bambu-studio
     baobab
     chromium
     evince
