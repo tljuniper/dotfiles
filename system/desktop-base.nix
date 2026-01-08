@@ -8,6 +8,7 @@
     displayManager = {
       gdm.enable = true;
     };
+    gnome.sushi.enable = true;
 
     xserver = {
       # Enable the X11 windowing system.
@@ -31,20 +32,26 @@
   xdg.autostart.enable = true;
 
   # Exclude gnome applications
-  environment.gnome.excludePackages = with pkgs; [
-    gnome-photos
-    gnome-tour
-    gnome-music
-    gnome-terminal
-    epiphany # web browser
-    geary # email reader
-    gnome-characters
-    totem # video player
-    tali # poker game
-    iagno # go game
-    hitori # sudoku game
-    atomix # puzzle game
-  ];
+  environment = {
+    gnome.excludePackages = with pkgs; [
+      gnome-photos
+      gnome-tour
+      gnome-music
+      gnome-terminal
+      epiphany # web browser
+      geary # email reader
+      gnome-characters
+      totem # video player
+      tali # poker game
+      iagno # go game
+      hitori # sudoku game
+      atomix # puzzle game
+    ];
+
+    systemPackages = with pkgs; [
+      evince
+    ];
+  };
 
   # Enable the function keys for Keychron keyboard
   # https://mikeshade.com/posts/keychron-linux-function-keys/
