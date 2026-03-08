@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 let
   hostName = "rust.fable-clownfish.ts.net";
   certFile = "/var/lib/ssl/private/rust.fable-clownfish.ts.net.crt";
