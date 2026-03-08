@@ -32,6 +32,7 @@
     curl
     detox # Cleanup filenames with special characters
     diff-so-fancy # Mainly for use with git
+    dig # dns debugging
     dos2unix
     dool # Resource usage (replacement for dstat)
     fzf # Command line fuzzy finder

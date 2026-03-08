@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
   imports =
@@ -33,11 +33,20 @@
 
   services = {
     tailscale.enable = true;
+    # iPhone?
+    usbmuxd.enable = true;
   };
 
   # No ssh daemon on this machine, so we need some way to login after an automated install
   # Don't move this to the user-juniper.nix file, we don't want this setting for other machines
   users.users.juniper.initialPassword = "change-me";
+
+  # iPhone
+  environment.systemPackages = with pkgs; [
+    libimobiledevice
+    ifuse
+    usbmuxd
+  ];
 
   system.autoUpgrade = {
     enable = true;

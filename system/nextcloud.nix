@@ -87,9 +87,7 @@ in
 
   systemd = {
     # Attempt to fix "too many files error"
-    extraConfig = ''
-      DefaultLimitNOFILE=65536
-    '';
+    settings.Manager.DefaultLimitNOFILE = 65536;
     services = {
       # Ensure that postgres is running before running the setup
       "nextcloud-setup" = {
