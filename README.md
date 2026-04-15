@@ -3,20 +3,20 @@
 Install system settings:
 
 ```bash
-nixos-rebuild switch --use-remote-sudo --flake .#<hostname>
+nixos-rebuild switch --sudo --flake .#<hostname>
 ```
 
 For pascal:
 
 ```bash
-nixos-rebuild switch --use-remote-sudo --flake .#pascal --target-host pascal
+nixos-rebuild switch --sudo --flake .#pascal --target-host pascal
 ```
 
 Update:
 
 ```bash
 nix flake update
-nixos-rebuild switch --use-remote-sudo --flake .#<hostname>
+nixos-rebuild switch --sudo --flake .#<hostname>
 ```
 
 ## Swift desktop install with disko and nixos-anywhere
