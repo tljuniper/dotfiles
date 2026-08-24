@@ -1,8 +1,9 @@
-_:
+{ config, ... }:
 {
   programs = {
     zsh = {
       enable = true;
+      dotDir = config.home.homeDirectory;
       autosuggestion = {
         # Sources pkgs.zsh-autosuggestions (--> zsh-users/zsh-autosuggestions)
         enable = true;

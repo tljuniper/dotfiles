@@ -6,6 +6,7 @@
     userDirs = {
       enable = true;
       createDirectories = lib.mkDefault true;
+      setSessionVariables = true;
 
       download = config.home.homeDirectory + "/Downloads";
       pictures = config.home.homeDirectory + "/Pictures";

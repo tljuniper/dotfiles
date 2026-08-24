@@ -73,11 +73,11 @@
       '';
       plugins = with pkgs.vimPlugins; [
         catppuccin-vim
-        commentary
-        ctrlp
+        vim-commentary
+        ctrlp-vim
         fzf-vim
-        repeat
-        surround
+        vim-repeat
+        vim-surround
         vim-signify
         vim-sneak
         vim-snipmate
